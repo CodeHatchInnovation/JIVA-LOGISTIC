@@ -10,8 +10,10 @@
     --accent-color: #4CAF50; /* ¡NUEVO VERDE DE ACENTO! */
     --accent-hover: #45a049; /* Tono más oscuro para hover */
     --spacing-large: 60px;
-    --spacing-medium: 30px;
-    --spacing-small: 25px; /* Aumentado para más espaciado lateral */
+    --spacing-medium: 40px; /* Aumentado para más espaciado interno */
+    --spacing-small: 25px; /* Aumentado para más espaciado interno */
+    --padding-section: 80px; /* Nuevo para padding de secciones */
+    --padding-card: 40px; /* Nuevo para padding de tarjetas */
 }
 
 /* Reset Básico y Tipografía */
@@ -27,14 +29,17 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     scroll-behavior: smooth;
-    /* Añadimos padding lateral al body para asegurar espacio desde el borde */
-    padding-left: var(--spacing-small);
-    padding-right: var(--spacing-small);
+    /* Eliminamos padding lateral del body para que header y footer abarquen todo */
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto; /* Esto centrará el contenido dentro del padding del body */
+    margin: 0 auto; /* Esto centrará el contenido */
+    /* Añadimos un padding horizontal interno al container para que el contenido no se pegue a los bordes de la ventana en pantallas grandes */
+    padding-left: var(--spacing-small);
+    padding-right: var(--spacing-small);
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -47,10 +52,11 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    /* El header debe ocupar el ancho completo menos el padding del body */
-    left: var(--spacing-small);
-    right: var(--spacing-small);
-    width: calc(100% - (2 * var(--spacing-small)));
+    /* Estas propiedades ya no son necesarias aquí porque el body no tiene padding horizontal */
+    /* left: var(--spacing-small); */
+    /* right: var(--spacing-small); */
+    /* width: calc(100% - (2 * var(--spacing-small))); */
+    width: 100%; /* Ocupa todo el ancho */
 }
 
 .navbar {
@@ -59,24 +65,24 @@ body {
     align-items: center;
     max-width: 1200px; /* Asegura que el contenido del navbar no exceda el container */
     margin: 0 auto; /* Centra el contenido del navbar */
-    padding: 0; /* No padding horizontal aquí, el body ya lo maneja */
+    /* Añadimos padding horizontal al navbar para que el contenido no se pegue a los bordes de la ventana en móviles */
+    padding: 0 var(--spacing-small);
 }
 
 .logo img {
     height: 50px;
-    /* filter: brightness(0) invert(1); */ /* Comentado o eliminado */
 }
 
 .nav-links {
     list-style: none;
-    display: flex; /* En escritorio, los enlaces se muestran en línea */
+    display: flex;
     gap: 20px;
-    margin: 0; /* Asegurar que no haya márgenes no deseados */
-    padding: 0; /* Asegurar que no haya paddings no deseados */
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links li {
-    margin: 0; /* Reset de márgenes */
+    margin: 0;
 }
 
 .nav-links a {
@@ -123,13 +129,13 @@ body {
 
 /* Botón de Hamburguesa para Móvil */
 .menu-toggle {
-    display: none; /* Oculto por defecto en escritorio */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
     position: relative;
-    z-index: 1002; /* Para que esté sobre el menú desplegable */
+    z-index: 1002;
 }
 
 .hamburger-icon {
@@ -162,7 +168,7 @@ body {
 
 /* Animación de hamburguesa a "X" */
 .menu-toggle.active .hamburger-icon {
-    background-color: transparent; /* Oculta la barra central */
+    background-color: transparent;
 }
 
 .menu-toggle.active .hamburger-icon::before {
@@ -173,10 +179,9 @@ body {
     transform: translateY(-10px) rotate(-45deg);
 }
 
-
 /* Secciones Generales */
 section {
-    padding: var(--spacing-large) 0;
+    padding: var(--padding-section) 0; /* Aplicar el nuevo padding para secciones */
     text-align: center;
 }
 
@@ -240,7 +245,7 @@ p {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-large);
-    padding: var(--spacing-large) 0;
+    padding: var(--padding-section) var(--spacing-small); /* Mantener padding horizontal aquí si el body no lo tiene */
     background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%);
     text-align: left;
 }
@@ -308,7 +313,7 @@ p {
 
 .card {
     background-color: var(--white);
-    padding: var(--spacing-medium);
+    padding: var(--padding-card); /* Aplicar el nuevo padding para tarjetas */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
@@ -405,7 +410,6 @@ iframe {
     right: 10px;
 }
 
-
 /* Sección de contenido con imagen a la izquierda/derecha (Rastreo Satelital) */
 .content-left-image {
     display: flex;
@@ -439,8 +443,8 @@ iframe {
 
 /* Formularios de Contacto */
 #contacto {
-    padding-top: var(--spacing-large);
-    padding-bottom: var(--spacing-large);
+    padding-top: var(--padding-section);
+    padding-bottom: var(--padding-section);
 }
 
 .contact-form-title {
@@ -452,7 +456,7 @@ iframe {
 
 .contact-form {
     background-color: var(--white);
-    padding: var(--spacing-large);
+    padding: var(--padding-card); /* Aplicar el nuevo padding para formularios */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     max-width: 600px;
@@ -505,7 +509,7 @@ iframe {
 
 /* Sección de QR */
 .qr-section {
-    padding: var(--spacing-large) 0;
+    padding: var(--padding-section) 0;
     text-align: center;
 }
 
@@ -521,6 +525,7 @@ iframe {
 /* Políticas de Privacidad */
 .privacy-policy-container {
     text-align: left;
+    padding: var(--padding-card); /* Aplicar el nuevo padding para este contenedor también */
 }
 
 .privacy-policy-container h3 {
@@ -569,10 +574,11 @@ iframe {
     text-align: center;
     margin-top: var(--spacing-large);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
-    /* El footer debe ocupar el ancho completo menos el padding del body */
-    left: var(--spacing-small);
-    right: var(--spacing-small);
-    width: calc(100% - (2 * var(--spacing-small)));
+    /* Estas propiedades ya no son necesarias aquí porque el body no tiene padding horizontal */
+    /* left: var(--spacing-small); */
+    /* right: var(--spacing-small); */
+    /* width: calc(100% - (2 * var(--spacing-small))); */
+    width: 100%; /* Ocupa todo el ancho */
 }
 
 .footer-links {
@@ -715,7 +721,7 @@ iframe {
         flex-direction: column;
         text-align: center;
         gap: var(--spacing-medium);
-        padding: var(--spacing-large) 0;
+        padding: var(--padding-section) var(--spacing-small); /* Asegurar padding horizontal en móvil */
     }
 
     .hero-content {
@@ -751,69 +757,62 @@ iframe {
         width: 100%; /* Ocupa todo el ancho disponible */
         left: 0;
         right: 0;
-        padding-left: var(--spacing-small); /* Mantener el padding lateral del body */
-        padding-right: var(--spacing-small);
+        /* Los padding ya están en el navbar */
     }
 
     /* Ocultar elementos en el navbar para pantallas pequeñas */
     .navbar {
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
-        justify-content: space-between; /* Espacio entre logo y toggle/voz */
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Padding ya definido arriba */
     }
 
     .nav-links {
-        display: none; /* Oculto por defecto en móvil */
+        display: none;
         flex-direction: column;
         width: 100%;
         text-align: center;
         background-color: var(--primary-blue);
         position: absolute;
-        top: 100%; /* Debajo del navbar */
+        top: 100%;
         left: 0;
         right: 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         padding: 10px 0;
-        gap: 0; /* Resetear el gap */
+        gap: 0;
     }
 
     .nav-links.active {
-        display: flex; /* Mostrar cuando está activo */
+        display: flex;
     }
 
     .nav-links li {
-        margin: 8px 0; /* Espaciado entre elementos del menú móvil */
+        margin: 8px 0;
     }
 
     .nav-links a {
-        padding: 8px 15px; /* Más padding para los enlaces en móvil */
-        display: block; /* Para que ocupen todo el ancho y el padding funcione */
+        padding: 8px 15px;
+        display: block;
     }
 
     .menu-toggle {
-        display: block; /* Mostrar botón de hamburguesa */
-        order: 1; /* Para que aparezca antes del botón de voz si se desea */
-        margin-left: auto; /* Empuja el botón de voz a la derecha */
+        display: block;
+        order: 1;
+        margin-left: auto;
     }
     .voice-btn {
-        margin-left: 10px; /* Separar del botón de hamburguesa */
-        order: 2; /* Para que aparezca después del botón de hamburguesa */
+        margin-left: 10px;
+        order: 2;
     }
 }
 
-
 @media (max-width: 768px) {
     .navbar {
-        /* No flex-direction: column; */ /* Mantenemos row para que el toggle esté al lado del logo */
-        padding: 8px 0;
-    }
-
-    /* Los nav-links se manejarán con display none/flex por JS */
-    .nav-links {
-        /* Los estilos ya están definidos para .nav-links en el media query 992px */
+        padding: 8px var(--spacing-small); /* Ajustar padding en pantallas más pequeñas */
     }
 
     .voice-btn {
-        margin-top: 0; /* Eliminar el margen superior */
+        margin-top: 0;
         font-size: 0.8em;
         padding: 5px 10px;
     }
@@ -834,11 +833,11 @@ iframe {
     }
 
     section {
-        padding: var(--spacing-medium) 0;
+        padding: var(--spacing-medium) 0; /* Reducir padding de secciones en móvil */
     }
 
     .hero-section {
-        padding: var(--spacing-medium) 0;
+        padding: var(--spacing-medium) var(--spacing-small);
     }
 
     .hero-content h1 {
@@ -866,7 +865,7 @@ iframe {
     }
 
     .contact-form {
-        padding: var(--spacing-small);
+        padding: var(--spacing-small); /* Reducir padding de formulario en móvil */
     }
 
     .chatbot-button {
@@ -926,7 +925,7 @@ iframe {
         padding: 5px 10px;
     }
     .card {
-        padding: var(--spacing-small);
+        padding: var(--spacing-small); /* Ajustar padding de tarjeta en móvil más pequeño */
     }
     .carousel-slide img {
         height: 180px;
