@@ -1,21 +1,21 @@
 // --- Lógica para Carrusel de Flota ---
 function setupCarousel(containerSelector, slideSelector, prevBtnSelector, nextBtnSelector) {
     const carouselContainer = document.querySelector(containerSelector);
-    if (!carouselContainer) return; // Salir si el contenedor no existe
+    if (!carouselContainer) return;
 
     const carouselSlide = carouselContainer.querySelector(slideSelector);
     const prevBtn = carouselContainer.querySelector(prevBtnSelector);
     const nextBtn = carouselContainer.querySelector(nextBtnSelector);
 
     let slideIndex = 0;
-    const slides = carouselSlide.children; // Obtiene todos los elementos hijos del slide
+    const slides = carouselSlide.children;
     const totalSlides = slides.length;
 
     function showSlide(index) {
         if (index >= totalSlides) {
-            slideIndex = 0; // Volver al inicio
+            slideIndex = 0;
         } else if (index < 0) {
-            slideIndex = totalSlides - 1; // Ir al final
+            slideIndex = totalSlides - 1;
         } else {
             slideIndex = index;
         }
@@ -30,13 +30,29 @@ function setupCarousel(containerSelector, slideSelector, prevBtnSelector, nextBt
         showSlide(slideIndex + 1);
     });
 
-    // Inicializar el carrusel
     showSlide(0);
 }
 
-// Configurar el carrusel de Flota al cargar el DOM
+
+// --- Lógica para Menú Desplegable (Hamburguesa) ---
 document.addEventListener('DOMContentLoaded', () => {
-    setupCarousel('.carousel-container', '.carousel-slide', '.prev-btn', '.next-btn'); // Solo el carrusel de flota
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active'); // Para animar el icono de hamburguesa a "X"
+        });
+
+        // Cerrar el menú si se hace clic en un enlace (para navegación)
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            });
+        });
+    }
 });
 
 
@@ -45,25 +61,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const voiceButton = document.getElementById('voice-command-toggle');
     if (!voiceButton) return;
 
-    // Verificar soporte para la Web Speech API
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
 
     if (!SpeechRecognition) {
         console.warn('La API de reconocimiento de voz no es soportada en este navegador. El botón de voz será ocultado.');
-        voiceButton.style.display = 'none'; // Ocultar el botón si no hay soporte
+        voiceButton.style.display = 'none';
         return;
     }
 
     const recognition = new SpeechRecognition();
-    recognition.lang = 'es-ES'; // Idioma español
-    recognition.interimResults = false; // Solo resultados finales
-    recognition.maxAlternatives = 1; // Obtener la mejor alternativa
+    recognition.lang = 'es-ES';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
 
     voiceButton.addEventListener('click', () => {
         try {
             recognition.start();
             voiceButton.textContent = 'Escuchando...';
-            voiceButton.classList.add('listening'); // Añadir clase para estilos CSS
+            voiceButton.classList.add('listening');
         } catch (e) {
             console.error('Error al iniciar el reconocimiento de voz:', e);
             voiceButton.textContent = 'Voz';
@@ -73,12 +88,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript.toLowerCase(); // Obtener el texto reconocido
+        const transcript = event.results[0][0].transcript.toLowerCase();
         console.log('Comando de voz detectado:', transcript);
         voiceButton.textContent = 'Voz';
         voiceButton.classList.remove('listening');
 
-        // Función para desplazar a una sección
         const scrollToSection = (id) => {
             const section = document.getElementById(id);
             if (section) {
@@ -88,25 +102,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Comandos de navegación por voz (con palabras clave ajustadas)
         if (transcript.includes('inicio') || transcript.includes('ir a inicio') || transcript.includes('principal')) {
             scrollToSection('inicio');
-        } else if (transcript.includes('misión') || transcript.includes('esencia')) { // 'mision y vision' se reduce a 'mision'
+        } else if (transcript.includes('misión') || transcript.includes('esencia')) {
             scrollToSection('mision');
         } else if (transcript.includes('flota') || transcript.includes('camiones') || transcript.includes('unidades')) {
             scrollToSection('flota');
-        } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) { // 'rastreo satelital' se reduce a 'rastreo'
+        } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) {
             scrollToSection('rastreo');
         } else if (transcript.includes('cobertura') || transcript.includes('nacional')) {
             scrollToSection('cobertura');
-        } else if (transcript.includes('patios') || transcript.includes('operaciones')) { // 'patios de operaciones' se reduce a 'patios'
+        } else if (transcript.includes('patios') || transcript.includes('operaciones')) {
             scrollToSection('patios');
         } else if (transcript.includes('contacto') || transcript.includes('contactar') || transcript.includes('llamar')) {
             scrollToSection('contacto');
         } else if (transcript.includes('privacidad') || transcript.includes('politicas de privacidad') || transcript.includes('aviso de privacidad')) {
             scrollToSection('privacidad');
         } else if (transcript.includes('presentación') || transcript.includes('descargar presentación') || transcript.includes('qr')) {
-            // Asumiendo que la sección QR tiene un ID o clase para scroll
             const qrSection = document.querySelector('.qr-section');
             if (qrSection) {
                 qrSection.scrollIntoView({ behavior: 'smooth' });
@@ -144,23 +156,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Previene el envío por defecto del formulario
+            e.preventDefault();
 
             contactMessage.textContent = 'Enviando mensaje...';
-            contactMessage.style.color = 'var(--accent-color)'; // Verde
+            contactMessage.style.color = 'var(--accent-color)';
 
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
 
             console.log('Datos del formulario de contacto:', data);
 
-            // Simulación de envío de datos (retraso para simular una petición de red)
             await new Promise(resolve => setTimeout(resolve, 1500));
 
-            // Para esta demo sin backend:
             contactMessage.textContent = '¡Mensaje enviado con éxito! (Simulado). Nos pondremos en contacto contigo pronto.';
             contactMessage.style.color = 'green';
-            contactForm.reset(); // Limpiar el formulario
+            contactForm.reset();
         });
     }
 });
@@ -175,13 +185,12 @@ document.addEventListener('DOMContentLoaded', () => {
         chatbotButton.addEventListener('click', () => {
             if (chatbotContainer.style.display === 'flex') {
                 chatbotContainer.style.display = 'none';
-                chatbotButton.textContent = '💬'; // Cambiar icono a cerrado
+                chatbotButton.textContent = '💬';
             } else {
                 chatbotContainer.style.display = 'flex';
-                chatbotButton.textContent = '✖'; // Cambiar icono a cerrar
+                chatbotButton.textContent = '✖';
 
-                // Contenido del chatbot para demostrar interacción con palabras clave
-                if (!chatbotContainer.querySelector('.chatbot-dialogue-box')) { // Cargar solo una vez
+                if (!chatbotContainer.querySelector('.chatbot-dialogue-box')) {
                     chatbotContainer.innerHTML = `
                         <div class="chatbot-dialogue-box">
                             <div id="chat-messages">
@@ -207,10 +216,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         msgDiv.style.borderRadius = '8px';
                         msgDiv.style.marginBottom = '10px';
                         msgDiv.style.textAlign = sender === 'user' ? 'right' : 'left';
-                        msgDiv.innerHTML = text; // Usar innerHTML para enlaces
+                        msgDiv.innerHTML = text;
 
                         chatMessages.appendChild(msgDiv);
-                        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll al final
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
                     };
 
                     const handleChatInput = () => {
@@ -221,9 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         chatInput.value = '';
 
                         let botResponse = "Lo siento, no entendí tu pregunta. Intenta con alguna de las palabras clave como 'Flota' o 'Contacto'.";
-                        // scrollTargetId no se usa directamente para scroll aquí, el enlace en la respuesta del bot lo hace.
 
-                        // Respuestas del chatbot (con palabras clave ajustadas)
                         if (userText.includes('hola') || userText.includes('ayuda')) {
                             botResponse = "¡Hola! Estoy aquí para ayudarte. Puedes preguntar sobre nuestras secciones como 'Inicio', 'Misión', 'Flota', 'Rastreo', 'Cobertura', 'Patios', 'Contacto', 'Privacidad' o 'Presentación'.";
                         } else if (userText.includes('inicio') || userText.includes('principal')) {
@@ -243,15 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
                         } else if (userText.includes('privacidad') || userText.includes('políticas') || userText.includes('aviso')) {
                             botResponse = `Nuestras <a href="#privacidad" onclick="document.getElementById('chatbot-container').style.display='none';">Políticas de Privacidad</a> están aquí.`;
                         } else if (userText.includes('presentación') || userText.includes('qr') || userText.includes('descargar')) {
-                            // Asegúrate de que la ruta del PDF sea correcta.
                             botResponse = `Puedes descargar nuestra <a href="images/JIVA_LOGISTIC_actual.pdf" target="_blank" onclick="document.getElementById('chatbot-container').style.display='none';">Presentación</a> escaneando el QR.`;
                         }
 
-                        // Retraso para simular "pensamiento" del bot
                         setTimeout(() => {
                             addMessage(botResponse, 'bot');
-                            // El desplazamiento se maneja ahora a través del click del enlace en la respuesta del bot
-                            // para que el usuario pueda cerrar el chatbot antes de desplazarse si lo desea.
                         }, 500);
                     };
 
