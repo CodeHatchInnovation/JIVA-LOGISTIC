@@ -9,9 +9,9 @@
     --text-light: #F0F0F0;
     --accent-color: #4CAF50; /* ¡NUEVO VERDE DE ACENTO! */
     --accent-hover: #45a049; /* Tono más oscuro para hover */
-    --spacing-large: 80px;   /* Reducido para más compacidad */
-    --spacing-medium: 40px;
-    --spacing-small: 20px;
+    --spacing-large: 60px;   /* Reducido para más compacidad */
+    --spacing-medium: 30px; /* Reducido */
+    --spacing-small: 15px;  /* Reducido */
 }
 
 /* Reset Básico y Tipografía */
@@ -38,7 +38,7 @@ body {
 /* Encabezado Principal */
 .main-header {
     background-color: var(--primary-blue);
-    padding: 15px 0;
+    padding: 10px 0; /* Más compacto */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -51,31 +51,31 @@ body {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-small); /* Usar variable para padding lateral */
+    padding: 0 var(--spacing-small);
 }
 
 .logo img {
-    height: 55px;
+    height: 50px; /* Tamaño ajustado */
     filter: brightness(0) invert(1);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: var(--spacing-small); /* Espacio entre los elementos del menú */
+    gap: 20px; /* Espacio fijo entre los elementos del menú */
 }
 
 .nav-links li {
-    margin-left: 0; /* Reiniciar margin-left si se usa gap */
+    margin-left: 0; /* Asegura que no haya margin-left extra */
 }
 
 .nav-links a {
     color: var(--white);
     text-decoration: none;
     font-weight: bold;
-    font-size: 1.05em;
+    font-size: 1em; /* Tamaño estándar, conciso */
     transition: color 0.3s ease, transform 0.2s ease;
-    padding: 5px 0; /* Pequeño padding para el área de clic */
+    padding: 5px 0;
 }
 
 .nav-links a:hover {
@@ -87,16 +87,16 @@ body {
     background-color: var(--accent-color);
     color: var(--white);
     border: none;
-    padding: 10px 15px; /* Más compacto */
+    padding: 8px 12px; /* Más compacto */
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em; /* Ligeramente más pequeño */
+    font-size: 0.9em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .voice-btn:hover {
-    background-color: var(--accent-hover); /* Nuevo color de hover */
+    background-color: var(--accent-hover);
     transform: translateY(-2px);
 }
 
@@ -130,46 +130,46 @@ section {
 h1, h2 {
     color: var(--primary-blue);
     margin-bottom: var(--spacing-small); /* Más compacto */
-    font-size: 3em; /* Ajuste para h1, menos gigante */
-    line-height: 1.2; /* Aumentado */
+    font-size: 2.8em; /* Ajuste para h1 */
+    line-height: 1.2;
 }
 
 h2 {
-    font-size: 2.4em; /* Ajuste para h2 */
+    font-size: 2.2em; /* Ajuste para h2 */
 }
 
 h3 {
     color: var(--text-dark);
-    margin-bottom: var(--spacing-small); /* Más compacto */
-    font-size: 1.7em; /* Ajuste para h3 */
+    margin-bottom: 15px; /* Espacio fijo */
+    font-size: 1.6em; /* Ajuste para h3 */
 }
 
 p {
-    margin-bottom: 1.2em; /* Espacio basado en la altura de línea para mejor ritmo */
-    font-size: 1.1em;
+    margin-bottom: 1em; /* Espacio más compacto */
+    font-size: 1.05em;
 }
 
 /* Botones Call to Action */
 .cta-button {
     background-color: var(--accent-color);
     color: var(--white);
-    padding: 15px 30px; /* Tamaño estándar, elegante */
+    padding: 12px 25px; /* Tamaño estándar, elegante */
     text-decoration: none;
     border-radius: 8px;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1.05em;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
     display: inline-block;
-    margin-top: var(--spacing-medium); /* Más espacio antes del botón */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-top: var(--spacing-medium);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
 }
 
 .cta-button:hover {
     background-color: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Menor movimiento */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Section (Inicio) */
@@ -189,13 +189,13 @@ p {
 }
 
 .hero-content h1 {
-    font-size: 3.5em; /* Ligeramente reducido para mejor ajuste */
+    font-size: 3em; /* Ajuste para que no sea tan grande */
     line-height: 1.1;
     margin-bottom: var(--spacing-small);
 }
 
 .hero-content p {
-    font-size: 1.05em;
+    font-size: 1em;
     margin-bottom: var(--spacing-small);
 }
 
@@ -209,25 +209,25 @@ p {
 .hero-image img {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1); /* Sombra más sutil */
 }
 
 .values {
-    margin-top: var(--spacing-small); /* Añadido espacio superior */
-    margin-bottom: var(--spacing-small); /* Más espacio inferior */
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
 }
 
 .values span {
     display: inline-block;
     background-color: var(--primary-blue);
     color: var(--white);
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-right: 10px;
-    font-size: 0.9em;
+    padding: 6px 12px;
+    border-radius: 15px; /* Más redondeado */
+    margin-right: 8px; /* Espacio más compacto */
+    font-size: 0.85em;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     transition: background-color 0.3s ease;
 }
 
@@ -239,7 +239,7 @@ p {
 /* Grid de Tarjetas (Misión/Visión, Patios, Contacto Info) */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Min-width ligeramente menor */
     gap: var(--spacing-medium);
     margin-top: var(--spacing-large);
 }
@@ -247,8 +247,8 @@ p {
 .card {
     background-color: var(--white);
     padding: var(--spacing-medium);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Más redondeado */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra más suave */
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     color: var(--text-dark);
@@ -265,8 +265,8 @@ p {
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transform: translateY(-3px); /* Menor movimiento */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .map-link {
@@ -275,7 +275,7 @@ p {
     color: var(--primary-blue);
     text-decoration: none;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.95em;
     transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
@@ -297,8 +297,8 @@ iframe {
     max-width: 900px;
     margin: var(--spacing-large) auto;
     overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .carousel-slide {
@@ -308,9 +308,9 @@ iframe {
 
 .carousel-slide img {
     min-width: 100%;
-    height: 400px;
+    height: 380px; /* Altura ligeramente ajustada */
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
     display: block;
 }
 
@@ -322,9 +322,9 @@ iframe {
     background-color: rgba(0, 0, 0, 0.5);
     color: var(--white);
     border: none;
-    padding: 10px 15px;
+    padding: 8px 12px; /* Más compacto */
     cursor: pointer;
-    font-size: 1.5em;
+    font-size: 1.3em;
     z-index: 10;
     border-radius: 5px;
     transition: background-color 0.3s ease;
@@ -356,10 +356,10 @@ iframe {
 }
 
 .content-left-image img {
-    max-width: 250px;
+    max-width: 220px; /* Tamaño ligeramente menor */
     height: auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .content-left-image div {
@@ -370,17 +370,17 @@ iframe {
 .full-width-image {
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-top: var(--spacing-large);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Formularios de Contacto */
 .contact-form {
     background-color: var(--white);
     padding: var(--spacing-large);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     margin-top: var(--spacing-large);
     max-width: 600px;
     margin-left: auto;
@@ -395,19 +395,19 @@ iframe {
 
 .contact-form label {
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
     font-weight: bold;
-    font-size: 1em;
+    font-size: 0.95em;
 }
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
     width: 100%;
-    padding: 12px;
+    padding: 10px; /* Más compacto */
     border: 1px solid var(--gray-medium);
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 0.95em;
     transition: border-color 0.3s ease;
 }
 
@@ -437,11 +437,11 @@ iframe {
 }
 
 .qr-code-image {
-    max-width: 200px;
+    max-width: 180px; /* Ligeramente más pequeño */
     height: auto;
     margin: var(--spacing-medium) auto;
     display: block;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
 }
 
@@ -452,31 +452,31 @@ iframe {
 
 .privacy-policy-container h3 {
     margin-top: var(--spacing-medium);
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Ajuste de espacio */
     color: var(--white);
-    font-size: 1.5em; /* Ajuste para sub-títulos */
+    font-size: 1.4em; /* Ajuste para sub-títulos */
 }
 
 .privacy-policy-container p,
 .privacy-policy-container ul {
-    font-size: 1em; /* Texto más compacto */
-    line-height: 1.6; /* Espaciado de línea para legibilidad */
-    margin-bottom: 15px;
+    font-size: 0.95em; /* Texto más compacto */
+    line-height: 1.6;
+    margin-bottom: 12px;
     color: var(--text-light);
 }
 
 .privacy-policy-container p strong {
-    color: var(--light-blue); /* Hace los nombres y títulos en negrita más visibles */
+    color: var(--light-blue);
 }
 
 .privacy-policy-container ul {
     list-style-type: disc;
-    margin-left: 30px; /* Ajuste del margen para listas */
+    margin-left: 25px; /* Ajuste del margen para listas */
     padding-left: 0;
 }
 
 .privacy-policy-container ul li {
-    margin-bottom: 5px; /* Espacio entre items de lista */
+    margin-bottom: 4px; /* Espacio entre items de lista */
 }
 
 .privacy-policy-container a {
@@ -502,11 +502,11 @@ iframe {
     list-style: none;
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 12px;
 }
 
 .footer-links li {
-    margin: 0 15px;
+    margin: 0 12px; /* Espacio más compacto */
 }
 
 .footer-links a {
@@ -527,34 +527,34 @@ iframe {
     right: var(--spacing-medium);
     background-color: var(--accent-color);
     color: var(--white);
-    width: 60px;
-    height: 60px;
+    width: 55px; /* Ligeramente más pequeño */
+    height: 55px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2em;
+    font-size: 1.8em;
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más suave */
     z-index: 1001;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .chatbot-button:hover {
     background-color: var(--accent-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 #chatbot-container {
     position: fixed;
-    bottom: calc(var(--spacing-medium) + 70px); /* Ajustar posición por encima del botón */
+    bottom: calc(var(--spacing-medium) + 65px); /* Ajustar posición por encima del botón */
     right: var(--spacing-medium);
-    width: 350px;
-    height: 480px;
+    width: 320px; /* Ligeramente más estrecho */
+    height: 450px; /* Ligeramente más corto */
     background-color: var(--white);
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     z-index: 1002;
     display: none;
     flex-direction: column;
@@ -576,7 +576,7 @@ iframe {
 
 /* Estilos para el contenido del chatbot de ejemplo */
 .chatbot-dialogue-box {
-    padding: var(--spacing-small); /* Ajustado para el chatbot */
+    padding: var(--spacing-small);
     text-align: left;
     font-family: Arial, sans-serif;
     flex-grow: 1;
@@ -587,14 +587,14 @@ iframe {
 #chat-messages {
     flex-grow: 1;
     overflow-y: auto;
-    margin-bottom: 15px;
-    padding-right: 10px;
+    margin-bottom: 12px;
+    padding-right: 8px; /* Pequeño padding para scrollbar */
 }
 #chat-messages p {
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    line-height: 1.4; /* Ajuste para mensajes del chat */
+    padding: 8px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    line-height: 1.4;
     font-size: 0.9em;
 }
 #chat-messages p:first-of-type {
@@ -602,37 +602,37 @@ iframe {
 }
 #chat-input {
     flex-grow: 1;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid var(--gray-medium);
     border-radius: 5px;
-    margin-right: 10px;
+    margin-right: 8px;
     font-size: 0.9em;
 }
 #send-chat-btn {
     background-color: var(--primary-blue);
     color: var(--white);
     border: none;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
 }
 #send-chat-btn:hover {
-    background-color: #002244; /* Tono más oscuro de azul */
+    background-color: #002244;
 }
 
 
 /* Responsive Design (Media Queries) */
 @media (max-width: 992px) {
     h1 {
-        font-size: 2.8em;
+        font-size: 2.5em;
     }
     h2 {
-        font-size: 2.2em;
+        font-size: 2em;
     }
     h3 {
-        font-size: 1.5em;
+        font-size: 1.4em;
     }
     .hero-section {
         flex-direction: column;
@@ -663,10 +663,10 @@ iframe {
     }
 
     .carousel-container {
-        max-width: 700px;
+        max-width: 600px;
     }
     .carousel-slide img {
-        height: 350px;
+        height: 300px;
     }
 }
 
@@ -674,16 +674,16 @@ iframe {
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
-        padding: 10px var(--spacing-small);
+        padding: 8px var(--spacing-small);
     }
 
     .nav-links {
         flex-direction: column;
         width: 100%;
-        margin-top: 15px;
+        margin-top: 12px;
         align-items: center;
         text-align: center;
-        gap: 8px; /* Espacio más compacto en vertical */
+        gap: 6px;
     }
 
     .nav-links li {
@@ -691,24 +691,24 @@ iframe {
     }
 
     .voice-btn {
-        margin-top: 15px;
+        margin-top: 12px;
         font-size: 0.8em;
-        padding: 6px 12px;
+        padding: 5px 10px;
     }
 
     h1 {
-        font-size: 2.2em;
+        font-size: 2em;
     }
 
     h2 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
 
     h3 {
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     p {
-        font-size: 0.95em;
+        font-size: 0.9em;
     }
 
     section {
@@ -720,12 +720,12 @@ iframe {
     }
 
     .hero-content h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
     .cta-button {
-        padding: 12px 25px;
-        font-size: 1em;
+        padding: 10px 20px;
+        font-size: 0.95em;
     }
 
     .carousel-container {
@@ -734,13 +734,13 @@ iframe {
     }
 
     .carousel-slide img {
-        height: 250px;
+        height: 220px;
     }
 
     .carousel-container .prev-btn,
     .carousel-container .next-btn {
-        padding: 8px 12px;
-        font-size: 1.3em;
+        padding: 6px 10px;
+        font-size: 1.2em;
     }
 
     .contact-form {
@@ -748,95 +748,95 @@ iframe {
     }
 
     .chatbot-button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.8em;
-        bottom: 20px;
-        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.6em;
+        bottom: 15px;
+        right: 15px;
     }
 
     #chatbot-container {
         width: 90%;
         right: 5%;
-        bottom: 80px;
-        height: 60vh; /* Ajustado para móviles */
+        bottom: 70px;
+        height: 55vh;
     }
 
     .logo img {
-        height: 40px;
+        height: 38px;
     }
 
     .privacy-policy-container h3 {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
     .privacy-policy-container p,
     .privacy-policy-container ul li {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
     .qr-code-image {
-        max-width: 180px;
+        max-width: 150px;
         margin: var(--spacing-small) auto;
     }
 }
 
 @media (max-width: 480px) {
     h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
     h2 {
-        font-size: 1.4em;
+        font-size: 1.3em;
     }
     h3 {
-        font-size: 1.1em;
+        font-size: 1em;
     }
     p {
-        font-size: 0.85em;
+        font-size: 0.8em;
     }
     .hero-content h1 {
-        font-size: 1.8em;
+        font-size: 1.6em;
     }
     .cta-button {
-        padding: 10px 20px;
-        font-size: 0.9em;
+        padding: 8px 18px;
+        font-size: 0.85em;
     }
     .values span {
-        font-size: 0.8em;
-        padding: 6px 12px;
+        font-size: 0.75em;
+        padding: 5px 10px;
     }
     .card {
         padding: var(--spacing-small);
     }
     .carousel-slide img {
-        height: 200px;
+        height: 180px;
     }
     .carousel-container .prev-btn,
     .carousel-container .next-btn {
-        padding: 5px 8px;
-        font-size: 1.1em;
+        padding: 4px 6px;
+        font-size: 1em;
     }
     .contact-form {
-        padding: 15px;
+        padding: 12px;
     }
     .contact-form label {
-        font-size: 0.9em;
+        font-size: 0.85em;
     }
     .contact-form input, .contact-form textarea {
-        padding: 8px;
-        font-size: 0.9em;
+        padding: 6px;
+        font-size: 0.85em;
     }
     .chatbot-button {
-        width: 40px;
-        height: 40px;
-        font-size: 1.5em;
-        bottom: 10px;
-        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.3em;
+        bottom: 8px;
+        right: 8px;
     }
     #chatbot-container {
-        bottom: 60px;
-        width: 280px;
-        height: 50vh;
+        bottom: 50px;
+        width: 260px;
+        height: 45vh;
     }
     .privacy-policy-container ul {
-        margin-left: 15px;
+        margin-left: 10px;
     }
 }
