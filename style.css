@@ -376,12 +376,25 @@ iframe {
 }
 
 /* Formularios de Contacto */
+#contacto {
+    padding-top: var(--spacing-large); /* Asegura espacio superior en toda la sección de contacto */
+    padding-bottom: var(--spacing-large);
+}
+
+.contact-form-title { /* Clase para el título "Envíanos un Mensaje" */
+    margin-top: var(--spacing-large); /* Espacio superior para separar de lo anterior */
+    margin-bottom: var(--spacing-medium); /* Espacio inferior antes del formulario */
+    color: var(--primary-blue);
+    font-size: 1.8em;
+}
+
 .contact-form {
     background-color: var(--white);
     padding: var(--spacing-large);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    margin-top: var(--spacing-large);
+    /* Puedes ajustar este margin-top si necesitas más espacio entre el título y el formulario */
+    /* margin-top: var(--spacing-medium); */
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
