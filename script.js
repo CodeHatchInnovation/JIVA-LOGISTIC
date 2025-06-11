@@ -91,15 +91,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // Comandos de navegación por voz (con palabras clave ajustadas)
         if (transcript.includes('inicio') || transcript.includes('ir a inicio') || transcript.includes('principal')) {
             scrollToSection('inicio');
-        } else if (transcript.includes('misión') || transcript.includes('mision y vision') || transcript.includes('esencia')) {
+        } else if (transcript.includes('misión') || transcript.includes('esencia')) { // 'mision y vision' se reduce a 'mision'
             scrollToSection('mision');
         } else if (transcript.includes('flota') || transcript.includes('camiones') || transcript.includes('unidades')) {
             scrollToSection('flota');
-        } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) {
+        } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) { // 'rastreo satelital' se reduce a 'rastreo'
             scrollToSection('rastreo');
         } else if (transcript.includes('cobertura') || transcript.includes('nacional')) {
             scrollToSection('cobertura');
-        } else if (transcript.includes('patios') || transcript.includes('operaciones')) {
+        } else if (transcript.includes('patios') || transcript.includes('operaciones')) { // 'patios de operaciones' se reduce a 'patios'
             scrollToSection('patios');
         } else if (transcript.includes('contacto') || transcript.includes('contactar') || transcript.includes('llamar')) {
             scrollToSection('contacto');
@@ -221,37 +221,28 @@ document.addEventListener('DOMContentLoaded', () => {
                         chatInput.value = '';
 
                         let botResponse = "Lo siento, no entendí tu pregunta. Intenta con alguna de las palabras clave como 'Flota' o 'Contacto'.";
-                        let scrollTargetId = '';
+                        // scrollTargetId no se usa directamente para scroll aquí, el enlace en la respuesta del bot lo hace.
 
                         // Respuestas del chatbot (con palabras clave ajustadas)
                         if (userText.includes('hola') || userText.includes('ayuda')) {
                             botResponse = "¡Hola! Estoy aquí para ayudarte. Puedes preguntar sobre nuestras secciones como 'Inicio', 'Misión', 'Flota', 'Rastreo', 'Cobertura', 'Patios', 'Contacto', 'Privacidad' o 'Presentación'.";
                         } else if (userText.includes('inicio') || userText.includes('principal')) {
-                            scrollTargetId = 'inicio';
                             botResponse = `Claro, te llevo a la sección de <a href="#inicio" onclick="document.getElementById('chatbot-container').style.display='none';">Inicio</a>.`;
-                        } else if (userText.includes('misión') || userText.includes('esencia') || userText.includes('vision')) {
-                            scrollTargetId = 'mision';
-                            botResponse = `Aquí tienes nuestra <a href="#mision" onclick="document.getElementById('chatbot-container').style.display='none';">Misión y Visión</a>.`;
+                        } else if (userText.includes('misión') || userText.includes('esencia')) {
+                            botResponse = `Aquí tienes nuestra <a href="#mision" onclick="document.getElementById('chatbot-container').style.display='none';">Misión</a>.`;
                         } else if (userText.includes('flota') || userText.includes('camiones') || userText.includes('unidades')) {
-                            scrollTargetId = 'flota';
                             botResponse = `Te muestro nuestra <a href="#flota" onclick="document.getElementById('chatbot-container').style.display='none';">Flota</a> de vehículos.`;
                         } else if (userText.includes('rastreo') || userText.includes('satelital') || userText.includes('monitoreo')) {
-                            scrollTargetId = 'rastreo';
-                            botResponse = `Puedes encontrar información sobre nuestro <a href="#rastreo" onclick="document.getElementById('chatbot-container').style.display='none';">Rastreo Satelital</a>.`;
+                            botResponse = `Puedes encontrar información sobre nuestro <a href="#rastreo" onclick="document.getElementById('chatbot-container').style.display='none';">Rastreo</a>.`;
                         } else if (userText.includes('cobertura') || userText.includes('nacional')) {
-                            scrollTargetId = 'cobertura';
                             botResponse = `Aquí está nuestra sección de <a href="#cobertura" onclick="document.getElementById('chatbot-container').style.display='none';">Cobertura</a>.`;
                         } else if (userText.includes('patios') || userText.includes('operaciones')) {
-                            scrollTargetId = 'patios';
-                            botResponse = `Información sobre nuestros <a href="#patios" onclick="document.getElementById('chatbot-container').style.display='none';">Patios de Operaciones</a>.`;
+                            botResponse = `Información sobre nuestros <a href="#patios" onclick="document.getElementById('chatbot-container').style.display='none';">Patios</a> de Operaciones.`;
                         } else if (userText.includes('contacto') || userText.includes('contactar') || userText.includes('llamar')) {
-                            scrollTargetId = 'contacto';
                             botResponse = `Para contactarnos, visita la sección de <a href="#contacto" onclick="document.getElementById('chatbot-container').style.display='none';">Contacto</a>.`;
                         } else if (userText.includes('privacidad') || userText.includes('políticas') || userText.includes('aviso')) {
-                            scrollTargetId = 'privacidad';
                             botResponse = `Nuestras <a href="#privacidad" onclick="document.getElementById('chatbot-container').style.display='none';">Políticas de Privacidad</a> están aquí.`;
                         } else if (userText.includes('presentación') || userText.includes('qr') || userText.includes('descargar')) {
-                            scrollTargetId = 'qr-section';
                             // Asegúrate de que la ruta del PDF sea correcta.
                             botResponse = `Puedes descargar nuestra <a href="images/JIVA_LOGISTIC_actual.pdf" target="_blank" onclick="document.getElementById('chatbot-container').style.display='none';">Presentación</a> escaneando el QR.`;
                         }
