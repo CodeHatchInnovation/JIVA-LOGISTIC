@@ -27,6 +27,7 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     scroll-behavior: smooth;
+    text-align: center;
 }
 
 .container {
@@ -55,8 +56,7 @@ body {
 }
 
 .logo img {
-    height: 50px; /* Tamaño ajustado */
-    filter: brightness(0) invert(1);
+    height: 100px; /* Tamaño ajustado */
 }
 
 .nav-links {
