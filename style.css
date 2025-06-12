@@ -29,7 +29,6 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     scroll-behavior: smooth;
-    /* Aseguramos que el body no tenga padding que afecte el header/footer full width */
     padding-left: 0;
     padding-right: 0;
 }
@@ -39,7 +38,6 @@ body {
     margin: 0 auto;
     padding-left: var(--spacing-small);
     padding-right: var(--spacing-small);
-    /* Aseguramos que el container no tenga padding vertical que afecte secciones */
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -52,20 +50,20 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    width: 100%;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Ancho máximo igual al container */
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-small); /* Padding horizontal para el contenido */
+    padding: 0 var(--spacing-small);
 }
 
 .logo img {
-    height: 70px; /* Aumentado para que luzca más grande */
+    height: 70px;
     transition: height 0.3s ease;
 }
 
@@ -87,7 +85,7 @@ body {
     font-weight: bold;
     font-size: 1em;
     transition: color 0.3s ease, transform 0.2s ease;
-    padding: 5px 0; /* Padding vertical para el área clickable */
+    padding: 5px 0;
 }
 
 .nav-links a:hover {
@@ -95,6 +93,7 @@ body {
     transform: translateY(-2px);
 }
 
+/* El botón de voz solo se añade si el HTML lo tiene, no lo estoy tocando aquí */
 .voice-btn {
     background-color: var(--accent-color);
     color: var(--white);
@@ -125,13 +124,13 @@ body {
 
 /* Botón de Hamburguesa para Móvil */
 .menu-toggle {
-    display: none; /* Oculto por defecto en desktop */
+    display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    position: relative; /* Para el z-index */
-    z-index: 1002; /* Para que esté por encima del menú desplegable */
+    position: relative;
+    z-index: 1002;
 }
 
 .hamburger-icon {
@@ -164,7 +163,7 @@ body {
 
 /* Animación de hamburguesa a "X" */
 .menu-toggle.active .hamburger-icon {
-    background-color: transparent; /* Oculta la barra central */
+    background-color: transparent;
 }
 
 .menu-toggle.active .hamburger-icon::before {
@@ -183,11 +182,11 @@ section {
 
 .blue-bg {
     background-color: var(--primary-blue);
-    color: var(--text-light); /* Texto claro para fondo oscuro */
+    color: var(--text-light);
 }
 
 .blue-bg h2, .blue-bg h3 {
-    color: var(--white); /* Títulos blancos en fondo azul */
+    color: var(--white);
 }
 
 h1, h2 {
@@ -202,7 +201,7 @@ h2 {
 }
 
 h3 {
-    color: var(--text-dark); /* Color por defecto para h3 */
+    color: var(--text-dark);
     margin-bottom: 15px;
     font-size: 1.6em;
 }
@@ -224,7 +223,7 @@ p {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
-    display: inline-block; /* Para permitir padding y margen */
+    display: inline-block;
     margin-top: var(--spacing-medium);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
@@ -240,15 +239,15 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-large); /* Espacio entre el contenido y la imagen */
-    padding: var(--padding-section) var(--spacing-small); /* Padding general de la sección */
-    background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%); /* Degradado de fondo */
-    text-align: left; /* Alineación del texto en el contenido */
+    gap: var(--spacing-large);
+    padding: var(--padding-section) var(--spacing-small);
+    background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%);
+    text-align: left;
 }
 
 .hero-content {
-    flex: 1; /* Permite que el contenido ocupe el espacio disponible */
-    max-width: 600px; /* Ancho máximo para el texto */
+    flex: 1;
+    max-width: 600px;
 }
 
 .hero-content h1 {
@@ -263,7 +262,7 @@ p {
 }
 
 .hero-image {
-    flex: 1; /* Permite que la imagen ocupe el espacio disponible */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -282,15 +281,15 @@ p {
 }
 
 .values span {
-    display: inline-block; /* Para aplicar padding y margen */
+    display: inline-block;
     background-color: var(--primary-blue);
     color: var(--white);
     padding: 6px 12px;
-    border-radius: 15px; /* Bordes redondeados */
+    border-radius: 15px;
     margin-right: 8px;
     font-size: 0.85em;
     font-weight: bold;
-    margin-bottom: 8px; /* Para envolver bien en móviles */
+    margin-bottom: 8px;
     transition: background-color 0.3s ease;
 }
 
@@ -302,7 +301,7 @@ p {
 /* Grid de Tarjetas (Misión/Visión, Patios, Contacto Info) */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-medium);
     margin-top: var(--spacing-large);
 }
@@ -314,18 +313,17 @@ p {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: var(--text-dark); /* Asegura color de texto para las cards en fondo azul */
+    color: var(--text-dark);
 }
 
 .card h3 {
-    color: var(--primary-blue); /* Color de título dentro de la tarjeta */
+    color: var(--primary-blue);
     margin-top: 0;
     margin-bottom: var(--spacing-small);
 }
 
-/* Especificidad para cards dentro de .blue-bg */
 .blue-bg .card {
-    background-color: var(--white); /* Fondo blanco para las cards en secciones azules */
+    background-color: var(--white);
 }
 
 .card:hover {
@@ -357,25 +355,25 @@ iframe {
 /* Flota - Carrusel de Imágenes */
 .carousel-container {
     position: relative;
-    width: 90%; /* Ancho relativo */
+    width: 90%;
     max-width: 900px;
     margin: var(--spacing-large) auto;
-    overflow: hidden; /* Oculta partes de las imágenes que exceden */
+    overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .carousel-slide {
-    display: flex; /* Para poner las imágenes en línea */
-    transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
+    display: flex;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide img {
-    min-width: 100%; /* Cada imagen ocupa el 100% del ancho del slide */
+    min-width: 100%;
     height: 380px;
-    object-fit: cover; /* Recorta la imagen para que cubra el área */
+    object-fit: cover;
     border-radius: 8px;
-    display: block; /* Elimina espacio extra debajo de las imágenes */
+    display: block;
 }
 
 .carousel-container .prev-btn,
@@ -414,8 +412,8 @@ iframe {
     gap: var(--spacing-large);
     margin-top: var(--spacing-large);
     text-align: left;
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
-    justify-content: center; /* Centra los elementos cuando se envuelven */
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .content-left-image img {
@@ -426,8 +424,8 @@ iframe {
 }
 
 .content-left-image div {
-    flex: 1; /* El texto ocupa el espacio restante */
-    min-width: 300px; /* Ancho mínimo antes de envolver */
+    flex: 1;
+    min-width: 300px;
 }
 
 .full-width-image {
@@ -457,7 +455,7 @@ iframe {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     max-width: 600px;
-    margin-left: auto; /* Centra el formulario */
+    margin-left: auto;
     margin-right: auto;
     text-align: left;
     color: var(--text-dark);
@@ -468,7 +466,7 @@ iframe {
 }
 
 .contact-form label {
-    display: block; /* Etiqueta en su propia línea */
+    display: block;
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 0.95em;
@@ -489,12 +487,12 @@ iframe {
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
     border-color: var(--primary-blue);
-    outline: none; /* Quita el contorno por defecto del navegador */
+    outline: none;
 }
 
 .contact-form button[type="submit"] {
-    width: auto; /* Para que el botón no ocupe todo el ancho */
-    margin-top: 0; /* Ya tiene margin-top del .cta-button */
+    width: auto;
+    margin-top: 0;
 }
 
 /* Mensajes de formulario */
@@ -514,7 +512,7 @@ iframe {
     max-width: 180px;
     height: auto;
     margin: var(--spacing-medium) auto;
-    display: block; /* Para centrar con margin auto */
+    display: block;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
 }
@@ -522,13 +520,13 @@ iframe {
 /* Políticas de Privacidad */
 .privacy-policy-container {
     text-align: left;
-    padding: var(--padding-card); /* Padding interno para el contenido */
+    padding: var(--padding-card);
 }
 
 .privacy-policy-container h3 {
     margin-top: var(--spacing-medium);
     margin-bottom: 12px;
-    color: var(--white); /* Color para h3 en sección azul */
+    color: var(--white);
     font-size: 1.4em;
 }
 
@@ -537,7 +535,7 @@ iframe {
     font-size: 0.95em;
     line-height: 1.6;
     margin-bottom: 12px;
-    color: var(--text-light); /* Texto claro para fondo oscuro */
+    color: var(--text-light);
 }
 
 .privacy-policy-container p strong {
@@ -545,8 +543,8 @@ iframe {
 }
 
 .privacy-policy-container ul {
-    list-style-type: disc; /* Puntos de lista */
-    margin-left: 25px; /* Indentación para las listas */
+    list-style-type: disc;
+    margin-left: 25px;
     padding-left: 0;
 }
 
@@ -571,7 +569,7 @@ iframe {
     text-align: center;
     margin-top: var(--spacing-large);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    width: 100%;
 }
 
 .footer-links {
@@ -596,7 +594,7 @@ iframe {
     color: var(--light-blue);
 }
 
-/* CHATBOT STYLES - ¡Ajustes de Especificidad aquí! */
+/* INICIO DE ESTILOS CHATBOT - SOLO ESTO SE MODIFICA O AÑADE */
 
 /* Chatbot Button Flotante */
 .chatbot-button {
@@ -614,7 +612,7 @@ iframe {
     font-size: 1.8em;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 1001; /* Asegura que esté por encima de otros elementos */
+    z-index: 1001;
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -627,23 +625,23 @@ iframe {
 /* Contenedor Principal del Chatbot */
 #chatbot-container {
     position: fixed;
-    bottom: calc(var(--spacing-medium) + 65px); /* Por encima del botón flotante */
+    bottom: calc(var(--spacing-medium) + 65px);
     right: var(--spacing-medium);
     width: 320px;
-    height: 450px; /* Altura fija para el contenedor */
+    height: 450px;
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    z-index: 1002; /* Por encima del botón */
-    display: flex; /* Contenedor flex para organizar header, mensajes y input */
+    z-index: 1002;
+    display: flex;
     flex-direction: column;
-    overflow: hidden; /* Importante para que los bordes redondeados se respeten con el contenido */
+    overflow: hidden;
     animation: fadeInScale 0.3s ease-out forwards;
-    transform-origin: bottom right; /* El origen de la animación */
-    box-sizing: border-box; /* Asegura que el padding no añada al tamaño total */
-    padding: 0; /* Aseguramos que no haya padding global aquí, los paddings internos se manejan en sus elementos */
-    font-family: 'Arial', sans-serif; /* Asegurar la fuente para todo el chatbot */
-    color: var(--text-dark); /* Color de texto base para el chatbot */
+    transform-origin: bottom right;
+    box-sizing: border-box;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: var(--text-dark);
 }
 
 @keyframes fadeInScale {
@@ -670,8 +668,8 @@ iframe {
 }
 
 #chatbot-container #chatbot-header h3 {
-    margin: 0; /* Elimina margen por defecto del h3 */
-    color: var(--white); /* Aseguramos el color del título del header */
+    margin: 0;
+    color: var(--white);
     font-size: 1.2em;
 }
 
@@ -681,7 +679,7 @@ iframe {
     color: var(--white);
     font-size: 1.5em;
     cursor: pointer;
-    line-height: 1; /* Asegura que la 'X' esté bien centrada */
+    line-height: 1;
     padding: 0;
     transition: color 0.2s ease;
 }
@@ -692,36 +690,59 @@ iframe {
 
 /* Área de Mensajes del Chatbot */
 #chatbot-container #chat-messages {
-    flex-grow: 1; /* Permite que ocupe todo el espacio disponible entre header y input */
-    overflow-y: auto; /* Activa el scroll vertical si el contenido excede la altura */
-    padding: 15px 20px; /* Padding interno para los mensajes */
-    background-color: var(--white); /* Fondo claro para los mensajes */
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 15px 20px;
+    background-color: var(--white);
     line-height: 1.6;
+    /* Añadido para que los mensajes del usuario se alineen a la derecha */
+    display: flex;
+    flex-direction: column;
 }
 
 /* Estilos de mensajes individuales del bot */
 #chatbot-container #chat-messages .bot-message {
-    background-color: var(--gray-light); /* Un fondo suave para los mensajes del bot */
+    background-color: var(--gray-light);
     color: var(--text-dark);
     padding: 10px 15px;
-    border-radius: 15px 15px 15px 0; /* Burbuja de chat con borde inferior izquierdo plano */
+    border-radius: 15px 15px 15px 0;
     margin-bottom: 10px;
     text-align: left;
-    max-width: 85%; /* Para que los mensajes no ocupen todo el ancho y parezcan burbujas */
-    word-wrap: break-word; /* Asegura que el texto largo se rompa correctamente */
+    max-width: 85%;
+    word-wrap: break-word;
+    align-self: flex-start; /* Asegura que el bot se quede a la izquierda */
 }
 
 #chatbot-container #chat-messages .bot-message:last-child {
-    margin-bottom: 0; /* Elimina margen inferior del último mensaje */
+    margin-bottom: 0;
 }
+
+/* Estilos de mensajes individuales del usuario */
+#chatbot-container #chat-messages .user-message {
+    background-color: var(--primary-blue); /* Azul oscuro de JIVA */
+    color: var(--white);
+    padding: 10px 15px;
+    border-radius: 15px 15px 0 15px; /* Burbuja de chat con borde inferior derecho plano */
+    margin-bottom: 10px;
+    text-align: right; /* Alineación del texto dentro de la burbuja */
+    margin-left: auto; /* ESTO ES LO QUE MUEVE LA BURBUJA COMPLETA A LA DERECHA */
+    max-width: 85%; /* Para que los mensajes no ocupen todo el ancho y parezcan burbujas */
+    word-wrap: break-word; /* Asegura que el texto largo se rompa correctamente */
+    align-self: flex-end; /* Añadido para que el mensaje se alinee a la derecha en el flex container */
+}
+
+#chatbot-container #chat-messages .user-message:last-child {
+    margin-bottom: 0;
+}
+
 
 /* Contenedor de Input y Botón de Enviar */
 #chatbot-container .chat-input-container {
     padding: 15px 20px;
     background-color: var(--white);
-    border-top: 1px solid var(--gray-medium); /* Separador visual */
+    border-top: 1px solid var(--gray-medium);
     display: flex;
-    gap: 10px; /* Espacio entre input y botón */
+    gap: 10px;
     align-items: center;
 }
 
@@ -729,9 +750,9 @@ iframe {
     flex-grow: 1;
     padding: 10px;
     border: 1px solid var(--gray-medium);
-    border-radius: 20px; /* Bordes más redondeados para el input */
+    border-radius: 20px;
     font-size: 0.95em;
-    outline: none; /* Quita el contorno al enfocar */
+    outline: none;
     transition: border-color 0.3s ease;
 }
 
@@ -744,7 +765,7 @@ iframe {
     color: var(--white);
     border: none;
     padding: 10px 15px;
-    border-radius: 20px; /* Bordes más redondeados para el botón */
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9em;
@@ -752,7 +773,7 @@ iframe {
 }
 
 #chatbot-container #send-chat-btn:hover {
-    background-color: var(--accent-hover); /* Usamos el color de acento hover */
+    background-color: var(--accent-hover);
 }
 
 /* Opcional: Estilos personalizados para la barra de desplazamiento (Webkit) */
@@ -774,7 +795,7 @@ iframe {
     background: #a8a8a8;
 }
 
-/* Nueva Sección de Servicios */
+/* Nueva Sección de Servicios (si tu HTML ya la tiene) */
 .services-section {
     background-color: var(--gray-light);
     padding: var(--padding-section) 0;
@@ -792,11 +813,11 @@ iframe {
 }
 
 .services-list ul {
-    list-style: none; /* Quita los puntos de lista predeterminados */
+    list-style: none;
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
 }
 
@@ -807,19 +828,19 @@ iframe {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     font-size: 1.05em;
     color: var(--text-dark);
-    display: flex; /* Para el icono de check y el texto */
+    display: flex;
     align-items: center;
-    gap: 10px; /* Espacio entre el check y el texto */
+    gap: 10px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .services-list li::before {
-    content: '✓'; /* El carácter de check */
+    content: '✓';
     color: var(--accent-color);
     font-weight: bold;
     font-size: 1.2em;
-    flex-shrink: 0; /* Evita que el check se encoja */
+    flex-shrink: 0;
 }
 
 .services-list li:hover {
@@ -827,7 +848,7 @@ iframe {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive Design (Media Queries) */
+/* Responsive Design (Media Queries) - Se mantiene igual */
 @media (max-width: 992px) {
     h1 {
         font-size: 2.5em;
@@ -839,14 +860,14 @@ iframe {
         font-size: 1.4em;
     }
     .hero-section {
-        flex-direction: column; /* Apila los elementos en vertical */
+        flex-direction: column;
         text-align: center;
         gap: var(--spacing-medium);
         padding: var(--padding-section) var(--spacing-small);
     }
 
     .hero-content {
-        max-width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 100%;
     }
 
     .hero-image {
@@ -873,7 +894,12 @@ iframe {
         height: 300px;
     }
 
-    /* Ajustes para el menú de navegación en móviles */
+    .carousel-container .prev-btn,
+    .carousel-container .next-btn {
+        padding: 6px 10px;
+        font-size: 1.2em;
+    }
+
     .main-header, .main-footer {
         width: 100%;
         left: 0;
@@ -881,51 +907,60 @@ iframe {
     }
 
     .navbar {
-        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+        flex-wrap: wrap;
         justify-content: space-between;
     }
 
     .nav-links {
-        display: none; /* Oculto por defecto en móvil */
+        display: none;
         flex-direction: column;
-        width: 100%; /* Ocupa todo el ancho */
+        width: 100%;
         text-align: center;
         background-color: var(--primary-blue);
-        position: absolute; /* Para que se superponga */
-        top: 100%; /* Debajo del header */
+        position: absolute;
+        top: 100%;
         left: 0;
         right: 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         padding: 10px 0;
-        gap: 0; /* Elimina el gap entre los ítems de la lista */
+        gap: 0;
     }
 
     .nav-links.active {
-        display: flex; /* Muestra el menú cuando está activo */
+        display: flex;
     }
 
     .nav-links li {
-        margin: 8px 0; /* Margen vertical entre ítems */
+        margin: 8px 0;
     }
 
     .nav-links a {
         padding: 8px 15px;
-        display: block; /* Para que toda el área del li sea clickable */
+        display: block;
     }
 
     .menu-toggle {
-        display: block; /* Muestra el botón de hamburguesa */
-        order: 1; /* Ordena el botón después del logo */
-        margin-left: auto; /* Empuja el botón a la derecha */
+        display: block;
+        order: 1;
+        margin-left: auto;
     }
     .voice-btn {
         margin-left: 10px;
-        order: 2; /* Ordena el botón de voz después del toggle */
+        order: 2;
     }
 
     .logo img {
-        height: 55px; /* Tamaño del logo en tablet */
+        height: 55px;
     }
+
+    .chatbot-button {
+        /* Se mueve a la media query de 768px */
+    }
+
+    #chatbot-container {
+        /* Se mueve a la media query de 768px */
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -977,7 +1012,7 @@ iframe {
     }
 
     .carousel-slide img {
-        height: 220px; /* Altura de imágenes en móvil */
+        height: 220px;
     }
 
     .carousel-container .prev-btn,
@@ -990,7 +1025,6 @@ iframe {
         padding: var(--spacing-small);
     }
 
-    /* Ajustes específicos del chatbot para móviles */
     .chatbot-button {
         width: 45px;
         height: 45px;
@@ -1000,14 +1034,14 @@ iframe {
     }
 
     #chatbot-container {
-        width: 90%; /* Ocupa el 90% del ancho del viewport */
-        right: 5%; /* Centrado horizontalmente */
-        bottom: 70px; /* Por encima del botón flotante ajustado */
-        height: 55vh; /* Altura relativa al viewport */
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+        height: 55vh;
     }
 
     .logo img {
-        height: 45px; /* Tamaño del logo en móvil */
+        height: 45px;
     }
 
     .privacy-policy-container h3 {
@@ -1076,15 +1110,15 @@ iframe {
         right: 8px;
     }
     #chatbot-container {
-        bottom: 50px; /* Ajuste más bajo para pantallas muy pequeñas */
-        width: 260px; /* Ancho más pequeño */
+        bottom: 50px;
+        width: 260px;
         height: 45vh;
     }
     .privacy-policy-container ul {
         margin-left: 10px;
     }
     .services-list ul {
-        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+        grid-template-columns: 1fr;
     }
     .services-list li {
         font-size: 0.95em;
