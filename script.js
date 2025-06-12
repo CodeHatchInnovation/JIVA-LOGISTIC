@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (/(servicios)/.test(message)) {
                 return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Más información en <a href='#servicios'>Nuestros Servicios</a>.";
             } else if (/(presentacion|qr|pdf)/.test(message)) {
-                 return "Puedes descargar nuestra presentación completa en PDF escaneando el código QR en la sección '<a href='#qr-section'>Nuestra Presentación en QR</a>' o <a href='JIVA LOGISTIC actual.pdf' target='_blank'>haciendo clic aquí</a>.";
+                 return "Puedes ver nuestra presentación completa en PDF escaneando el código QR en la sección <a href='#qr-section'>Nuestra Presentación en QR</a>";
             } else if (/(gracias|adios|bye)/.test(message)) {
                 return "¡De nada! Si tienes más preguntas, no dudes en consultar. ¡Hasta luego!";
             } else {
