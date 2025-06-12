@@ -619,21 +619,24 @@ iframe {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
+/* Contenedor Principal del Chatbot */
 #chatbot-container {
     position: fixed;
     bottom: calc(var(--spacing-medium) + 65px);
     right: var(--spacing-medium);
     width: 320px;
-    height: 450px;
+    height: 450px; /* Altura fija para el contenedor */
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     z-index: 1002;
-    display: none;
+    display: flex; /* Contenedor flex para organizar header, mensajes y input */
     flex-direction: column;
-    overflow: hidden;
+    overflow: hidden; /* Importante para que los bordes redondeados se respeten con el contenido */
     animation: fadeInScale 0.3s ease-out forwards;
     transform-origin: bottom right;
+    box-sizing: border-box; /* Asegura que el padding no añada al tamaño total */
+    padding: 0; /* Aseguramos que no haya padding global aquí, los paddings internos se manejan en sus elementos */
 }
 
 @keyframes fadeInScale {
@@ -647,77 +650,126 @@ iframe {
     }
 }
 
-/* Estilos para el contenido del chatbot de ejemplo */
-.chatbot-dialogue-box {
-    padding: var(--spacing-small);
-    text-align: left;
-    font-family: Arial, sans-serif;
-    flex-grow: 1;
+/* Header del Chatbot */
+#chatbot-container #chatbot-header {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 15px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+    font-family: 'Arial', sans-serif; /* Aseguramos la fuente */
 }
 
-/* --- ESTILOS DEL SCROLL AÑADIDOS AQUÍ --- */
-#chat-messages {
+#chatbot-container #chatbot-header h3 {
+    margin: 0;
+    color: var(--white); /* Aseguramos el color del título */
+    font-size: 1.2em;
+}
+
+#chatbot-container #close-chatbot-btn {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5em;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+#chatbot-container #close-chatbot-btn:hover {
+    color: var(--light-blue);
+}
+
+/* Área de Mensajes del Chatbot */
+#chatbot-container #chat-messages {
+    flex-grow: 1; /* Permite que ocupe todo el espacio disponible */
+    overflow-y: auto; /* Activa el scroll vertical si el contenido excede la altura */
+    padding: 15px 20px; /* Padding interno para los mensajes */
+    background-color: var(--white); /* Fondo claro para los mensajes */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark); /* Color de texto general para los mensajes */
+}
+
+/* Estilos de mensajes individuales del bot */
+#chatbot-container #chat-messages .bot-message {
+    background-color: var(--gray-light); /* Un fondo suave para los mensajes del bot */
+    color: var(--text-dark);
+    padding: 10px 15px;
+    border-radius: 15px 15px 15px 0; /* Burbuja de chat con borde inferior izquierdo plano */
+    margin-bottom: 10px;
+    text-align: left;
+    max-width: 85%; /* Para que los mensajes no ocupen todo el ancho */
+    word-wrap: break-word; /* Asegura que el texto largo se rompa correctamente */
+}
+
+#chatbot-container #chat-messages .bot-message:last-child {
+    margin-bottom: 0; /* Elimina margen inferior del último mensaje */
+}
+
+/* Contenedor de Input y Botón de Enviar */
+#chatbot-container .chat-input-container {
+    padding: 15px 20px;
+    background-color: var(--white);
+    border-top: 1px solid var(--gray-medium); /* Separador visual */
+    display: flex;
+    gap: 10px; /* Espacio entre input y botón */
+    align-items: center;
+}
+
+#chatbot-container #chat-input {
     flex-grow: 1;
-    overflow-y: auto; /* Esto es lo que activa el scroll vertical */
-    max-height: 300px; /* **IMPORTANTE:** Altura máxima antes de que aparezca el scroll */
-    margin-bottom: 12px;
-    padding-right: 8px; /* Espacio para la barra de scroll */
-}
-
-/* Opcional: Estilos personalizados para la barra de desplazamiento (Webkit) */
-#chat-messages::-webkit-scrollbar {
-    width: 8px; /* Ancho de la barra de desplazamiento */
-}
-
-#chat-messages::-webkit-scrollbar-track {
-    background: #f1f1f1; /* Fondo de la pista de la barra de desplazamiento */
-    border-radius: 10px;
-}
-
-#chat-messages::-webkit-scrollbar-thumb {
-    background: #888; /* Color del "pulgar" de la barra de desplazamiento */
-    border-radius: 10px;
-}
-
-#chat-messages::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Color del "pulgar" al pasar el ratón */
-}
-/* --- FIN DE ESTILOS DEL SCROLL AÑADIDOS --- */
-
-
-#chat-messages p {
-    padding: 8px;
-    border-radius: 6px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-size: 0.9em;
-}
-#chat-messages p:first-of-type {
-    margin-top: 0;
-}
-#chat-input {
-    flex-grow: 1;
-    padding: 8px;
+    padding: 10px;
     border: 1px solid var(--gray-medium);
-    border-radius: 5px;
-    margin-right: 8px;
-    font-size: 0.9em;
+    border-radius: 20px; /* Bordes más redondeados para el input */
+    font-size: 0.95em;
+    font-family: 'Arial', sans-serif;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.3s ease;
 }
-#send-chat-btn {
+
+#chatbot-container #chat-input:focus {
+    border-color: var(--primary-blue);
+}
+
+#chatbot-container #send-chat-btn {
     background-color: var(--primary-blue);
     color: var(--white);
     border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
+    padding: 10px 15px;
+    border-radius: 20px; /* Bordes más redondeados para el botón */
     cursor: pointer;
     font-weight: bold;
+    font-size: 0.9em;
     transition: background-color 0.3s ease;
 }
-#send-chat-btn:hover {
-    background-color: #002244;
+
+#chatbot-container #send-chat-btn:hover {
+    background-color: var(--accent-hover); /* Usamos el color de acento hover */
+}
+
+/* Opcional: Estilos personalizados para la barra de desplazamiento (Webkit) */
+#chatbot-container #chat-messages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chatbot-container #chat-messages::-webkit-scrollbar-track {
+    background: var(--gray-light);
+    border-radius: 10px;
+}
+
+#chatbot-container #chat-messages::-webkit-scrollbar-thumb {
+    background: var(--gray-medium);
+    border-radius: 10px;
+}
+
+#chatbot-container #chat-messages::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
 }
 
 /* Nueva Sección de Servicios */
