@@ -29,15 +29,13 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     scroll-behavior: smooth;
-    /* Eliminamos padding lateral del body para que header y footer abarquen todo */
     padding-left: 0;
     padding-right: 0;
 }
 
 .container {
     max-width: 1200px;
-    margin: 0 auto; /* Esto centrará el contenido */
-    /* Añadimos un padding horizontal interno al container para que el contenido no se pegue a los bordes de la ventana en pantallas grandes */
+    margin: 0 auto;
     padding-left: var(--spacing-small);
     padding-right: var(--spacing-small);
     padding-top: 0;
@@ -52,25 +50,21 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    /* Estas propiedades ya no son necesarias aquí porque el body no tiene padding horizontal */
-    /* left: var(--spacing-small); */
-    /* right: var(--spacing-small); */
-    /* width: calc(100% - (2 * var(--spacing-small))); */
-    width: 100%; /* Ocupa todo el ancho */
+    width: 100%;
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* Asegura que el contenido del navbar no exceda el container */
-    margin: 0 auto; /* Centra el contenido del navbar */
-    /* Añadimos padding horizontal al navbar para que el contenido no se pegue a los bordes de la ventana en móviles */
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 var(--spacing-small);
 }
 
 .logo img {
-    height: 50px;
+    height: 65px; /* Aumentado para hacer el logo más grande */
+    transition: height 0.3s ease; /* Suaviza el cambio de tamaño */
 }
 
 .nav-links {
@@ -181,7 +175,7 @@ body {
 
 /* Secciones Generales */
 section {
-    padding: var(--padding-section) 0; /* Aplicar el nuevo padding para secciones */
+    padding: var(--padding-section) 0;
     text-align: center;
 }
 
@@ -245,7 +239,7 @@ p {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-large);
-    padding: var(--padding-section) var(--spacing-small); /* Mantener padding horizontal aquí si el body no lo tiene */
+    padding: var(--padding-section) var(--spacing-small);
     background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%);
     text-align: left;
 }
@@ -313,7 +307,7 @@ p {
 
 .card {
     background-color: var(--white);
-    padding: var(--padding-card); /* Aplicar el nuevo padding para tarjetas */
+    padding: var(--padding-card);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
@@ -456,7 +450,7 @@ iframe {
 
 .contact-form {
     background-color: var(--white);
-    padding: var(--padding-card); /* Aplicar el nuevo padding para formularios */
+    padding: var(--padding-card);
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     max-width: 600px;
@@ -525,7 +519,7 @@ iframe {
 /* Políticas de Privacidad */
 .privacy-policy-container {
     text-align: left;
-    padding: var(--padding-card); /* Aplicar el nuevo padding para este contenedor también */
+    padding: var(--padding-card);
 }
 
 .privacy-policy-container h3 {
@@ -574,11 +568,7 @@ iframe {
     text-align: center;
     margin-top: var(--spacing-large);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
-    /* Estas propiedades ya no son necesarias aquí porque el body no tiene padding horizontal */
-    /* left: var(--spacing-small); */
-    /* right: var(--spacing-small); */
-    /* width: calc(100% - (2 * var(--spacing-small))); */
-    width: 100%; /* Ocupa todo el ancho */
+    width: 100%;
 }
 
 .footer-links {
@@ -705,6 +695,57 @@ iframe {
     background-color: #002244;
 }
 
+/* Nueva Sección de Servicios */
+.services-section {
+    background-color: var(--gray-light);
+    padding: var(--padding-section) 0;
+}
+
+.services-section h2 {
+    color: var(--primary-blue);
+    margin-bottom: var(--spacing-medium);
+}
+
+.services-list {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.services-list ul {
+    list-style: none; /* Quitamos los puntos por defecto */
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columna adaptable */
+    gap: 20px; /* Espacio entre los elementos de la lista */
+}
+
+.services-list li {
+    background-color: var(--white);
+    padding: var(--spacing-small); /* Ajusta este padding si es necesario */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 1.05em;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el ícono y el texto */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-list li::before {
+    content: '✓'; /* O un ícono de checkmark si usas Font Awesome o similar */
+    color: var(--accent-color);
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.services-list li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
 
 /* Responsive Design (Media Queries) */
 @media (max-width: 992px) {
@@ -721,7 +762,7 @@ iframe {
         flex-direction: column;
         text-align: center;
         gap: var(--spacing-medium);
-        padding: var(--padding-section) var(--spacing-small); /* Asegurar padding horizontal en móvil */
+        padding: var(--padding-section) var(--spacing-small);
     }
 
     .hero-content {
@@ -752,19 +793,15 @@ iframe {
         height: 300px;
     }
 
-    /* Ajustes para el Header y Footer en pantallas más pequeñas */
     .main-header, .main-footer {
-        width: 100%; /* Ocupa todo el ancho disponible */
+        width: 100%;
         left: 0;
         right: 0;
-        /* Los padding ya están en el navbar */
     }
 
-    /* Ocultar elementos en el navbar para pantallas pequeñas */
     .navbar {
         flex-wrap: wrap;
         justify-content: space-between;
-        /* Padding ya definido arriba */
     }
 
     .nav-links {
@@ -804,11 +841,15 @@ iframe {
         margin-left: 10px;
         order: 2;
     }
+
+    .logo img {
+        height: 55px; /* Ajustar logo en tablets */
+    }
 }
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 8px var(--spacing-small); /* Ajustar padding en pantallas más pequeñas */
+        padding: 8px var(--spacing-small);
     }
 
     .voice-btn {
@@ -833,7 +874,7 @@ iframe {
     }
 
     section {
-        padding: var(--spacing-medium) 0; /* Reducir padding de secciones en móvil */
+        padding: var(--spacing-medium) 0;
     }
 
     .hero-section {
@@ -865,7 +906,7 @@ iframe {
     }
 
     .contact-form {
-        padding: var(--spacing-small); /* Reducir padding de formulario en móvil */
+        padding: var(--spacing-small);
     }
 
     .chatbot-button {
@@ -884,7 +925,7 @@ iframe {
     }
 
     .logo img {
-        height: 38px;
+        height: 45px; /* Ajustar logo en móviles */
     }
 
     .privacy-policy-container h3 {
@@ -925,7 +966,7 @@ iframe {
         padding: 5px 10px;
     }
     .card {
-        padding: var(--spacing-small); /* Ajustar padding de tarjeta en móvil más pequeño */
+        padding: var(--spacing-small);
     }
     .carousel-slide img {
         height: 180px;
@@ -959,5 +1000,12 @@ iframe {
     }
     .privacy-policy-container ul {
         margin-left: 10px;
+    }
+    .services-list ul {
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+    }
+    .services-list li {
+        font-size: 0.95em;
+        padding: 15px;
     }
 }
