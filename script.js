@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatInput = document.getElementById('chat-input');
     const sendChatBtn = document.getElementById('send-chat-btn');
     const chatMessages = document.getElementById('chat-messages');
-    const voiceToggleBtn = document.getElementById('voice-command-toggle'); // Asegura que también esté aquí
+    const voiceToggleBtn = document.getElementById('voice-command-toggle');
 
     // Solo si todos los elementos del chatbot existen en el DOM
     if (chatbotButton && chatbotContainer && closeChatbotBtn && chatInput && sendChatBtn && chatMessages) {
@@ -149,21 +149,21 @@ document.addEventListener('DOMContentLoaded', () => {
             if (/(hola|saludos)/.test(message)) {
                 return "¡Hola! ¿En qué puedo ayudarte hoy?";
             } else if (/(mision|vision)/.test(message)) {
-                return "Nuestra <a href='#mision'>Misión</a> es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra <a href='#mision'>Visión</a> es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación.";
+                return "Nuestra Misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra Visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación. Para más información, visita nuestra sección de <a href='#mision'>Misión y Visión</a>.";
             } else if (/(flota|camiones|unidades)/.test(message)) {
-                return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Puedes ver más en la sección de <a href='#flota'>Flota</a>.";
+                return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Para ver la flota completa, visita nuestra sección de <a href='#flota'>Flota</a>.";
             } else if (/(rastreo|seguridad|monitoreo)/.test(message)) {
-                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK. Más detalles en la sección de <a href='#rastreo'>Rastreo</a>.";
+                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK. Para más detalles, visita nuestra sección de <a href='#rastreo'>Rastreo Satelital</a>.";
             } else if (/(cobertura|donde operan|ciudades)/.test(message)) {
-                return "Realizamos servicios de transporte a toda la República Mexicana. Consulta el <a href='#cobertura'>Mapa de Cobertura</a>.";
+                return "Realizamos servicios de transporte a toda la República Mexicana. Para más información, visita nuestra sección de <a href='#cobertura'>Cobertura</a>.";
             } else if (/(patios|ubicacion|tepotzotlan|manzanillo)/.test(message)) {
-                return "Tenemos patios de operaciones en <a href='#patios'>Tepotzotlán, Estado de México</a> y en <a href='#patios'>Manzanillo, Colima</a>. Puedes ver sus ubicaciones en la sección de Patios.";
+                return "Tenemos patios de operaciones en Tepotzotlán, Estado de México y en Manzanillo, Colima. Para ver sus ubicaciones y mapas, visita nuestra sección de <a href='#patios'>Patios</a>.";
             } else if (/(contacto|cotizacion|telefono|email)/.test(message)) {
                 return "Puedes contactarnos a través de nuestro <a href='#contacto'>formulario de Contacto</a>, o llamar a Fernando Lucas al <a href='tel:+525516273406'>5516273406</a> o a Armando Martinez al <a href='tel:+525542639390'>5542639390</a>. También puedes enviar un correo a <a href='mailto:jiva.operaciones@gmail.com'>jiva.operaciones@gmail.com</a>.";
             } else if (/(privacidad|politicas)/.test(message)) {
                 return "Nuestras <a href='#privacidad'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
             } else if (/(servicios)/.test(message)) {
-                return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Más información en <a href='#servicios'>Nuestros Servicios</a>.";
+                return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Para ver todos nuestros servicios, visita la sección de <a href='#servicios'>Nuestros Principales Servicios</a>.";
             } else if (/(presentacion|qr|pdf)/.test(message)) {
                  return "Puedes ver nuestra presentación completa en PDF escaneando el código QR en la sección <a href='#qr-section'>Nuestra Presentación en QR</a>";
             } else if (/(gracias|adios|bye)/.test(message)) {
@@ -175,6 +175,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ---- Funcionalidad de Voz (Web Speech API) ----
         let recognition;
+        // Agregamos una bandera para evitar múltiples inicios accidentales
+        let isRecognizing = false; 
 
         if (window.SpeechRecognition || window.webkitSpeechRecognition) {
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -182,61 +184,111 @@ document.addEventListener('DOMContentLoaded', () => {
             recognition.lang = 'es-MX'; // Idioma español de México
             recognition.interimResults = false; // No mostrar resultados intermedios
             recognition.maxAlternatives = 1; // Solo la mejor alternativa
+            // Añadido para intentar detectar más fácilmente si se para de hablar
+            recognition.continuous = false; // Solo una captura por cada start()
+            recognition.interimResults = false; // Solo resultados finales
+
 
             recognition.onstart = () => {
+                isRecognizing = true; // Actualiza la bandera
                 if (voiceToggleBtn) {
                     voiceToggleBtn.classList.add('listening');
                     voiceToggleBtn.textContent = 'Escuchando...';
                 }
                 chatInput.placeholder = 'Dime tu pregunta...';
-                console.log('Reconocimiento de voz iniciado.');
+                console.log('🗣️ Reconocimiento de voz iniciado.');
             };
 
             recognition.onresult = (event) => {
+                // console.log('Resultado crudo del reconocimiento:', event.results); // Línea de depuración útil
                 const transcript = event.results[0][0].transcript;
-                console.log('Transcripción:', transcript);
+                const confidence = event.results[0][0].confidence; // Obtener la confianza
+                console.log(`🎤 Transcripción detectada: "${transcript}" (Confianza: ${confidence.toFixed(2)})`);
+                
+                // Opcional: Puedes establecer un umbral de confianza si las transcripciones son muy malas
+                // if (confidence > 0.7) { 
                 chatInput.value = transcript;
                 sendMessage(); // Enviar el mensaje automáticamente
+                // } else {
+                //     console.warn('Transcripción con baja confianza, no enviada:', transcript);
+                //     const botMessageDiv = document.createElement('p');
+                //     botMessageDiv.classList.add('bot-message');
+                //     botMessageDiv.textContent = 'No pude entenderte bien. ¿Puedes repetir o escribir?';
+                //     chatMessages.appendChild(botMessageDiv);
+                //     chatMessages.scrollTop = chatMessages.scrollHeight;
+                // }
             };
 
             recognition.onspeechend = () => {
+                isRecognizing = false; // Actualiza la bandera
                 recognition.stop();
                 if (voiceToggleBtn) {
                     voiceToggleBtn.classList.remove('listening');
                     voiceToggleBtn.textContent = 'Voz';
                 }
                 chatInput.placeholder = 'Escribe tu mensaje...';
-                console.log('Fin del habla, reconocimiento detenido.');
+                console.log('🛑 Fin del habla, reconocimiento detenido.');
+            };
+
+            // onend se dispara cuando el reconocimiento termina, incluso por un error o stop()
+            recognition.onend = () => {
+                if (isRecognizing) { // Si onend se dispara y sigue "reconociendo", fue un error o interrupción
+                    isRecognizing = false;
+                    if (voiceToggleBtn) {
+                        voiceToggleBtn.classList.remove('listening');
+                        voiceToggleBtn.textContent = 'Voz';
+                    }
+                    chatInput.placeholder = 'Escribe tu mensaje...';
+                    console.log('⚠️ Reconocimiento finalizado inesperadamente.');
+                }
             };
 
             recognition.onerror = (event) => {
-                console.error('Error de reconocimiento de voz:', event.error);
+                isRecognizing = false; // Actualiza la bandera
+                console.error('❌ Error de reconocimiento de voz:', event.error, event.message);
                 if (voiceToggleBtn) {
                     voiceToggleBtn.classList.remove('listening');
                     voiceToggleBtn.textContent = 'Voz';
                 }
                 chatInput.placeholder = 'Escribe tu mensaje...';
-                if (event.error === 'no-speech') {
-                    // Puedes mostrar un mensaje al usuario si no se detecta voz
-                    // alert('No se detectó habla. Inténtalo de nuevo.');
+                
+                // Mensajes más claros para el usuario
+                if (event.error === 'not-allowed') {
+                    alert('Permiso de micrófono denegado. Por favor, habilita el micrófono en la configuración de tu navegador para usar el comando de voz.');
+                } else if (event.error === 'no-speech') {
+                    const botMessageDiv = document.createElement('p');
+                    botMessageDiv.classList.add('bot-message');
+                    botMessageDiv.textContent = 'No detecté ninguna voz. ¿Puedes intentarlo de nuevo?';
+                    chatMessages.appendChild(botMessageDiv);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                } else if (event.error === 'audio-capture') {
+                    alert('Problema al acceder al micrófono. Asegúrate de que esté conectado y no esté siendo usado por otra aplicación.');
+                } else if (event.error === 'network') {
+                    alert('Error de red al intentar el reconocimiento de voz. Verifica tu conexión a internet.');
                 }
             };
 
-            if (voiceToggleBtn) { // Asegúrate de que el botón exista antes de añadir el listener
+            if (voiceToggleBtn) {
                 voiceToggleBtn.addEventListener('click', () => {
+                    // Evita iniciar múltiples reconocimientos si ya está activo
+                    if (isRecognizing) {
+                        console.log('🔇 Deteniendo reconocimiento de voz manualmente.');
+                        recognition.stop();
+                        return;
+                    }
+                    
                     try {
-                        if (voiceToggleBtn.classList.contains('listening')) {
-                            recognition.stop();
-                        } else {
-                            recognition.start();
-                        }
+                        recognition.start();
                     } catch (error) {
-                        console.warn('El reconocimiento de voz ya está activo o hay un error:', error);
+                        console.warn('El reconocimiento de voz ya está activo o hay un error al intentar iniciarlo:', error);
+                        // Si el error es un InvalidStateError, significa que ya está activo y lo detendremos.
                         if (error.name === 'InvalidStateError') {
-                            recognition.stop();
+                            recognition.stop(); // Intentar detener si ya está activo
                         }
+                        // Asegurar que el estado del botón se resetea si algo falla
                         voiceToggleBtn.classList.remove('listening');
                         voiceToggleBtn.textContent = 'Voz';
+                        isRecognizing = false;
                     }
                 });
             }
@@ -245,7 +297,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (voiceToggleBtn) { // Oculta el botón si la API no es soportada
                 voiceToggleBtn.style.display = 'none';
             }
-            console.warn('Web Speech API no es soportada en este navegador.');
+            console.warn('🚫 Web Speech API no es soportada en este navegador.');
+            // Opcional: Informar al usuario
+            // alert('Lo sentimos, tu navegador no soporta el comando de voz.');
         }
     } // Fin del if(chatbotButton && ...)
 });
