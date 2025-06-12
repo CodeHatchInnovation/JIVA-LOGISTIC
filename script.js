@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ---- Navbar Toggle para móviles ----
+
+    // --- Navbar Toggle para móviles ---
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -17,21 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Carrusel de Imágenes (Flota) ----
+    // --- Carrusel de Imágenes (Flota) - ADAPTADO DE TU CÓDIGO ANTIGUO (clientWidth) ---
+    // Usaremos la lógica que ya tenías para carrusel en tus archivos anteriores que usaba clientWidth,
+    // ya que es más probable que sea la que tenías funcionando bien con tu CSS.
     const carouselSlide = document.querySelector('.carousel-slide');
     const carouselImages = document.querySelectorAll('.carousel-slide img');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
 
-    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
+    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) { // Asegura que existan
         let counter = 0;
-        const size = carouselImages[0].clientWidth;
+        const size = carouselImages[0].clientWidth; // Usar clientWidth
 
+        // Inicializar carrusel en la primera imagen (por si acaso el CSS no lo hace)
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
         nextBtn.addEventListener('click', () => {
             if (counter >= carouselImages.length - 1) {
-                counter = -1;
+                counter = -1; // Reinicia para ir al principio lógicamente
             }
             counter++;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -40,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         prevBtn.addEventListener('click', () => {
             if (counter <= 0) {
-                counter = carouselImages.length;
+                counter = carouselImages.length; // Reinicia para ir al final lógicamente
             }
             counter--;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -48,57 +52,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ---- Formulario de Contacto ----
+
+    // --- Lógica del Formulario de Contacto ---
     const contactForm = document.getElementById('contact-form');
     const contactMessage = document.getElementById('contact-message');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
-            event.preventDefault();
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            contactMessage.textContent = 'Enviando mensaje...';
+            contactMessage.style.color = 'var(--accent-color)'; 
 
-            console.log('Formulario enviado:', { name, email, message });
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData.entries());
 
-            if (contactMessage) {
-                contactMessage.textContent = '¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.';
-                contactMessage.style.color = 'green';
-            }
+            console.log('Datos del formulario de contacto:', data);
+
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            contactMessage.textContent = '¡Mensaje enviado con éxito! (Simulado). Nos pondremos en contacto contigo pronto.';
+            contactMessage.style.color = 'green';
             contactForm.reset();
 
             setTimeout(() => {
-                if (contactMessage) {
-                    contactMessage.textContent = '';
-                }
+                contactMessage.textContent = '';
             }, 5000);
         });
     }
 
-    // ---- Chatbot Funcionalidad (EXISTENTE, INDEPENDIENTE DE LA VOZ) ----
-    const chatbotButton = document.getElementById('chatbot-button');
-    const chatbotContainer = document.getElementById('chatbot-container');
-    const closeChatbotBtn = document.getElementById('close-chatbot-btn');
-    const chatInput = document.getElementById('chat-input');
-    const sendChatBtn = document.getElementById('send-chat-btn');
-    const chatMessages = document.getElementById('chat-messages');
+    // --- Lógica del Chatbot ---
+    // IMPORTANTE: Asegúrate de que los elementos del chatbot existan en el HTML desde el inicio.
+    // NO los generes con innerHTML dentro del JS.
+    const chatbotButton = document.getElementById('chatbot-button'); // Botón para abrir/cerrar el chatbot
+    const chatbotContainer = document.getElementById('chatbot-container'); // Contenedor principal del chatbot
+    const chatInput = document.getElementById('chat-input'); // Campo de entrada de texto del chatbot
+    const sendChatBtn = document.getElementById('send-chat-btn'); // Botón para enviar mensaje del chatbot
+    const chatMessages = document.getElementById('chat-messages'); // Contenedor de mensajes del chatbot
 
-    if (chatbotButton && chatbotContainer && closeChatbotBtn && chatInput && sendChatBtn && chatMessages) {
-        chatbotContainer.style.display = 'none';
+    if (chatbotButton && chatbotContainer && chatInput && sendChatBtn && chatMessages) {
+        chatbotContainer.style.display = 'none'; // Asegura que esté oculto al inicio
 
         chatbotButton.addEventListener('click', () => {
             const isHidden = chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '';
             chatbotContainer.style.display = isHidden ? 'flex' : 'none';
             
             if (isHidden) {
-                chatInput.focus();
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatInput.focus(); // Enfocar el input al abrir
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Desplazar al final
             }
-        });
-
-        closeChatbotBtn.addEventListener('click', () => {
-            chatbotContainer.style.display = 'none';
+            // Puedes cambiar el texto/icono del botón aquí si lo deseas
+            // chatbotButton.textContent = isHidden ? '✖' : '💬'; 
         });
 
         sendChatBtn.addEventListener('click', sendMessage);
@@ -125,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const botResponse = getBotResponse(userInput);
                 const botMessageDiv = document.createElement('p');
                 botMessageDiv.classList.add('bot-message');
-                botMessageDiv.innerHTML = botResponse;
+                botMessageDiv.innerHTML = botResponse; // Usar innerHTML para enlaces
                 chatMessages.appendChild(botMessageDiv);
 
                 chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -137,23 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (/(hola|saludos)/.test(message)) {
                 return "¡Hola! ¿En qué puedo ayudarte hoy?";
-            } else if (/(mision|vision)/.test(message)) {
+            } else if (/(mision|vision|esencia)/.test(message)) {
                 return "Nuestra Misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra Visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación. Para más información, visita nuestra sección de <a href='#mision'>Misión y Visión</a>.";
             } else if (/(flota|camiones|unidades)/.test(message)) {
                 return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Para ver la flota completa, visita nuestra sección de <a href='#flota'>Flota</a>.";
-            } else if (/(rastreo|seguridad|monitoreo)/.test(message)) {
+            } else if (/(rastreo|seguridad|monitoreo|satelital)/.test(message)) {
                 return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK. Para más detalles, visita nuestra sección de <a href='#rastreo'>Rastreo Satelital</a>.";
-            } else if (/(cobertura|donde operan|ciudades)/.test(message)) {
+            } else if (/(cobertura|donde operan|ciudades|nacional)/.test(message)) {
                 return "Realizamos servicios de transporte a toda la República Mexicana. Para más información, visita nuestra sección de <a href='#cobertura'>Cobertura</a>.";
-            } else if (/(patios|ubicacion|tepotzotlan|manzanillo)/.test(message)) {
+            } else if (/(patios|ubicacion|tepotzotlan|manzanillo|operaciones)/.test(message)) {
                 return "Tenemos patios de operaciones en Tepotzotlán, Estado de México y en Manzanillo, Colima. Para ver sus ubicaciones y mapas, visita nuestra sección de <a href='#patios'>Patios</a>.";
-            } else if (/(contacto|cotizacion|telefono|email)/.test(message)) {
+            } else if (/(contacto|cotizacion|telefono|email|contactar|llamar)/.test(message)) {
                 return "Puedes contactarnos a través de nuestro <a href='#contacto'>formulario de Contacto</a>, o llamar a Fernando Lucas al <a href='tel:+525516273406'>5516273406</a> o a Armando Martinez al <a href='tel:+525542639390'>5542639390</a>. También puedes enviar un correo a <a href='mailto:jiva.operaciones@gmail.com'>jiva.operaciones@gmail.com</a>.";
-            } else if (/(privacidad|politicas)/.test(message)) {
+            } else if (/(privacidad|politicas|aviso)/.test(message)) {
                 return "Nuestras <a href='#privacidad'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
             } else if (/(servicios)/.test(message)) {
                 return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Para ver todos nuestros servicios, visita la sección de <a href='#servicios'>Nuestros Principales Servicios</a>.";
-            } else if (/(presentacion|qr|pdf)/.test(message)) {
+            } else if (/(presentacion|qr|pdf|descargar)/.test(message)) {
                  return "Puedes ver nuestra presentación completa en PDF escaneando el código QR en la sección <a href='#qr-section'>Nuestra Presentación en QR</a>";
             } else if (/(gracias|adios|bye)/.test(message)) {
                 return "¡De nada! Si tienes más preguntas, no dudes en consultar. ¡Hasta luego!";
@@ -163,177 +167,149 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     } // Fin del if(chatbotButton && ...)
 
-    // ---- Funcionalidad de NAVEGACIÓN por Voz (INDEPENDIENTE) ----
-    // Asegúrate de que este ID coincida con el ID de tu botón en el HTML
-    const voiceNavToggleBtn = document.getElementById('voice-nav-toggle'); 
 
-    let navRecognition;
-    let isNavRecognizing = false; // Flag para controlar el estado del reconocimiento
+    // --- Lógica de NAVEGACIÓN por Voz (Reincorporada de tu código antiguo que funcionaba) ---
+    const voiceNavToggleBtn = document.getElementById('voice-command-toggle'); // ID del botón de voz para navegación
 
-    // Comprobar si la Web Speech API es soportada
-    if (window.SpeechRecognition || window.webkitSpeechRecognition) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        navRecognition = new SpeechRecognition();
-        navRecognition.lang = 'es-MX'; // Idioma español de México
-        navRecognition.interimResults = false; // Solo resultados finales
-        navRecognition.maxAlternatives = 1; // Solo la mejor alternativa
-        navRecognition.continuous = false; // Escucha una sola captura por cada start()
+    if (voiceNavToggleBtn) { // Solo ejecutar si el botón existe
+        // Verificar soporte para la Web Speech API
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
 
-        // Definir los comandos de navegación y sus IDs de destino
-        const navigationCommands = {
-            'misión': '#mision',
-            'visión': '#mision',
-            'flota': '#flota',
-            'camiones': '#flota',
-            'unidades': '#flota',
-            'rastreo': '#rastreo',
-            'seguridad': '#rastreo',
-            'monitoreo': '#rastreo',
-            'cobertura': '#cobertura',
-            'patios': '#patios',
-            'ubicación': '#patios',
-            'tepotzotlán': '#patios',
-            'manzanillo': '#patios',
-            'contacto': '#contacto',
-            'servicios': '#servicios',
-            'presentación': '#qr-section', // Asumiendo que esta es la sección de QR/PDF
-            'privacidad': '#privacidad'
-        };
-
-        // --- Eventos de Reconocimiento ---
-        navRecognition.onstart = () => {
-            isNavRecognizing = true;
-            if (voiceNavToggleBtn) {
-                voiceNavToggleBtn.classList.add('listening');
-                voiceNavToggleBtn.textContent = 'Escuchando Voz Nav...';
-            }
-            console.log('✅ Navegación por voz: Reconocimiento iniciado.');
-        };
-
-        navRecognition.onaudiostart = () => {
-            console.log('🔊 Navegación por voz: Audio detectado: El micrófono está recibiendo sonido.');
-        };
-
-        navRecognition.onsoundstart = () => {
-            console.log('👂 Navegación por voz: Sonido detectado: Posiblemente inicio de voz.');
-        };
-
-        navRecognition.onresult = (event) => {
-            const transcript = event.results[0][0].transcript.toLowerCase();
-            const confidence = event.results[0][0].confidence;
-            console.log(`🎤 Navegación por voz: Transcripción detectada: "${transcript}" (Confianza: ${confidence.toFixed(2)})`);
-            
-            let foundMatch = false;
-            for (const keyword in navigationCommands) {
-                // Usamos includes para ser más flexibles: "ir a misión" -> "misión"
-                if (transcript.includes(keyword)) {
-                    const targetId = navigationCommands[keyword];
-                    console.log(`➡️ Navegando a: ${targetId} por comando de voz.`);
-                    window.location.hash = targetId; // Desplaza la página
-                    foundMatch = true;
-                    break;
-                }
-            }
-
-            if (!foundMatch) {
-                console.log('🤷‍♀️ Navegación por voz: No se reconoció un comando de navegación válido.');
-                // Puedes dar feedback visual aquí si lo deseas
-            }
-            navRecognition.stop(); // Detener el reconocimiento después de un resultado
-        };
-
-        navRecognition.onspeechend = () => {
-            console.log('🗣️ Navegación por voz: Se detectó el final del habla.');
-            // El stop() ya se llama en onresult o en onend
-        };
-
-        navRecognition.onsoundend = () => {
-            console.log('🔇 Navegación por voz: Soundend: El sonido del micrófono ha terminado.');
-        };
-
-        navRecognition.onaudioend = () => {
-            console.log('🛑 Navegación por voz: Audioend: La entrada de audio ha finalizado.');
-            // Asegura que el estado del botón se restablezca
-            if (voiceNavToggleBtn) {
-                voiceNavToggleBtn.classList.remove('listening');
-                voiceNavToggleBtn.textContent = 'Voz Nav';
-            }
-        };
-
-        navRecognition.onerror = (event) => {
-            isNavRecognizing = false;
-            console.error('❌ Navegación por voz: Error de reconocimiento:', event.error, event.message);
-            if (voiceNavToggleBtn) {
-                voiceNavToggleBtn.classList.remove('listening');
-                voiceNavToggleBtn.textContent = 'Voz Nav';
-            }
-
-            // Mensajes de error específicos para el usuario
-            if (event.error === 'not-allowed') {
-                alert('Permiso de micrófono denegado para navegación por voz. Por favor, habilítalo en la configuración de tu navegador.');
-            } else if (event.error === 'no-speech') {
-                console.warn('Navegación por voz: No se detectó ninguna voz. Intenta hablar más claro.');
-            } else if (event.error === 'audio-capture') {
-                alert('Navegación por voz: Problema al acceder al micrófono. Asegúrate de que esté conectado y no esté siendo usado por otra aplicación.');
-            } else if (event.error === 'network') {
-                alert('Navegación por voz: Error de red. Verifica tu conexión a internet.');
-            }
-            // Asegurarse de detener el reconocimiento en caso de error
-            navRecognition.stop();
-        };
-
-        navRecognition.onend = () => {
-            console.log('🔚 Navegación por voz: Reconocimiento finalizado (onend).');
-            isNavRecognizing = false;
-            if (voiceNavToggleBtn) {
-                voiceNavToggleBtn.classList.remove('listening');
-                voiceNavToggleBtn.textContent = 'Voz Nav';
-            }
-        };
-
-        // --- Event Listener para el botón de voz de navegación ---
-        // Asegúrate de que el botón exista antes de intentar añadir el listener
-        if (voiceNavToggleBtn) {
-            voiceNavToggleBtn.addEventListener('click', () => {
-                if (isNavRecognizing) {
-                    console.log('🔇 Navegación por voz: Deteniendo manualmente.');
-                    navRecognition.stop(); // Si ya está escuchando, lo detenemos
-                    return; // Salir de la función
-                }
-                
-                try {
-                    navRecognition.start(); // Si no está escuchando, lo iniciamos
-                } catch (error) {
-                    console.warn('Navegación por voz: Error al iniciar el reconocimiento:', error);
-                    // Esto suele ocurrir si se intenta start() cuando ya está activo (InvalidStateError)
-                    if (error.name === 'InvalidStateError') {
-                        navRecognition.stop(); // Intentar detener y luego reintentar si es necesario
-                        setTimeout(() => {
-                            if (!isNavRecognizing) { // Solo si no se reinició automáticamente
-                                try {
-                                    navRecognition.start();
-                                } catch (err) {
-                                    console.error('Navegación por voz: Error al intentar reiniciar después de InvalidStateError:', err);
-                                }
-                            }
-                        }, 100); // Pequeña pausa para permitir que se detenga
-                    } else {
-                        // Otros errores al intentar iniciar
-                        if (voiceNavToggleBtn) {
-                            voiceNavToggleBtn.classList.remove('listening');
-                            voiceNavToggleBtn.textContent = 'Voz Nav';
-                        }
-                        isNavRecognizing = false;
-                    }
-                }
-            });
-        }
-
-    } else { // Si la Web Speech API no es soportada en este navegador
-        if (voiceNavToggleBtn) {
+        if (!SpeechRecognition) {
+            console.warn('La API de reconocimiento de voz no es soportada en este navegador. El botón de voz será ocultado.');
             voiceNavToggleBtn.style.display = 'none'; // Ocultar el botón si no hay soporte
+            return; // Salir de esta sección de voz si no hay soporte
         }
-        console.warn('🚫 Web Speech API no es soportada en este navegador para la navegación por voz.');
-        // Puedes agregar un mensaje al usuario en el HTML si esto es crítico
+
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'es-MX'; // Ajustado a es-MX para mejor precisión en México
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+        recognition.continuous = false; // Escucha una sola frase por activación
+
+        // Función auxiliar para desplazar a una sección
+        const scrollToSection = (id) => {
+            const section = document.getElementById(id);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+                console.log(`Navegando a la sección: ${id}`);
+            } else {
+                console.warn(`La sección con ID "${id}" no se encontró.`);
+                alert(`Lo siento, la sección "${id.replace('#', '')}" no se encontró.`);
+            }
+        };
+
+        voiceNavToggleBtn.addEventListener('click', () => {
+            try {
+                recognition.start();
+                voiceNavToggleBtn.textContent = 'Escuchando...';
+                voiceNavToggleBtn.classList.add('listening'); // Añadir clase para estilos CSS
+                console.log('✅ Reconocimiento de voz para navegación iniciado.');
+            } catch (e) {
+                console.error('Error al iniciar el reconocimiento de voz para navegación:', e);
+                voiceNavToggleBtn.textContent = 'Voz';
+                voiceNavToggleBtn.classList.remove('listening');
+                let errorMessage = 'No se pudo iniciar el reconocimiento de voz.';
+                if (e.name === 'InvalidStateError') {
+                    errorMessage += ' Parece que ya está activo o se intentó iniciar mientras estaba en un estado inválido.';
+                    // Intentar detener y reiniciar si es un InvalidStateError
+                    recognition.stop();
+                    setTimeout(() => { // Pequeña pausa para permitir que se detenga completamente
+                        try {
+                            recognition.start();
+                        } catch (retryError) {
+                            console.error('Error al reintentar iniciar el reconocimiento:', retryError);
+                            alert(errorMessage + ' Intenta de nuevo.');
+                        }
+                    }, 100);
+                    return; // Salir para evitar alert duplicado si se reintenta
+                } else if (e.name === 'SecurityError') {
+                    errorMessage += ' Asegúrate de estar en un contexto seguro (HTTPS o localhost) y de haber dado permisos al micrófono.';
+                }
+                alert(errorMessage);
+            }
+        });
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript.toLowerCase();
+            console.log('Comando de voz detectado para navegación:', transcript);
+            voiceNavToggleBtn.textContent = 'Voz';
+            voiceNavToggleBtn.classList.remove('listening');
+
+            // --- Lógica de comandos de navegación directa ---
+            if (transcript.includes('inicio') || transcript.includes('ir a inicio') || transcript.includes('principal')) {
+                scrollToSection('inicio');
+            } else if (transcript.includes('misión') || transcript.includes('mision y vision') || transcript.includes('esencia')) {
+                scrollToSection('mision');
+            } else if (transcript.includes('flota') || transcript.includes('camiones') || transcript.includes('unidades')) {
+                scrollToSection('flota');
+            } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) {
+                scrollToSection('rastreo');
+            } else if (transcript.includes('cobertura') || transcript.includes('nacional')) {
+                scrollToSection('cobertura');
+            } else if (transcript.includes('patios') || transcript.includes('operaciones')) {
+                scrollToSection('patios');
+            } else if (transcript.includes('contacto') || transcript.includes('contactar') || transcript.includes('llamar')) {
+                scrollToSection('contacto');
+            } else if (transcript.includes('privacidad') || transcript.includes('politicas de privacidad') || transcript.includes('aviso de privacidad')) {
+                scrollToSection('privacidad');
+            } else if (transcript.includes('presentación') || transcript.includes('descargar presentación') || transcript.includes('qr')) {
+                // Aquí, si la sección de presentación tiene un ID, úsalo. Si es una clase, ajusta.
+                // Asumiendo que la sección de QR/PDF tiene el ID 'qr-section'
+                scrollToSection('qr-section');
+            } else if (transcript.includes('servicios')) { // Añadido para completar los comandos
+                scrollToSection('servicios');
+            }
+            else {
+                alert('Comando de voz no reconocido para navegación: "' + transcript + '". Por favor, intenta de nuevo con un comando como "Inicio", "Flota" o "Contacto".');
+            }
+        };
+
+        recognition.onerror = (event) => {
+            console.error('Error de reconocimiento de voz para navegación:', event.error, event.message);
+            voiceNavToggleBtn.textContent = 'Voz';
+            voiceNavToggleBtn.classList.remove('listening');
+            if (event.error === 'not-allowed') {
+                alert('Permiso de micrófono denegado para comandos de voz. Revisa la configuración de tu navegador (haz clic en el candado en la barra de direcciones).');
+            } else if (event.error === 'no-speech') {
+                console.log('No se detectó voz para comando de navegación.');
+            } else {
+                alert('Ocurrió un error en el reconocimiento de voz para navegación: ' + event.error);
+            }
+        };
+
+        recognition.onend = () => {
+            voiceNavToggleBtn.textContent = 'Voz';
+            voiceNavToggleBtn.classList.remove('listening');
+            console.log('🔚 Reconocimiento de voz para navegación finalizado.');
+        };
+
+    } else {
+        console.warn('El botón con ID "voice-command-toggle" no se encontró, la navegación por voz no se activará.');
+        // Puedes agregar un mensaje al usuario en el HTML si lo necesitas
     }
-});
+
+    // --- Lógica para desplazamiento suave de enlaces de ancla (general) ---
+    // Esta lógica se aplica a cualquier enlace con href que empiece con #
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            // Si el chatbot está abierto y el clic viene de un enlace DENTRO del chatbot
+            // (como los que generas en el botResponse), querrás cerrarlo.
+            // Para eso necesitas que el botón del chatbot tenga un ID único (e.g., 'chatbot-button')
+            // y que el contenedor del chatbot también tenga un ID (e.g., 'chatbot-container').
+            const chatbotContainerEl = document.getElementById('chatbot-container');
+            if (chatbotContainerEl && chatbotContainerEl.style.display === 'flex') {
+                // Si el evento original (e.target) es un enlace dentro del chatbot
+                if (e.target.closest('#chatbot-container')) {
+                     chatbotContainerEl.style.display = 'none'; // Cierra el chatbot
+                }
+            }
+            document.querySelector(targetId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+}); // Fin de document.addEventListener('DOMContentLoaded')
