@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Añadir mensaje del usuario
             const userMessageDiv = document.createElement('p');
-            userMessageDiv.classList.add('user-message'); // CLASE AÑADIDA AQUÍ
+            userMessageDiv.classList.add('user-message');
             userMessageDiv.textContent = userInput;
             chatMessages.appendChild(userMessageDiv);
 
@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const botResponse = getBotResponse(userInput);
                 const botMessageDiv = document.createElement('p');
                 botMessageDiv.classList.add('bot-message');
-                botMessageDiv.innerHTML = botResponse; // Usar innerHTML para <br>
+                botMessageDiv.innerHTML = botResponse; // Usar innerHTML para <br> y los nuevos <a>
                 chatMessages.appendChild(botMessageDiv);
 
                 chatMessages.scrollTop = chatMessages.scrollHeight; // Desplazar de nuevo
@@ -146,30 +146,26 @@ document.addEventListener('DOMContentLoaded', () => {
         function getBotResponse(message) {
             message = message.toLowerCase(); // Convertir a minúsculas para facilitar la comparación
 
-            // Usamos expresiones regulares para ser más flexibles con las palabras clave
             if (/(hola|saludos)/.test(message)) {
                 return "¡Hola! ¿En qué puedo ayudarte hoy?";
-            } else if (/(mision)/.test(message)) {
-                return "Nuestra misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo.";
-            } else if (/(vision)/.test(message)) {
-                return "Nuestra visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación.";
+            } else if (/(mision|vision)/.test(message)) {
+                return "Nuestra <a href='#mision'>Misión</a> es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra <a href='#mision'>Visión</a> es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación.";
             } else if (/(flota|camiones|unidades)/.test(message)) {
-                return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Puedes ver más en la sección de Flota.";
+                return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Puedes ver más en la sección de <a href='#flota'>Flota</a>.";
             } else if (/(rastreo|seguridad|monitoreo)/.test(message)) {
-                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK.";
+                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK. Más detalles en la sección de <a href='#rastreo'>Rastreo</a>.";
             } else if (/(cobertura|donde operan|ciudades)/.test(message)) {
-                return "Realizamos servicios de transporte a toda la República Mexicana.";
+                return "Realizamos servicios de transporte a toda la República Mexicana. Consulta el <a href='#cobertura'>Mapa de Cobertura</a>.";
             } else if (/(patios|ubicacion|tepotzotlan|manzanillo)/.test(message)) {
-                return "Tenemos patios de operaciones en Tepotzotlán, Estado de México y en Manzanillo, Colima. Puedes ver sus ubicaciones en la sección de Patios.";
+                return "Tenemos patios de operaciones en <a href='#patios'>Tepotzotlán, Estado de México</a> y en <a href='#patios'>Manzanillo, Colima</a>. Puedes ver sus ubicaciones en la sección de Patios.";
             } else if (/(contacto|cotizacion|telefono|email)/.test(message)) {
-                return "Puedes contactarnos a través de nuestro formulario en la sección de Contacto, o llamar a Fernando Lucas al 5516273406 o a Armando Martinez al 5542639390. También puedes enviar un correo a jiva.operaciones@gmail.com.";
+                return "Puedes contactarnos a través de nuestro <a href='#contacto'>formulario de Contacto</a>, o llamar a Fernando Lucas al <a href='tel:+525516273406'>5516273406</a> o a Armando Martinez al <a href='tel:+525542639390'>5542639390</a>. También puedes enviar un correo a <a href='mailto:jiva.operaciones@gmail.com'>jiva.operaciones@gmail.com</a>.";
             } else if (/(privacidad|politicas)/.test(message)) {
-                return "Nuestras políticas de privacidad detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
+                return "Nuestras <a href='#privacidad'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
             } else if (/(servicios)/.test(message)) {
-                return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía.";
+                return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Más información en <a href='#servicios'>Nuestros Servicios</a>.";
             } else if (/(presentacion|qr|pdf)/.test(message)) {
-                 // Accedemos al archivo PDF subido
-                return "Puedes descargar nuestra presentación completa en PDF escaneando el código QR en la sección 'Nuestra Presentación en QR' o <a href='JIVA LOGISTIC actual.pdf' target='_blank'>haciendo clic aquí</a>.";
+                 return "Puedes descargar nuestra presentación completa en PDF escaneando el código QR en la sección '<a href='#qr-section'>Nuestra Presentación en QR</a>' o <a href='JIVA LOGISTIC actual.pdf' target='_blank'>haciendo clic aquí</a>.";
             } else if (/(gracias|adios|bye)/.test(message)) {
                 return "¡De nada! Si tienes más preguntas, no dudes en consultar. ¡Hasta luego!";
             } else {
