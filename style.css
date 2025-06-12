@@ -29,6 +29,7 @@ body {
     color: var(--text-dark);
     background-color: var(--white);
     scroll-behavior: smooth;
+    /* Aseguramos que el body no tenga padding que afecte el header/footer full width */
     padding-left: 0;
     padding-right: 0;
 }
@@ -38,6 +39,7 @@ body {
     margin: 0 auto;
     padding-left: var(--spacing-small);
     padding-right: var(--spacing-small);
+    /* Aseguramos que el container no tenga padding vertical que afecte secciones */
     padding-top: 0;
     padding-bottom: 0;
 }
@@ -50,16 +52,16 @@ body {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    width: 100%;
+    width: 100%; /* Asegura que ocupe todo el ancho */
 }
 
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1200px; /* Ancho máximo igual al container */
     margin: 0 auto;
-    padding: 0 var(--spacing-small);
+    padding: 0 var(--spacing-small); /* Padding horizontal para el contenido */
 }
 
 .logo img {
@@ -85,7 +87,7 @@ body {
     font-weight: bold;
     font-size: 1em;
     transition: color 0.3s ease, transform 0.2s ease;
-    padding: 5px 0;
+    padding: 5px 0; /* Padding vertical para el área clickable */
 }
 
 .nav-links a:hover {
@@ -123,13 +125,13 @@ body {
 
 /* Botón de Hamburguesa para Móvil */
 .menu-toggle {
-    display: none;
+    display: none; /* Oculto por defecto en desktop */
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
-    position: relative;
-    z-index: 1002;
+    position: relative; /* Para el z-index */
+    z-index: 1002; /* Para que esté por encima del menú desplegable */
 }
 
 .hamburger-icon {
@@ -162,7 +164,7 @@ body {
 
 /* Animación de hamburguesa a "X" */
 .menu-toggle.active .hamburger-icon {
-    background-color: transparent;
+    background-color: transparent; /* Oculta la barra central */
 }
 
 .menu-toggle.active .hamburger-icon::before {
@@ -181,11 +183,11 @@ section {
 
 .blue-bg {
     background-color: var(--primary-blue);
-    color: var(--text-light);
+    color: var(--text-light); /* Texto claro para fondo oscuro */
 }
 
 .blue-bg h2, .blue-bg h3 {
-    color: var(--white);
+    color: var(--white); /* Títulos blancos en fondo azul */
 }
 
 h1, h2 {
@@ -200,7 +202,7 @@ h2 {
 }
 
 h3 {
-    color: var(--text-dark);
+    color: var(--text-dark); /* Color por defecto para h3 */
     margin-bottom: 15px;
     font-size: 1.6em;
 }
@@ -222,7 +224,7 @@ p {
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
-    display: inline-block;
+    display: inline-block; /* Para permitir padding y margen */
     margin-top: var(--spacing-medium);
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
@@ -238,15 +240,15 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-large);
-    padding: var(--padding-section) var(--spacing-small);
-    background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%);
-    text-align: left;
+    gap: var(--spacing-large); /* Espacio entre el contenido y la imagen */
+    padding: var(--padding-section) var(--spacing-small); /* Padding general de la sección */
+    background: linear-gradient(to right, var(--white) 60%, var(--gray-light) 40%); /* Degradado de fondo */
+    text-align: left; /* Alineación del texto en el contenido */
 }
 
 .hero-content {
-    flex: 1;
-    max-width: 600px;
+    flex: 1; /* Permite que el contenido ocupe el espacio disponible */
+    max-width: 600px; /* Ancho máximo para el texto */
 }
 
 .hero-content h1 {
@@ -261,7 +263,7 @@ p {
 }
 
 .hero-image {
-    flex: 1;
+    flex: 1; /* Permite que la imagen ocupe el espacio disponible */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -280,15 +282,15 @@ p {
 }
 
 .values span {
-    display: inline-block;
+    display: inline-block; /* Para aplicar padding y margen */
     background-color: var(--primary-blue);
     color: var(--white);
     padding: 6px 12px;
-    border-radius: 15px;
+    border-radius: 15px; /* Bordes redondeados */
     margin-right: 8px;
     font-size: 0.85em;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 8px; /* Para envolver bien en móviles */
     transition: background-color 0.3s ease;
 }
 
@@ -300,7 +302,7 @@ p {
 /* Grid de Tarjetas (Misión/Visión, Patios, Contacto Info) */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
     gap: var(--spacing-medium);
     margin-top: var(--spacing-large);
 }
@@ -312,17 +314,18 @@ p {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    color: var(--text-dark);
+    color: var(--text-dark); /* Asegura color de texto para las cards en fondo azul */
 }
 
 .card h3 {
-    color: var(--primary-blue);
+    color: var(--primary-blue); /* Color de título dentro de la tarjeta */
     margin-top: 0;
     margin-bottom: var(--spacing-small);
 }
 
+/* Especificidad para cards dentro de .blue-bg */
 .blue-bg .card {
-    background-color: var(--white);
+    background-color: var(--white); /* Fondo blanco para las cards en secciones azules */
 }
 
 .card:hover {
@@ -354,25 +357,25 @@ iframe {
 /* Flota - Carrusel de Imágenes */
 .carousel-container {
     position: relative;
-    width: 90%;
+    width: 90%; /* Ancho relativo */
     max-width: 900px;
     margin: var(--spacing-large) auto;
-    overflow: hidden;
+    overflow: hidden; /* Oculta partes de las imágenes que exceden */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .carousel-slide {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+    display: flex; /* Para poner las imágenes en línea */
+    transition: transform 0.5s ease-in-out; /* Suaviza el movimiento */
 }
 
 .carousel-slide img {
-    min-width: 100%;
+    min-width: 100%; /* Cada imagen ocupa el 100% del ancho del slide */
     height: 380px;
-    object-fit: cover;
+    object-fit: cover; /* Recorta la imagen para que cubra el área */
     border-radius: 8px;
-    display: block;
+    display: block; /* Elimina espacio extra debajo de las imágenes */
 }
 
 .carousel-container .prev-btn,
@@ -411,8 +414,8 @@ iframe {
     gap: var(--spacing-large);
     margin-top: var(--spacing-large);
     text-align: left;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    justify-content: center; /* Centra los elementos cuando se envuelven */
 }
 
 .content-left-image img {
@@ -423,8 +426,8 @@ iframe {
 }
 
 .content-left-image div {
-    flex: 1;
-    min-width: 300px;
+    flex: 1; /* El texto ocupa el espacio restante */
+    min-width: 300px; /* Ancho mínimo antes de envolver */
 }
 
 .full-width-image {
@@ -454,7 +457,7 @@ iframe {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     max-width: 600px;
-    margin-left: auto;
+    margin-left: auto; /* Centra el formulario */
     margin-right: auto;
     text-align: left;
     color: var(--text-dark);
@@ -465,7 +468,7 @@ iframe {
 }
 
 .contact-form label {
-    display: block;
+    display: block; /* Etiqueta en su propia línea */
     margin-bottom: 5px;
     font-weight: bold;
     font-size: 0.95em;
@@ -486,12 +489,12 @@ iframe {
 .contact-form input[type="email"]:focus,
 .contact-form textarea:focus {
     border-color: var(--primary-blue);
-    outline: none;
+    outline: none; /* Quita el contorno por defecto del navegador */
 }
 
 .contact-form button[type="submit"] {
-    width: auto;
-    margin-top: 0;
+    width: auto; /* Para que el botón no ocupe todo el ancho */
+    margin-top: 0; /* Ya tiene margin-top del .cta-button */
 }
 
 /* Mensajes de formulario */
@@ -511,7 +514,7 @@ iframe {
     max-width: 180px;
     height: auto;
     margin: var(--spacing-medium) auto;
-    display: block;
+    display: block; /* Para centrar con margin auto */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     border-radius: 5px;
 }
@@ -519,13 +522,13 @@ iframe {
 /* Políticas de Privacidad */
 .privacy-policy-container {
     text-align: left;
-    padding: var(--padding-card);
+    padding: var(--padding-card); /* Padding interno para el contenido */
 }
 
 .privacy-policy-container h3 {
     margin-top: var(--spacing-medium);
     margin-bottom: 12px;
-    color: var(--white);
+    color: var(--white); /* Color para h3 en sección azul */
     font-size: 1.4em;
 }
 
@@ -534,7 +537,7 @@ iframe {
     font-size: 0.95em;
     line-height: 1.6;
     margin-bottom: 12px;
-    color: var(--text-light);
+    color: var(--text-light); /* Texto claro para fondo oscuro */
 }
 
 .privacy-policy-container p strong {
@@ -542,8 +545,8 @@ iframe {
 }
 
 .privacy-policy-container ul {
-    list-style-type: disc;
-    margin-left: 25px;
+    list-style-type: disc; /* Puntos de lista */
+    margin-left: 25px; /* Indentación para las listas */
     padding-left: 0;
 }
 
@@ -568,7 +571,7 @@ iframe {
     text-align: center;
     margin-top: var(--spacing-large);
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
-    width: 100%;
+    width: 100%; /* Asegura que ocupe todo el ancho */
 }
 
 .footer-links {
@@ -593,6 +596,8 @@ iframe {
     color: var(--light-blue);
 }
 
+/* CHATBOT STYLES - ¡Ajustes de Especificidad aquí! */
+
 /* Chatbot Button Flotante */
 .chatbot-button {
     position: fixed;
@@ -609,7 +614,7 @@ iframe {
     font-size: 1.8em;
     cursor: pointer;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
+    z-index: 1001; /* Asegura que esté por encima de otros elementos */
     transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -622,21 +627,23 @@ iframe {
 /* Contenedor Principal del Chatbot */
 #chatbot-container {
     position: fixed;
-    bottom: calc(var(--spacing-medium) + 65px);
+    bottom: calc(var(--spacing-medium) + 65px); /* Por encima del botón flotante */
     right: var(--spacing-medium);
     width: 320px;
     height: 450px; /* Altura fija para el contenedor */
     background-color: var(--white);
     border-radius: 10px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-    z-index: 1002;
+    z-index: 1002; /* Por encima del botón */
     display: flex; /* Contenedor flex para organizar header, mensajes y input */
     flex-direction: column;
     overflow: hidden; /* Importante para que los bordes redondeados se respeten con el contenido */
     animation: fadeInScale 0.3s ease-out forwards;
-    transform-origin: bottom right;
+    transform-origin: bottom right; /* El origen de la animación */
     box-sizing: border-box; /* Asegura que el padding no añada al tamaño total */
     padding: 0; /* Aseguramos que no haya padding global aquí, los paddings internos se manejan en sus elementos */
+    font-family: 'Arial', sans-serif; /* Asegurar la fuente para todo el chatbot */
+    color: var(--text-dark); /* Color de texto base para el chatbot */
 }
 
 @keyframes fadeInScale {
@@ -660,12 +667,11 @@ iframe {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'Arial', sans-serif; /* Aseguramos la fuente */
 }
 
 #chatbot-container #chatbot-header h3 {
-    margin: 0;
-    color: var(--white); /* Aseguramos el color del título */
+    margin: 0; /* Elimina margen por defecto del h3 */
+    color: var(--white); /* Aseguramos el color del título del header */
     font-size: 1.2em;
 }
 
@@ -675,7 +681,7 @@ iframe {
     color: var(--white);
     font-size: 1.5em;
     cursor: pointer;
-    line-height: 1;
+    line-height: 1; /* Asegura que la 'X' esté bien centrada */
     padding: 0;
     transition: color 0.2s ease;
 }
@@ -686,13 +692,11 @@ iframe {
 
 /* Área de Mensajes del Chatbot */
 #chatbot-container #chat-messages {
-    flex-grow: 1; /* Permite que ocupe todo el espacio disponible */
+    flex-grow: 1; /* Permite que ocupe todo el espacio disponible entre header y input */
     overflow-y: auto; /* Activa el scroll vertical si el contenido excede la altura */
     padding: 15px 20px; /* Padding interno para los mensajes */
     background-color: var(--white); /* Fondo claro para los mensajes */
-    font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: var(--text-dark); /* Color de texto general para los mensajes */
 }
 
 /* Estilos de mensajes individuales del bot */
@@ -703,7 +707,7 @@ iframe {
     border-radius: 15px 15px 15px 0; /* Burbuja de chat con borde inferior izquierdo plano */
     margin-bottom: 10px;
     text-align: left;
-    max-width: 85%; /* Para que los mensajes no ocupen todo el ancho */
+    max-width: 85%; /* Para que los mensajes no ocupen todo el ancho y parezcan burbujas */
     word-wrap: break-word; /* Asegura que el texto largo se rompa correctamente */
 }
 
@@ -727,9 +731,7 @@ iframe {
     border: 1px solid var(--gray-medium);
     border-radius: 20px; /* Bordes más redondeados para el input */
     font-size: 0.95em;
-    font-family: 'Arial', sans-serif;
-    color: var(--text-dark);
-    outline: none;
+    outline: none; /* Quita el contorno al enfocar */
     transition: border-color 0.3s ease;
 }
 
@@ -790,11 +792,11 @@ iframe {
 }
 
 .services-list ul {
-    list-style: none;
+    list-style: none; /* Quita los puntos de lista predeterminados */
     padding: 0;
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
     gap: 20px;
 }
 
@@ -805,18 +807,19 @@ iframe {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     font-size: 1.05em;
     color: var(--text-dark);
-    display: flex;
+    display: flex; /* Para el icono de check y el texto */
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Espacio entre el check y el texto */
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .services-list li::before {
-    content: '✓';
+    content: '✓'; /* El carácter de check */
     color: var(--accent-color);
     font-weight: bold;
     font-size: 1.2em;
+    flex-shrink: 0; /* Evita que el check se encoja */
 }
 
 .services-list li:hover {
@@ -836,14 +839,14 @@ iframe {
         font-size: 1.4em;
     }
     .hero-section {
-        flex-direction: column;
+        flex-direction: column; /* Apila los elementos en vertical */
         text-align: center;
         gap: var(--spacing-medium);
         padding: var(--padding-section) var(--spacing-small);
     }
 
     .hero-content {
-        max-width: 100%;
+        max-width: 100%; /* Ocupa todo el ancho disponible */
     }
 
     .hero-image {
@@ -870,6 +873,7 @@ iframe {
         height: 300px;
     }
 
+    /* Ajustes para el menú de navegación en móviles */
     .main-header, .main-footer {
         width: 100%;
         left: 0;
@@ -877,50 +881,50 @@ iframe {
     }
 
     .navbar {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Permite que los elementos se envuelvan */
         justify-content: space-between;
     }
 
     .nav-links {
-        display: none;
+        display: none; /* Oculto por defecto en móvil */
         flex-direction: column;
-        width: 100%;
+        width: 100%; /* Ocupa todo el ancho */
         text-align: center;
         background-color: var(--primary-blue);
-        position: absolute;
-        top: 100%;
+        position: absolute; /* Para que se superponga */
+        top: 100%; /* Debajo del header */
         left: 0;
         right: 0;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         padding: 10px 0;
-        gap: 0;
+        gap: 0; /* Elimina el gap entre los ítems de la lista */
     }
 
     .nav-links.active {
-        display: flex;
+        display: flex; /* Muestra el menú cuando está activo */
     }
 
     .nav-links li {
-        margin: 8px 0;
+        margin: 8px 0; /* Margen vertical entre ítems */
     }
 
     .nav-links a {
         padding: 8px 15px;
-        display: block;
+        display: block; /* Para que toda el área del li sea clickable */
     }
 
     .menu-toggle {
-        display: block;
-        order: 1;
-        margin-left: auto;
+        display: block; /* Muestra el botón de hamburguesa */
+        order: 1; /* Ordena el botón después del logo */
+        margin-left: auto; /* Empuja el botón a la derecha */
     }
     .voice-btn {
         margin-left: 10px;
-        order: 2;
+        order: 2; /* Ordena el botón de voz después del toggle */
     }
 
     .logo img {
-        height: 55px;
+        height: 55px; /* Tamaño del logo en tablet */
     }
 }
 
@@ -973,7 +977,7 @@ iframe {
     }
 
     .carousel-slide img {
-        height: 220px;
+        height: 220px; /* Altura de imágenes en móvil */
     }
 
     .carousel-container .prev-btn,
@@ -986,6 +990,7 @@ iframe {
         padding: var(--spacing-small);
     }
 
+    /* Ajustes específicos del chatbot para móviles */
     .chatbot-button {
         width: 45px;
         height: 45px;
@@ -995,14 +1000,14 @@ iframe {
     }
 
     #chatbot-container {
-        width: 90%;
-        right: 5%;
-        bottom: 70px;
-        height: 55vh;
+        width: 90%; /* Ocupa el 90% del ancho del viewport */
+        right: 5%; /* Centrado horizontalmente */
+        bottom: 70px; /* Por encima del botón flotante ajustado */
+        height: 55vh; /* Altura relativa al viewport */
     }
 
     .logo img {
-        height: 45px;
+        height: 45px; /* Tamaño del logo en móvil */
     }
 
     .privacy-policy-container h3 {
@@ -1071,15 +1076,15 @@ iframe {
         right: 8px;
     }
     #chatbot-container {
-        bottom: 50px;
-        width: 260px;
+        bottom: 50px; /* Ajuste más bajo para pantallas muy pequeñas */
+        width: 260px; /* Ancho más pequeño */
         height: 45vh;
     }
     .privacy-policy-container ul {
         margin-left: 10px;
     }
     .services-list ul {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
     }
     .services-list li {
         font-size: 0.95em;
