@@ -18,24 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Carrusel de Imágenes (Flota) - ADAPTADO DE TU CÓDIGO ANTIGUO (clientWidth) ---
-    // Usaremos la lógica que ya tenías para carrusel en tus archivos anteriores que usaba clientWidth,
-    // ya que es más probable que sea la que tenías funcionando bien con tu CSS.
+    // --- Carrusel de Imágenes (Flota) ---
     const carouselSlide = document.querySelector('.carousel-slide');
     const carouselImages = document.querySelectorAll('.carousel-slide img');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
 
-    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) { // Asegura que existan
+    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
         let counter = 0;
-        const size = carouselImages[0].clientWidth; // Usar clientWidth
+        const size = carouselImages[0].clientWidth;
 
-        // Inicializar carrusel en la primera imagen (por si acaso el CSS no lo hace)
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
         nextBtn.addEventListener('click', () => {
             if (counter >= carouselImages.length - 1) {
-                counter = -1; // Reinicia para ir al principio lógicamente
+                counter = -1;
             }
             counter++;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -44,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         prevBtn.addEventListener('click', () => {
             if (counter <= 0) {
-                counter = carouselImages.length; // Reinicia para ir al final lógicamente
+                counter = carouselImages.length;
             }
             counter--;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -83,16 +80,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica del Chatbot ---
     // IMPORTANTE: Asegúrate de que los elementos del chatbot existan en el HTML desde el inicio.
-    // NO los generes con innerHTML dentro del JS.
-    const chatbotButton = document.getElementById('chatbot-button'); // Botón para abrir/cerrar el chatbot
-    const chatbotContainer = document.getElementById('chatbot-container'); // Contenedor principal del chatbot
-    const chatInput = document.getElementById('chat-input'); // Campo de entrada de texto del chatbot
-    const sendChatBtn = document.getElementById('send-chat-btn'); // Botón para enviar mensaje del chatbot
-    const chatMessages = document.getElementById('chat-messages'); // Contenedor de mensajes del chatbot
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbotBtn = document.getElementById('close-chatbot-btn'); // Botón de cierre explícito
+    const chatInput = document.getElementById('chat-input');
+    const sendChatBtn = document.getElementById('send-chat-btn');
+    const chatMessages = document.getElementById('chat-messages');
 
-    if (chatbotButton && chatbotContainer && chatInput && sendChatBtn && chatMessages) {
+    // Asegurarse de que todos los elementos críticos del chatbot existan antes de configurar los listeners
+    if (chatbotButton && chatbotContainer && closeChatbotBtn && chatInput && sendChatBtn && chatMessages) {
         chatbotContainer.style.display = 'none'; // Asegura que esté oculto al inicio
 
+        // Event listener para el botón PRINCIPAL (flotante) que abre/cierra el chatbot
         chatbotButton.addEventListener('click', () => {
             const isHidden = chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '';
             chatbotContainer.style.display = isHidden ? 'flex' : 'none';
@@ -101,8 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 chatInput.focus(); // Enfocar el input al abrir
                 chatMessages.scrollTop = chatMessages.scrollHeight; // Desplazar al final
             }
-            // Puedes cambiar el texto/icono del botón aquí si lo deseas
+            // Puedes cambiar el texto/icono del botón flotante aquí si lo deseas
             // chatbotButton.textContent = isHidden ? '✖' : '💬'; 
+        });
+
+        // Event listener para el botón de cierre dentro del chatbot (el "tache")
+        closeChatbotBtn.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+            // Si el botón principal cambia de icono, resetéalo aquí también
+            // chatbotButton.textContent = '💬'; 
         });
 
         sendChatBtn.addEventListener('click', sendMessage);
@@ -165,10 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return "Lo siento, no entendí tu pregunta. Por favor, intenta de nuevo o reformula. Puedes preguntar sobre:<br> \"Misión\", \"Flota\", \"Rastreo\", \"Cobertura\", \"Patios\", \"Contacto\", \"Privacidad\", \"Servicios\" o \"Presentación\".";
             }
         }
-    } // Fin del if(chatbotButton && ...)
+    } else {
+        console.warn('Algunos elementos del chatbot no se encontraron en el DOM. Asegúrate de que estén presentes en tu HTML con los IDs correctos (chatbot-button, chatbot-container, close-chatbot-btn, chat-input, send-chat-btn, chat-messages).');
+    }
 
 
-    // --- Lógica de NAVEGACIÓN por Voz (Reincorporada de tu código antiguo que funcionaba) ---
+    // --- Lógica de NAVEGACIÓN por Voz ---
     const voiceNavToggleBtn = document.getElementById('voice-command-toggle'); // ID del botón de voz para navegación
 
     if (voiceNavToggleBtn) { // Solo ejecutar si el botón existe
@@ -254,10 +262,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (transcript.includes('privacidad') || transcript.includes('politicas de privacidad') || transcript.includes('aviso de privacidad')) {
                 scrollToSection('privacidad');
             } else if (transcript.includes('presentación') || transcript.includes('descargar presentación') || transcript.includes('qr')) {
-                // Aquí, si la sección de presentación tiene un ID, úsalo. Si es una clase, ajusta.
-                // Asumiendo que la sección de QR/PDF tiene el ID 'qr-section'
-                scrollToSection('qr-section');
-            } else if (transcript.includes('servicios')) { // Añadido para completar los comandos
+                scrollToSection('qr-section'); // Asumiendo que la sección de QR/PDF tiene el ID 'qr-section'
+            } else if (transcript.includes('servicios')) {
                 scrollToSection('servicios');
             }
             else {
@@ -286,22 +292,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     } else {
         console.warn('El botón con ID "voice-command-toggle" no se encontró, la navegación por voz no se activará.');
-        // Puedes agregar un mensaje al usuario en el HTML si lo necesitas
     }
 
     // --- Lógica para desplazamiento suave de enlaces de ancla (general) ---
-    // Esta lógica se aplica a cualquier enlace con href que empiece con #
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            // Si el chatbot está abierto y el clic viene de un enlace DENTRO del chatbot
-            // (como los que generas en el botResponse), querrás cerrarlo.
-            // Para eso necesitas que el botón del chatbot tenga un ID único (e.g., 'chatbot-button')
-            // y que el contenedor del chatbot también tenga un ID (e.g., 'chatbot-container').
             const chatbotContainerEl = document.getElementById('chatbot-container');
+            
+            // Si el chatbot está abierto y el clic viene de un enlace DENTRO del chatbot, ciérralo.
             if (chatbotContainerEl && chatbotContainerEl.style.display === 'flex') {
-                // Si el evento original (e.target) es un enlace dentro del chatbot
                 if (e.target.closest('#chatbot-container')) {
                      chatbotContainerEl.style.display = 'none'; // Cierra el chatbot
                 }
