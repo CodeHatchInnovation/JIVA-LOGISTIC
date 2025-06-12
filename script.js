@@ -164,23 +164,25 @@ document.addEventListener('DOMContentLoaded', () => {
     } // Fin del if(chatbotButton && ...)
 
     // ---- Funcionalidad de NAVEGACIÓN por Voz (INDEPENDIENTE) ----
-    const voiceNavToggleBtn = document.getElementById('voice-nav-toggle'); // Nuevo ID para el botón de navegación por voz
+    // Asegúrate de que este ID coincida con el ID de tu botón en el HTML
+    const voiceNavToggleBtn = document.getElementById('voice-nav-toggle'); 
 
     let navRecognition;
-    let isNavRecognizing = false;
+    let isNavRecognizing = false; // Flag para controlar el estado del reconocimiento
 
+    // Comprobar si la Web Speech API es soportada
     if (window.SpeechRecognition || window.webkitSpeechRecognition) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         navRecognition = new SpeechRecognition();
-        navRecognition.lang = 'es-MX';
-        navRecognition.interimResults = false;
-        navRecognition.maxAlternatives = 1;
-        navRecognition.continuous = false; // Escucha una sola frase/comando
+        navRecognition.lang = 'es-MX'; // Idioma español de México
+        navRecognition.interimResults = false; // Solo resultados finales
+        navRecognition.maxAlternatives = 1; // Solo la mejor alternativa
+        navRecognition.continuous = false; // Escucha una sola captura por cada start()
 
-        // Definir los comandos y sus destinos
+        // Definir los comandos de navegación y sus IDs de destino
         const navigationCommands = {
             'misión': '#mision',
-            'visión': '#mision', // Puedes mapear varias palabras a la misma sección
+            'visión': '#mision',
             'flota': '#flota',
             'camiones': '#flota',
             'unidades': '#flota',
@@ -198,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'privacidad': '#privacidad'
         };
 
+        // --- Eventos de Reconocimiento ---
         navRecognition.onstart = () => {
             isNavRecognizing = true;
             if (voiceNavToggleBtn) {
@@ -207,34 +210,54 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('✅ Navegación por voz: Reconocimiento iniciado.');
         };
 
+        navRecognition.onaudiostart = () => {
+            console.log('🔊 Navegación por voz: Audio detectado: El micrófono está recibiendo sonido.');
+        };
+
+        navRecognition.onsoundstart = () => {
+            console.log('👂 Navegación por voz: Sonido detectado: Posiblemente inicio de voz.');
+        };
+
         navRecognition.onresult = (event) => {
             const transcript = event.results[0][0].transcript.toLowerCase();
             const confidence = event.results[0][0].confidence;
             console.log(`🎤 Navegación por voz: Transcripción detectada: "${transcript}" (Confianza: ${confidence.toFixed(2)})`);
             
-            // Buscar una coincidencia en los comandos de navegación
             let foundMatch = false;
             for (const keyword in navigationCommands) {
-                if (transcript.includes(keyword)) { // Usar includes para ser más flexible
+                // Usamos includes para ser más flexibles: "ir a misión" -> "misión"
+                if (transcript.includes(keyword)) {
                     const targetId = navigationCommands[keyword];
                     console.log(`➡️ Navegando a: ${targetId} por comando de voz.`);
                     window.location.hash = targetId; // Desplaza la página
                     foundMatch = true;
-                    break; // Salir del bucle una vez que se encuentra una coincidencia
+                    break;
                 }
             }
 
             if (!foundMatch) {
                 console.log('🤷‍♀️ Navegación por voz: No se reconoció un comando de navegación válido.');
-                // Puedes dar una retroalimentación al usuario aquí, quizás con un alert o un mensaje temporal
-                // alert('Comando de navegación no reconocido. Intenta con: Misión, Flota, Contacto, etc.');
+                // Puedes dar feedback visual aquí si lo deseas
             }
-            navRecognition.stop(); // Detener después de procesar el resultado
+            navRecognition.stop(); // Detener el reconocimiento después de un resultado
         };
 
         navRecognition.onspeechend = () => {
             console.log('🗣️ Navegación por voz: Se detectó el final del habla.');
-            // navRecognition.stop() ya debería ser llamado por onresult o onend
+            // El stop() ya se llama en onresult o en onend
+        };
+
+        navRecognition.onsoundend = () => {
+            console.log('🔇 Navegación por voz: Soundend: El sonido del micrófono ha terminado.');
+        };
+
+        navRecognition.onaudioend = () => {
+            console.log('🛑 Navegación por voz: Audioend: La entrada de audio ha finalizado.');
+            // Asegura que el estado del botón se restablezca
+            if (voiceNavToggleBtn) {
+                voiceNavToggleBtn.classList.remove('listening');
+                voiceNavToggleBtn.textContent = 'Voz Nav';
+            }
         };
 
         navRecognition.onerror = (event) => {
@@ -245,13 +268,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 voiceNavToggleBtn.textContent = 'Voz Nav';
             }
 
+            // Mensajes de error específicos para el usuario
             if (event.error === 'not-allowed') {
-                alert('Permiso de micrófono denegado para navegación por voz. Por favor, habilítalo.');
+                alert('Permiso de micrófono denegado para navegación por voz. Por favor, habilítalo en la configuración de tu navegador.');
             } else if (event.error === 'no-speech') {
-                console.warn('Navegación por voz: No se detectó habla.');
+                console.warn('Navegación por voz: No se detectó ninguna voz. Intenta hablar más claro.');
+            } else if (event.error === 'audio-capture') {
+                alert('Navegación por voz: Problema al acceder al micrófono. Asegúrate de que esté conectado y no esté siendo usado por otra aplicación.');
+            } else if (event.error === 'network') {
+                alert('Navegación por voz: Error de red. Verifica tu conexión a internet.');
             }
             // Asegurarse de detener el reconocimiento en caso de error
-            navRecognition.stop(); 
+            navRecognition.stop();
         };
 
         navRecognition.onend = () => {
@@ -263,30 +291,34 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        // --- Event Listener para el botón de voz de navegación ---
+        // Asegúrate de que el botón exista antes de intentar añadir el listener
         if (voiceNavToggleBtn) {
             voiceNavToggleBtn.addEventListener('click', () => {
                 if (isNavRecognizing) {
                     console.log('🔇 Navegación por voz: Deteniendo manualmente.');
-                    navRecognition.stop();
-                    return;
+                    navRecognition.stop(); // Si ya está escuchando, lo detenemos
+                    return; // Salir de la función
                 }
                 
                 try {
-                    navRecognition.start();
+                    navRecognition.start(); // Si no está escuchando, lo iniciamos
                 } catch (error) {
                     console.warn('Navegación por voz: Error al iniciar el reconocimiento:', error);
+                    // Esto suele ocurrir si se intenta start() cuando ya está activo (InvalidStateError)
                     if (error.name === 'InvalidStateError') {
-                        navRecognition.stop();
+                        navRecognition.stop(); // Intentar detener y luego reintentar si es necesario
                         setTimeout(() => {
-                            if (!isNavRecognizing) {
+                            if (!isNavRecognizing) { // Solo si no se reinició automáticamente
                                 try {
                                     navRecognition.start();
                                 } catch (err) {
-                                    console.error('Navegación por voz: Error al intentar reiniciar:', err);
+                                    console.error('Navegación por voz: Error al intentar reiniciar después de InvalidStateError:', err);
                                 }
                             }
-                        }, 100);
+                        }, 100); // Pequeña pausa para permitir que se detenga
                     } else {
+                        // Otros errores al intentar iniciar
                         if (voiceNavToggleBtn) {
                             voiceNavToggleBtn.classList.remove('listening');
                             voiceNavToggleBtn.textContent = 'Voz Nav';
@@ -297,11 +329,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-    } else { // Si el navegador no soporta la API o el botón no existe
+    } else { // Si la Web Speech API no es soportada en este navegador
         if (voiceNavToggleBtn) {
             voiceNavToggleBtn.style.display = 'none'; // Ocultar el botón si no hay soporte
         }
-        console.warn('🚫 Web Speech API no es soportada para navegación por voz.');
-        // No alertamos al usuario directamente para no interrumpir, solo console.warn
+        console.warn('🚫 Web Speech API no es soportada en este navegador para la navegación por voz.');
+        // Puedes agregar un mensaje al usuario en el HTML si esto es crítico
     }
 });
