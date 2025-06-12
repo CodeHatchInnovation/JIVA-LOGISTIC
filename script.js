@@ -1,283 +1,284 @@
-// --- Lógica para Carrusel de Flota ---
-function setupCarousel(containerSelector, slideSelector, prevBtnSelector, nextBtnSelector) {
-    const carouselContainer = document.querySelector(containerSelector);
-    if (!carouselContainer) return;
-
-    const carouselSlide = carouselContainer.querySelector(slideSelector);
-    const prevBtn = carouselContainer.querySelector(prevBtnSelector);
-    const nextBtn = carouselContainer.querySelector(nextBtnSelector);
-
-    let slideIndex = 0;
-    const slides = carouselSlide.children;
-    const totalSlides = slides.length;
-
-    function showSlide(index) {
-        if (index >= totalSlides) {
-            slideIndex = 0;
-        } else if (index < 0) {
-            slideIndex = totalSlides - 1;
-        } else {
-            slideIndex = index;
-        }
-        carouselSlide.style.transform = `translateX(${-slideIndex * 100}%)`;
-    }
-
-    prevBtn.addEventListener('click', () => {
-        showSlide(slideIndex - 1);
-    });
-
-    nextBtn.addEventListener('click', () => {
-        showSlide(slideIndex + 1);
-    });
-
-    showSlide(0);
-}
-
-
-// --- Lógica para Menú Desplegable (Hamburguesa) ---
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
+    // ---- Lógica del Menú Hamburguesa ----
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', function() {
             navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // Para animar el icono de hamburguesa a "X"
+            menuToggle.classList.toggle('active');
         });
 
-        // Cerrar el menú si se hace clic en un enlace (para navegación)
-        navLinks.querySelectorAll('a').forEach(link => {
+        // Cerrar menú al hacer clic en un enlace (para móviles)
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
             });
         });
     }
-});
 
+    // ---- Lógica del Carrusel (Flota) ----
+    const carouselSlide = document.querySelector('.carousel-slide');
+    const carouselImages = document.querySelectorAll('.carousel-slide img');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
 
-// --- Lógica para Comandos de Voz ---
-document.addEventListener('DOMContentLoaded', () => {
-    const voiceButton = document.getElementById('voice-command-toggle');
-    if (!voiceButton) return;
+    let counter = 0;
+    // Verifica si hay imágenes antes de acceder a clientWidth
+    const size = carouselImages.length > 0 ? carouselImages[0].clientWidth : 0; 
 
-    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
+    // Si hay imágenes, inicializa el carrusel
+    if (size > 0) {
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
-    if (!SpeechRecognition) {
-        console.warn('La API de reconocimiento de voz no es soportada en este navegador. El botón de voz será ocultado.');
-        voiceButton.style.display = 'none';
-        return;
+        nextBtn.addEventListener('click', () => {
+            if (counter >= carouselImages.length - 1) {
+                counter = 0; // Vuelve al inicio si llega al final
+            } else {
+                counter++;
+            }
+            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (counter <= 0) {
+                counter = carouselImages.length - 1; // Vuelve al final si llega al inicio
+            } else {
+                counter--;
+            }
+            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+
+        // Asegurar que el carrusel se redimensiona correctamente
+        window.addEventListener('resize', () => {
+            const newSize = carouselImages.length > 0 ? carouselImages[0].clientWidth : 0;
+            if (newSize > 0) {
+                carouselSlide.style.transition = 'none'; // Desactiva la transición para evitar saltos
+                carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
+            }
+        });
+    } else {
+        // Ocultar botones del carrusel si no hay imágenes
+        if (prevBtn) prevBtn.style.display = 'none';
+        if (nextBtn) nextBtn.style.display = 'none';
     }
 
-    const recognition = new SpeechRecognition();
-    recognition.lang = 'es-ES';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    voiceButton.addEventListener('click', () => {
-        try {
-            recognition.start();
-            voiceButton.textContent = 'Escuchando...';
-            voiceButton.classList.add('listening');
-        } catch (e) {
-            console.error('Error al iniciar el reconocimiento de voz:', e);
-            voiceButton.textContent = 'Voz';
-            voiceButton.classList.remove('listening');
-            alert('No se pudo iniciar el reconocimiento de voz. Asegúrate de que tu micrófono esté conectado y de haber dado permisos.');
-        }
-    });
-
-    recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript.toLowerCase();
-        console.log('Comando de voz detectado:', transcript);
-        voiceButton.textContent = 'Voz';
-        voiceButton.classList.remove('listening');
-
-        const scrollToSection = (id) => {
-            const section = document.getElementById(id);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert(`La sección "${id}" no se encontró.`);
-            }
-        };
-
-        if (transcript.includes('inicio') || transcript.includes('ir a inicio') || transcript.includes('principal')) {
-            scrollToSection('inicio');
-        } else if (transcript.includes('misión') || transcript.includes('esencia')) {
-            scrollToSection('mision');
-        } else if (transcript.includes('flota') || transcript.includes('camiones') || transcript.includes('unidades')) {
-            scrollToSection('flota');
-        } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) {
-            scrollToSection('rastreo');
-        } else if (transcript.includes('cobertura') || transcript.includes('nacional')) {
-            scrollToSection('cobertura');
-        } else if (transcript.includes('patios') || transcript.includes('operaciones')) {
-            scrollToSection('patios');
-        } else if (transcript.includes('contacto') || transcript.includes('contactar') || transcript.includes('llamar')) {
-            scrollToSection('contacto');
-        } else if (transcript.includes('privacidad') || transcript.includes('politicas de privacidad') || transcript.includes('aviso de privacidad')) {
-            scrollToSection('privacidad');
-        } else if (transcript.includes('presentación') || transcript.includes('descargar presentación') || transcript.includes('qr')) {
-            const qrSection = document.querySelector('.qr-section');
-            if (qrSection) {
-                qrSection.scrollIntoView({ behavior: 'smooth' });
-            } else {
-                alert('La sección de presentación no se encontró.');
-            }
-        } else {
-            alert('Comando de voz no reconocido: "' + transcript + '". Por favor, intenta de nuevo con un comando como "Inicio", "Flota" o "Contacto".');
-        }
-    };
-
-    recognition.onerror = (event) => {
-        console.error('Error de reconocimiento de voz:', event.error);
-        voiceButton.textContent = 'Voz';
-        voiceButton.classList.remove('listening');
-        if (event.error === 'not-allowed') {
-            alert('Permite el acceso al micrófono para usar los comandos de voz. Revisa la configuración de tu navegador.');
-        } else if (event.error === 'no-speech') {
-            console.log('No se detectó voz.');
-        } else {
-            alert('Ocurrió un error en el reconocimiento de voz: ' + event.error);
-        }
-    };
-
-    recognition.onend = () => {
-        voiceButton.textContent = 'Voz';
-        voiceButton.classList.remove('listening');
-    };
-});
-
-// --- Lógica del Formulario de Contacto (simulado, no se envía a un servidor real) ---
-document.addEventListener('DOMContentLoaded', () => {
+    // ---- Lógica del Formulario de Contacto ----
     const contactForm = document.getElementById('contact-form');
     const contactMessage = document.getElementById('contact-message');
 
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-            contactMessage.textContent = 'Enviando mensaje...';
-            contactMessage.style.color = 'var(--accent-color)';
-
-            const formData = new FormData(contactForm);
-            const data = Object.fromEntries(formData.entries());
-
-            console.log('Datos del formulario de contacto:', data);
-
-            await new Promise(resolve => setTimeout(resolve, 1500));
-
-            contactMessage.textContent = '¡Mensaje enviado con éxito! (Simulado). Nos pondremos en contacto contigo pronto.';
+            // Simulación de envío exitoso para demostración
+            contactMessage.textContent = '¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.';
             contactMessage.style.color = 'green';
             contactForm.reset();
         });
     }
-});
 
-
-// --- Lógica del Chatbot ---
-document.addEventListener('DOMContentLoaded', () => {
+    // ---- Lógica del Chatbot ----
     const chatbotButton = document.getElementById('chatbot-button');
     const chatbotContainer = document.getElementById('chatbot-container');
+    const closeChatbotBtn = document.getElementById('close-chatbot-btn');
+    const chatInput = document.getElementById('chat-input');
+    const sendChatBtn = document.getElementById('send-chat-btn');
+    const chatMessages = document.getElementById('chat-messages');
 
-    if (chatbotButton && chatbotContainer) {
+    if (chatbotButton && chatbotContainer && closeChatbotBtn && chatInput && sendChatBtn && chatMessages) {
+        // Abrir/Cerrar Chatbot
         chatbotButton.addEventListener('click', () => {
+            chatbotContainer.style.display = chatbotContainer.style.display === 'flex' ? 'none' : 'flex';
             if (chatbotContainer.style.display === 'flex') {
-                chatbotContainer.style.display = 'none';
-                chatbotButton.textContent = '💬';
-            } else {
-                chatbotContainer.style.display = 'flex';
-                chatbotButton.textContent = '✖';
-
-                if (!chatbotContainer.querySelector('.chatbot-dialogue-box')) {
-                    chatbotContainer.innerHTML = `
-                        <div class="chatbot-dialogue-box">
-                            <div id="chat-messages">
-                                <p style="background-color: #e0e0e0; padding: 10px; border-radius: 8px; margin-bottom: 10px;">Hola, soy tu asistente virtual de JIVA LOGISTIC. ¿En qué puedo ayudarte hoy?</p>
-                                <p style="background-color: #e0e0e0; padding: 10px; border-radius: 8px; margin-bottom: 10px;">Puedes preguntarme sobre:<br> "Inicio", "Misión", "Flota", "Rastreo", "Cobertura", "Patios", "Contacto", "Privacidad" o "Presentación".</p>
-                            </div>
-                            <div style="display: flex;">
-                                <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." style="flex-grow: 1; padding: 10px; border: 1px solid var(--gray-medium); border-radius: 5px; margin-right: 10px;">
-                                <button id="send-chat-btn" style="background-color: var(--primary-blue); color: var(--white); border: none; padding: 10px 15px; border-radius: 5px; cursor: pointer;">Enviar</button>
-                            </div>
-                        </div>
-                    `;
-
-                    const chatInput = document.getElementById('chat-input');
-                    const sendChatBtn = document.getElementById('send-chat-btn');
-                    const chatMessages = document.getElementById('chat-messages');
-
-                    const addMessage = (text, sender) => {
-                        const msgDiv = document.createElement('p');
-                        msgDiv.style.backgroundColor = sender === 'user' ? 'var(--light-blue)' : '#e0e0e0';
-                        msgDiv.style.color = sender === 'user' ? 'var(--text-dark)' : 'var(--text-dark)';
-                        msgDiv.style.padding = '10px';
-                        msgDiv.style.borderRadius = '8px';
-                        msgDiv.style.marginBottom = '10px';
-                        msgDiv.style.textAlign = sender === 'user' ? 'right' : 'left';
-                        msgDiv.innerHTML = text;
-
-                        chatMessages.appendChild(msgDiv);
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    };
-
-                    const handleChatInput = () => {
-                        const userText = chatInput.value.toLowerCase().trim();
-                        if (userText === '') return;
-
-                        addMessage(userText, 'user');
-                        chatInput.value = '';
-
-                        let botResponse = "Lo siento, no entendí tu pregunta. Intenta con alguna de las palabras clave como 'Flota' o 'Contacto'.";
-
-                        if (userText.includes('hola') || userText.includes('ayuda')) {
-                            botResponse = "¡Hola! Estoy aquí para ayudarte. Puedes preguntar sobre nuestras secciones como 'Inicio', 'Misión', 'Flota', 'Rastreo', 'Cobertura', 'Patios', 'Contacto', 'Privacidad' o 'Presentación'.";
-                        } else if (userText.includes('inicio') || userText.includes('principal')) {
-                            botResponse = `Claro, te llevo a la sección de <a href="#inicio" onclick="document.getElementById('chatbot-container').style.display='none';">Inicio</a>.`;
-                        } else if (userText.includes('misión') || userText.includes('esencia')) {
-                            botResponse = `Aquí tienes nuestra <a href="#mision" onclick="document.getElementById('chatbot-container').style.display='none';">Misión</a>.`;
-                        } else if (userText.includes('flota') || userText.includes('camiones') || userText.includes('unidades')) {
-                            botResponse = `Te muestro nuestra <a href="#flota" onclick="document.getElementById('chatbot-container').style.display='none';">Flota</a> de vehículos.`;
-                        } else if (userText.includes('rastreo') || userText.includes('satelital') || userText.includes('monitoreo')) {
-                            botResponse = `Puedes encontrar información sobre nuestro <a href="#rastreo" onclick="document.getElementById('chatbot-container').style.display='none';">Rastreo</a>.`;
-                        } else if (userText.includes('cobertura') || userText.includes('nacional')) {
-                            botResponse = `Aquí está nuestra sección de <a href="#cobertura" onclick="document.getElementById('chatbot-container').style.display='none';">Cobertura</a>.`;
-                        } else if (userText.includes('patios') || userText.includes('operaciones')) {
-                            botResponse = `Información sobre nuestros <a href="#patios" onclick="document.getElementById('chatbot-container').style.display='none';">Patios</a> de Operaciones.`;
-                        } else if (userText.includes('contacto') || userText.includes('contactar') || userText.includes('llamar')) {
-                            botResponse = `Para contactarnos, visita la sección de <a href="#contacto" onclick="document.getElementById('chatbot-container').style.display='none';">Contacto</a>.`;
-                        } else if (userText.includes('privacidad') || userText.includes('políticas') || userText.includes('aviso')) {
-                            botResponse = `Nuestras <a href="#privacidad" onclick="document.getElementById('chatbot-container').style.display='none';">Políticas de Privacidad</a> están aquí.`;
-                        } else if (userText.includes('presentación') || userText.includes('qr') || userText.includes('descargar')) {
-                            botResponse = `Puedes descargar nuestra <a href="images/JIVA_LOGISTIC_actual.pdf" target="_blank" onclick="document.getElementById('chatbot-container').style.display='none';">Presentación</a> escaneando el QR.`;
-                        }
-
-                        setTimeout(() => {
-                            addMessage(botResponse, 'bot');
-                        }, 500);
-                    };
-
-                    sendChatBtn.addEventListener('click', handleChatInput);
-                    chatInput.addEventListener('keypress', (e) => {
-                        if (e.key === 'Enter') {
-                            handleChatInput();
-                        }
-                    });
-                }
+                chatInput.focus(); // Enfocar el input cuando se abre
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll al final al abrir
             }
         });
+
+        closeChatbotBtn.addEventListener('click', () => {
+            chatbotContainer.style.display = 'none';
+        });
+
+        // Enviar mensaje (al hacer clic o presionar Enter)
+        sendChatBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            const userMessage = chatInput.value.trim();
+            if (userMessage === '') return;
+
+            displayMessage(userMessage, 'user');
+            chatInput.value = ''; // Limpiar input
+
+            // Simular respuesta del bot
+            setTimeout(() => {
+                const botResponse = getChatbotResponse(userMessage);
+                displayMessage(botResponse, 'bot');
+            }, 500); // Pequeño retraso para simular "pensamiento" del bot
+        }
+
+        // Función para mostrar mensajes en el chat
+        function displayMessage(message, sender) {
+            const messageElement = document.createElement('p');
+            messageElement.classList.add(sender + '-message');
+            messageElement.innerHTML = message; // Usar innerHTML para renderizar los enlaces
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll al final
+        }
+
+        // Lógica de respuesta del Chatbot
+        function getChatbotResponse(message) {
+            let response = "Lo siento, no entendí tu pregunta. Puedes preguntar sobre 'Inicio', 'Misión', 'Flota', 'Rastreo', 'Cobertura', 'Patios', 'Contacto', 'Privacidad', 'Servicios' o 'Presentación'."; // Respuesta por defecto
+
+            const lowerCaseMessage = message.toLowerCase();
+
+            if (lowerCaseMessage.includes("mision") || lowerCaseMessage.includes("vision") || lowerCaseMessage.includes("esencia")) {
+                response = "Nuestra misión es ofrecer un servicio especializado en el movimiento de carga contenerizada con calidad y confiabilidad. Nuestra visión es ser líderes en el transporte de contenedores. Para más detalles, visita nuestra sección de Misión y Visión: <a href='#mision' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Misión/Visión</a>";
+            } else if (lowerCaseMessage.includes("flota") || lowerCaseMessage.includes("unidades") || lowerCaseMessage.includes("camiones")) {
+                response = "Contamos con una flota moderna de 17 unidades, incluyendo sencillos, full y cajas secas de 53 pies, ideales para cargas contenerizadas de 20 y 40 pies. Conoce más sobre nuestra flota: <a href='#flota' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Flota</a>";
+            } else if (lowerCaseMessage.includes("rastreo satelital") || lowerCaseMessage.includes("rastreo") || lowerCaseMessage.includes("monitoreo")) {
+                response = "Ofrecemos rastreo satelital 24/7 con monitoreo en tiempo real y tecnología avanzada para conocer la ubicación de tu mercancía y control remoto de la unidad. Para más información: <a href='#rastreo' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Rastreo Satelital</a>";
+            } else if (lowerCaseMessage.includes("cobertura") || lowerCaseMessage.includes("donde operan") || lowerCaseMessage.includes("republica mexicana")) {
+                response = "Realizamos servicios de transporte a toda la República Mexicana, asegurando que tu mercancía llegue a su destino de forma segura y eficiente. Más detalles sobre nuestra cobertura: <a href='#cobertura' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Cobertura</a>";
+            } else if (lowerCaseMessage.includes("patios") || lowerCaseMessage.includes("ubicacion") || lowerCaseMessage.includes("manzanillo") || lowerCaseMessage.includes("tepotzotlan") || lowerCaseMessage.includes("operaciones")) {
+                response = "Disponemos de patios de operaciones estratégicos en Tepotzotlán, Estado de México, y Manzanillo, Colima, para una logística eficiente. Encuentra nuestras ubicaciones: <a href='#patios' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Patios de Operaciones</a>";
+            } else if (lowerCaseMessage.includes("contacto") || lowerCaseMessage.includes("email") || lowerCaseMessage.includes("correo") || lowerCaseMessage.includes("llamar")) {
+                response = "Puedes contactarnos directamente a través de nuestro correo general: jivalogistics@outlook.com. También te invitamos a usar nuestro formulario de contacto en la sección: <a href='#contacto' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Contacto</a>";
+            } else if (lowerCaseMessage.includes("privacidad") || lowerCaseMessage.includes("politicas") || lowerCaseMessage.includes("aviso de privacidad")) {
+                response = "En JIVA LOGISTICS, la protección de tus datos es fundamental. Consulta nuestras políticas de privacidad para conocer cómo manejamos tu información: <a href='#privacidad' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Políticas de Privacidad</a>";
+            } else if (lowerCaseMessage.includes("servicios") || lowerCaseMessage.includes("que servicios") || lowerCaseMessage.includes("que ofrecen")) {
+                response = "Ofrecemos transporte de carga contenerizada, transporte en caja seca México, logística de contenedores 20 y 40 pies, rastreo satelital, transporte seguro de mercancía y transporte nacional. Descubre todos nuestros servicios: <a href='#servicios' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Nuestros Servicios</a>";
+            } else if (lowerCaseMessage.includes("presentación") || lowerCaseMessage.includes("qr") || lowerCaseMessage.includes("descargar presentación")) {
+                response = "Puedes descargar nuestra presentación completa en PDF escaneando el código QR en la sección correspondiente: <a href=\"images/JIVA_LOGISTIC_actual.pdf\" target=\"_blank\" onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Descargar Presentación (PDF)</a>";
+            } else if (lowerCaseMessage.includes("hola") || lowerCaseMessage.includes("saludos")) {
+                response = "¡Hola! Soy tu asistente virtual de JIVA LOGISTICS. ¿En qué puedo ayudarte hoy?";
+            } else if (lowerCaseMessage.includes("gracias") || lowerCaseMessage.includes("muchas gracias")) {
+                response = "De nada, estoy aquí para ayudarte.";
+            } else if (lowerCaseMessage.includes("inicio") || lowerCaseMessage.includes("principal")) {
+                response = "Puedes regresar al inicio de la página aquí: <a href='#inicio' onclick='document.getElementById(\"chatbot-container\").style.display=\"none\";'>Ir a Inicio</a>";
+            }
+
+            return response;
+        }
     }
-});
 
+    // ---- Lógica de Reconocimiento de Voz (Web Speech API) ----
+    const voiceCommandToggle = document.getElementById('voice-command-toggle');
+    let recognition;
+    let isListening = false;
 
-// --- Lógica para desplazamiento suave de enlaces de ancla ---
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({
-            behavior: 'smooth'
+    if (voiceCommandToggle) {
+        if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+            console.warn('Tu navegador no soporta el reconocimiento de voz. El botón de voz podría no funcionar.');
+            // voiceCommandToggle.style.display = 'none'; // Si prefieres ocultarlo
+        } else {
+            recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            recognition.lang = 'es-ES'; // Idioma español
+            recognition.interimResults = false; // Solo resultados finales
+            recognition.maxAlternatives = 1; // Solo la mejor alternativa
+
+            voiceCommandToggle.addEventListener('click', () => {
+                if (isListening) {
+                    recognition.stop();
+                } else {
+                    try {
+                        recognition.start();
+                    } catch (e) {
+                        console.error('Error al iniciar el reconocimiento de voz:', e);
+                        alert('No se pudo iniciar el reconocimiento de voz. Asegúrate de que tu micrófono esté conectado y de haber dado permisos.');
+                    }
+                }
+            });
+
+            recognition.onstart = () => {
+                isListening = true;
+                voiceCommandToggle.classList.add('listening');
+                voiceCommandToggle.textContent = 'Escuchando...';
+                if (chatMessages) {
+                    displayMessage('JIVA Bot está escuchando tus comandos de voz.', 'bot');
+                }
+            };
+
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                if (chatMessages) {
+                    displayMessage(`Tú (Voz): ${transcript}`, 'user');
+                }
+                const botResponse = getChatbotResponse(transcript);
+                speakText(botResponse); // Hacer que el bot hable la respuesta
+                if (chatMessages) {
+                    displayMessage(botResponse, 'bot');
+                }
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                voiceCommandToggle.classList.remove('listening');
+                voiceCommandToggle.textContent = 'Voz';
+            };
+
+            recognition.onerror = (event) => {
+                console.error('Error de reconocimiento de voz:', event.error);
+                isListening = false;
+                voiceCommandToggle.classList.remove('listening');
+                voiceCommandToggle.textContent = 'Voz';
+                let errorMessage = 'Hubo un error con el reconocimiento de voz.';
+                if (event.error === 'not-allowed') {
+                    errorMessage = 'Permiso de micrófono denegado. Por favor, habilita el micrófono en la configuración de tu navegador.';
+                } else if (event.error === 'no-speech') {
+                    errorMessage = 'No se detectó habla. Inténtalo de nuevo.';
+                }
+                if (chatMessages) {
+                    displayMessage(`JIVA Bot: ${errorMessage}`, 'bot');
+                }
+            };
+        }
+
+        // Función para que el bot hable
+        function speakText(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-ES'; // Idioma español
+            utterance.volume = 1; // Volumen (0 a 1)
+            utterance.rate = 1;    // Velocidad (0.1 a 10)
+            utterance.pitch = 1;   // Tono (0 a 2)
+
+            // Eliminar etiquetas HTML para que solo lea el texto
+            const cleanText = text.replace(/<[^>]*>/g, ''); // Elimina cualquier etiqueta HTML
+            utterance.text = cleanText;
+
+            window.speechSynthesis.speak(utterance);
+        }
+    }
+
+    // --- Lógica para desplazamiento suave de enlaces de ancla ---
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Si el enlace está dentro del chatbot y no es un PDF
+            if (this.closest('#chatbot-container') && !this.href.includes('.pdf')) {
+                e.preventDefault(); // Previene el comportamiento por defecto del enlace
+                document.getElementById('chatbot-container').style.display = 'none'; // Cierra el chatbot
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            } else if (!this.closest('#chatbot-container')) { // Si el enlace no está dentro del chatbot
+                e.preventDefault(); // Previene el comportamiento por defecto del enlace
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+            // Si es un enlace PDF dentro del chatbot, se deja que se abra en una nueva pestaña (target="_blank")
         });
     });
 });
