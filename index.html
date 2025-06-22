@@ -3,1237 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cielo Esmeralda - Gastronomía Exquisita</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="images/favicon.png"> <style>
-        /* Definición de las nuevas variables de color */
-        :root {
-            /* Colores base */
-            --primary-background: #F3F0EC;          /* Fondo principal (crema muy claro y cálido) */
-            --text-primary: #524D4A;                 /* Gris oscuro para todo el texto general */
-            --card-form-background: #EEEBE5;         /* Crema ligeramente más oscuro que el fondo (para tarjetas y formularios) */
-            --popover-background: #EAE5DD;           /* Fondo de Elementos Emergentes (Popovers) */
-            --button-primary: #248F83;               /* Verde azulado oscuro (Botones principales, enlaces importantes) */
-            --text-on-button-primary: #F7F5F2;       /* Un crema muy claro, casi blanco (Texto sobre el Color Primario) */
-            --section-secondary-background: #E6F2EB; /* Verde muy pálido (Fondo de secciones como Menú y Contacto) */
-            --text-on-section-secondary: #265940;    /* Verde oscuro (Texto sobre el Color Secundario) */
-            --header-footer-background: #014B43;     /* Verde azulado muy oscuro y saturado (Fondo del encabezado/barra de navegación y footer) */
-            --text-on-header-footer: #F7F5F2;        /* Un crema muy claro, casi blanco (Texto sobre el Color de Acento) */
-            --subtle-elements-background: #E7E3DE;   /* Crema desaturado (Elementos Apagados / fondos sutiles) */
-            --text-secondary: #8A8582;               /* Gris medio (Texto Apagado / texto secundario, descripciones) */
-            --error-color: #D92828;                  /* Rojo estándar (Color para Errores) */
-            --text-on-error: #FAFAFA;                /* Blanco (Texto sobre el Color para Errores) */
-            --border-elements: #DBD8D3;              /* Un gris/crema muy sutil (Bordes de elementos) */
-            --input-background: #EAE5DD;             /* Fondo de campos de formulario (Inputs) */
-            --focus-ring-color: #2EAD9D;             /* Verde azulado brillante (Anillo de Foco al seleccionar un input) */
-
-            /* Variables de espaciado y tamaño */
-            --spacing-large: 60px;
-            --spacing-medium: 40px;
-            --spacing-small: 25px;
-            --padding-section: 80px;
-            --padding-card: 40px;
-            --border-radius-default: 10px;
-            --box-shadow-default: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra suave */
-
-            /* Tipografías (ya incrustadas con Google Fonts) */
-            --font-serif: 'Playfair Display', serif;
-            --font-sans-serif: 'Montserrat', sans-serif;
-        }
-
-        /* Estilos generales para el body */
-        body {
-            font-family: var(--font-sans-serif);
-            margin: 0;
-            padding: 0;
-            background-color: var(--primary-background);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden; /* Evitar scroll horizontal por animaciones */
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: var(--font-serif);
-            color: var(--text-primary); /* Por defecto, el marrón oscuro */
-            margin-bottom: 0.5em;
-        }
-
-        /* Estilos generales para secciones con animación de aparición */
-        .animated-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .animated-section.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Contenedor general para centrar contenido */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Utilidades */
-        .text-center { text-align: center; }
-        .mt-spacing-small { margin-top: var(--spacing-small); }
-        .mt-spacing-medium { margin-top: var(--spacing-medium); }
-        .mb-spacing-small { margin-bottom: var(--spacing-small); }
-        .mb-spacing-medium { margin-bottom: var(--spacing-medium); }
-        .flex-center { display: flex; justify-content: center; align-items: center; }
-        .section-common { padding: var(--padding-section) 0; background-color: var(--primary-background); }
-        .section-secondary-bg { background-color: var(--section-secondary-background); }
-
-        /* Estilos de títulos de sección */
-        .section-header {
-            margin-bottom: var(--spacing-large);
-        }
-        .section-header.center {
-            text-align: center;
-        }
-        .section-header .section-icon {
-            font-size: 3em;
-            color: var(--text-on-section-secondary); /* Verde oscuro para íconos de sección */
-            margin-bottom: 10px;
-            display: block;
-        }
-        .section-header h2 {
-            font-size: 2.5em;
-            color: var(--text-primary); /* Marrón oscuro */
-            margin-bottom: 10px;
-        }
-        .section-header p {
-            font-size: 1.1em;
-            color: var(--text-primary);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .elegant-title {
-            font-family: var(--font-serif);
-            color: var(--button-primary); /* Verde azulado para títulos elegantes */
-        }
-        h3.elegant-title {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-        }
-
-
-        /* --- Header / Navbar --- */
-        .main-header {
-            background-color: var(--header-footer-background);
-            color: var(--text-on-header-footer);
-            padding: 15px var(--spacing-medium);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .logo a {
-            color: var(--text-on-header-footer);
-            font-family: var(--font-serif);
-            font-size: 1.8em;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: var(--spacing-medium);
-        }
-
-        .nav-links a {
-            color: var(--text-on-header-footer);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: 5px 0;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--text-on-header-footer);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .voice-command-button,
-        .reserve-button {
-            background-color: transparent;
-            color: var(--text-on-header-footer);
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 1.2em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            transition: color 0.3s ease;
-        }
-        
-        .voice-command-button:hover,
-        .voice-command-button.listening {
-            color: var(--button-primary); /* Cambia de color cuando escucha */
-        }
-
-        .reserve-button {
-            background-color: var(--button-primary);
-            color: var(--text-on-button-primary);
-            padding: 10px 20px;
-            border-radius: var(--border-radius-default);
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .reserve-button:hover {
-            background-color: #1F7C70; /* Un tono ligeramente más oscuro del primary-color */
-        }
-
-        .menu-toggle {
-            display: none; /* Oculto en desktop */
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: var(--text-on-header-footer);
-            transition: all 0.3s ease;
-        }
-
-        /* --- Hero Section --- */
-        .hero-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: var(--padding-section) 0;
-            background-color: var(--primary-background);
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            gap: var(--spacing-large);
-            text-align: left;
-            padding: 0 var(--spacing-medium);
-        }
-
-        .hero-text {
-            flex: 1;
-            padding-right: var(--spacing-medium);
-        }
-
-        .hero-text h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            line-height: 1.1;
-            color: var(--text-primary);
-        }
-
-        .hero-text h1 span {
-            color: var(--button-primary); /* Color de acento para "Cielo Esmeralda" */
-        }
-
-        .hero-text p {
-            font-size: 1.15em;
-            color: var(--text-primary);
-            margin-bottom: var(--spacing-medium);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: var(--spacing-medium);
-            flex-wrap: wrap;
-        }
-
-        .hero-buttons .button {
-            padding: 12px 25px;
-            border-radius: var(--border-radius-default);
-            font-weight: bold;
-            text-decoration: none;
-            font-size: 1em;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .hero-buttons .button-primary {
-            background-color: var(--button-primary);
-            color: var(--text-on-button-primary);
-            border: 2px solid var(--button-primary);
-        }
-
-        .hero-buttons .button-primary:hover {
-            background-color: #1F7C70; /* Tono más oscuro */
-            border-color: #1F7C70;
-        }
-
-        .hero-buttons .button-secondary {
-            background-color: transparent;
-            color: var(--text-primary);
-            border: 2px solid var(--border-elements);
-        }
-
-        .hero-buttons .button-secondary:hover {
-            background-color: var(--subtle-elements-background);
-            border-color: var(--subtle-elements-background);
-        }
-
-        .hero-image-carousel {
-            flex: 1;
-            min-width: 300px; /* Asegura un tamaño mínimo */
-            max-width: 500px; /* Limita el tamaño máximo */
-            position: relative;
-            box-shadow: var(--box-shadow-default);
-            border-radius: var(--border-radius-default);
-            overflow: hidden;
-            background-color: #fff; /* Fondo blanco para las imágenes del carrusel */
-        }
-
-        .carousel-slide {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            border-radius: var(--border-radius-default);
-        }
-
-        .carousel-slide img {
-            width: 100%;
-            display: block;
-            border-radius: var(--border-radius-default); /* Las imágenes dentro también redondeadas */
-            object-fit: cover;
-        }
-
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.4);
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 1.5em;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: background-color 0.3s ease;
-            z-index: 5;
-        }
-
-        .carousel-btn:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-        }
-
-        .prev-btn {
-            left: 10px;
-        }
-
-        .next-btn {
-            right: 10px;
-        }
-
-        /* --- Nuestra Historia / Filosofía --- */
-        .content-two-columns {
-            display: flex;
-            gap: var(--spacing-large);
-            align-items: flex-start; /* Alinea el inicio del contenido */
-            flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
-        }
-
-        .text-content {
-            flex: 2; /* Ocupa más espacio */
-            min-width: 300px;
-        }
-
-        .image-gallery {
-            flex: 1; /* Ocupa menos espacio */
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-medium);
-            min-width: 250px;
-        }
-
-        .image-gallery .rounded-image {
-            width: 100%;
-            height: auto;
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-            object-fit: cover;
-        }
-
-        /* --- Menú Digital / QR --- */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-medium);
-            justify-content: center;
-            margin-top: var(--spacing-large);
-        }
-
-        .card {
-            background-color: var(--card-form-background); /* Crema ligeramente oscuro */
-            padding: var(--padding-card);
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-            text-align: center;
-        }
-
-        .qr-card img {
-            max-width: 180px;
-            height: auto;
-            margin: 20px auto;
-            display: block;
-        }
-
-        .text-link {
-            color: var(--button-primary);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .text-link:hover {
-            text-decoration: underline;
-        }
-
-        /* --- Nuestras Sucursales --- */
-        .branches-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-medium);
-            margin-top: var(--spacing-large);
-        }
-
-        .branch-card {
-            background-color: var(--card-form-background);
-            padding: var(--padding-card);
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-        }
-
-        .branch-card p {
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .branch-card p i {
-            color: var(--button-primary); /* Íconos en color primario */
-            font-size: 1.1em;
-        }
-        .branch-card .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 10px;
-            color: var(--text-primary); /* Gris oscuro para el enlace del mapa */
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        .branch-card .map-link:hover {
-            color: var(--button-primary);
-            text-decoration: underline;
-        }
-
-        /* --- Reservaciones / Formulario --- */
-        .reservation-form-container {
-            background-color: var(--card-form-background);
-            padding: var(--padding-card);
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-            max-width: 700px;
-            margin: var(--spacing-large) auto 0;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .form-group label i {
-            color: var(--button-primary);
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="tel"],
-        .form-group input[type="date"],
-        .form-group input[type="time"],
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-elements);
-            border-radius: var(--border-radius-default);
-            background-color: #fff; /* Fondo blanco para inputs */
-            color: var(--text-primary);
-            font-family: var(--font-sans-serif);
-            font-size: 1em;
-            box-sizing: border-box; /* Incluir padding y borde en el ancho total */
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: var(--text-secondary); /* Gris medio para placeholders */
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--focus-ring-color);
-            box-shadow: 0 0 0 3px rgba(46, 173, 157, 0.2); /* Sombra de foco */
-        }
-
-        .form-row {
-            display: flex;
-            gap: var(--spacing-medium);
-            margin-bottom: 20px;
-            flex-wrap: wrap; /* Para responsividad */
-        }
-        .form-row .form-group {
-            flex: 1;
-            margin-bottom: 0; /* Eliminar el margen inferior si está en una fila */
-            min-width: 250px; /* Asegurar que no se hagan demasiado pequeños */
-        }
-
-        .form-submit-button {
-            width: 100%;
-            background-color: var(--button-primary);
-            color: var(--text-on-button-primary);
-            padding: 15px 25px;
-            border: none;
-            border-radius: var(--border-radius-default);
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-submit-button:hover {
-            background-color: #1F7C70;
-        }
-
-        #contact-message {
-            margin-top: 15px;
-            font-weight: bold;
-            text-align: center;
-        }
-
-        /* --- Contacto --- */
-        .contact-content {
-            display: flex;
-            gap: var(--spacing-large);
-            align-items: flex-start;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-info h3 {
-            color: var(--button-primary); /* Títulos de subsección en verde azulado */
-            font-family: var(--font-serif);
-            font-size: 1.8em;
-            margin-bottom: 25px;
-        }
-
-        .contact-info ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .contact-info ul li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            color: var(--text-primary);
-        }
-
-        .contact-info ul li i {
-            color: var(--button-primary);
-            font-size: 1.3em;
-            margin-top: 3px; /* Pequeño ajuste visual */
-        }
-
-        .contact-info ul li strong {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .contact-form-area {
-            flex: 1.5; /* Ocupa más espacio que la info */
-            min-width: 300px;
-            background-color: var(--card-form-background);
-            padding: var(--padding-card);
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-        }
-
-        .contact-form-area h3 {
-            margin-top: 0;
-            color: var(--button-primary);
-        }
-
-
-        /* --- Footer --- */
-        .main-footer {
-            background-color: var(--header-footer-background); /* Mismo fondo que el header */
-            color: var(--text-on-header-footer);
-            padding: var(--padding-section) 0 var(--spacing-medium) 0; /* Más padding arriba */
-            text-align: center;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            gap: var(--spacing-large);
-            flex-wrap: wrap;
-            text-align: left;
-        }
-
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-            margin-bottom: var(--spacing-medium);
-        }
-
-        .footer-column.about-us {
-            flex: 1.5; /* Más ancho para el logo y descripción */
-        }
-
-        .footer-column h3 {
-            color: var(--text-on-header-footer);
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            font-family: var(--font-serif);
-        }
-
-        .footer-column .logo-footer {
-            color: var(--text-on-header-footer);
-            font-family: var(--font-serif);
-            font-size: 1.8em;
-            text-decoration: none;
-            font-weight: bold;
-            display: block;
-            margin-bottom: 15px;
-        }
-
-        .footer-column p {
-            color: var(--text-on-header-footer); /* Texto en blanco/crema */
-            font-size: 0.95em;
-            line-height: 1.7;
-        }
-
-        .footer-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-column ul li a {
-            color: var(--text-on-header-footer);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--button-primary); /* Verde azulado al pasar el ratón */
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-icons a {
-            color: var(--text-on-header-footer);
-            font-size: 1.5em;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--button-primary);
-        }
-
-        .footer-bottom {
-            margin-top: var(--spacing-medium);
-            padding-top: var(--spacing-medium);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.9em;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* --- Chatbot Styles --- */
-        #chatbot-button {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--button-primary); /* Color primario */
-            color: var(--text-on-button-primary);
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 2em;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: var(--box-shadow-default);
-            z-index: 1001;
-            transition: transform 0.3s ease;
-        }
-        #chatbot-button:hover {
-            transform: scale(1.05);
-        }
-
-        #chatbot-container {
-            position: fixed;
-            bottom: 90px; /* Ajusta la posición para que esté encima del botón */
-            right: 20px;
-            width: 320px;
-            height: 400px;
-            background-color: #fff; /* El chatbot en las imágenes parece blanco o muy claro */
-            border-radius: var(--border-radius-default);
-            box-shadow: var(--box-shadow-default);
-            display: none; /* Oculto por defecto, JS lo muestra */
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .chatbot-header {
-            background-color: var(--button-primary); /* Verde azulado oscuro */
-            color: var(--text-on-button-primary);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top-left-radius: var(--border-radius-default);
-            border-top-right-radius: var(--border-radius-default);
-        }
-
-        .chatbot-header h3 {
-            margin: 0;
-            font-size: 1.1em;
-            color: var(--text-on-button-primary);
-            font-family: var(--font-sans-serif);
-        }
-
-        .chatbot-header .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-on-button-primary);
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .chatbot-header .close-btn:hover {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .chat-messages {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: var(--popover-background); /* Fondo del chat un poco más claro */
-            border-bottom: 1px solid var(--border-elements);
-        }
-
-        .chat-messages p {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 8px;
-            max-width: 80%;
-            line-height: 1.4;
-            word-wrap: break-word;
-        }
-
-        .user-message {
-            background-color: var(--button-primary);
-            color: var(--text-on-button-primary);
-            align-self: flex-end; /* Alinea a la derecha */
-            margin-left: auto; /* Empuja a la derecha */
-        }
-
-        .bot-message {
-            background-color: var(--section-secondary-background); /* Verde pálido */
-            color: var(--text-on-section-secondary);
-            align-self: flex-start; /* Alinea a la izquierda */
-            margin-right: auto; /* Empuja a la izquierda */
-        }
-
-        .bot-message a {
-            color: var(--text-on-section-secondary);
-            text-decoration: underline;
-        }
-        
-        .chat-input-area {
-            display: flex;
-            padding: 10px;
-            background-color: #fff; /* Fondo blanco para el área de input */
-            border-top: 1px solid var(--border-elements);
-        }
-
-        .chat-input-area input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid var(--border-elements);
-            border-radius: var(--border-radius-default);
-            margin-right: 10px;
-            font-family: var(--font-sans-serif);
-            color: var(--text-primary);
-            background-color: var(--input-background); /* Color de fondo para el input del chat */
-        }
-
-        .chat-input-area input:focus {
-            outline: none;
-            border-color: var(--focus-ring-color);
-            box-shadow: 0 0 0 3px rgba(46, 173, 157, 0.2);
-        }
-
-        .chat-input-area button {
-            background-color: var(--button-primary);
-            color: var(--text-on-button-primary);
-            border: none;
-            border-radius: var(--border-radius-default);
-            padding: 10px 15px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-        }
-
-        .chat-input-area button:hover {
-            background-color: #1F7C70;
-        }
-
-
-        /* Media Queries para Responsividad */
-        @media (max-width: 900px) {
-            .hero-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .hero-text {
-                padding-right: 0;
-            }
-
-            .hero-text h1 {
-                font-size: 2.8em;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .content-two-columns,
-            .contact-content {
-                flex-direction: column;
-            }
-
-            .image-gallery,
-            .contact-form-area,
-            .contact-info,
-            .text-content {
-                width: 100%;
-                min-width: unset; /* Eliminar min-width para que ocupen todo el ancho */
-            }
-            .image-gallery {
-                margin-top: var(--spacing-medium); /* Espacio entre texto e imágenes en móvil */
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            .footer-column {
-                min-width: unset;
-                margin-bottom: var(--spacing-large);
-            }
-            .footer-column.about-us,
-            .social-icons {
-                align-items: center;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .main-header {
-                padding: 15px 20px;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background-color: var(--header-footer-background);
-                width: 100%;
-                position: absolute;
-                top: 70px; /* Ajustar según la altura real del header */
-                left: 0;
-                padding: 20px 0;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                text-align: center;
-                margin: 10px 0;
-            }
-
-            .nav-links a {
-                padding: 10px 20px;
-                display: block;
-            }
-
-            .nav-actions {
-                display: none; /* Ocultar en móviles */
-            }
-
-            .menu-toggle {
-                display: flex; /* Mostrar en móviles */
-                order: 2; /* Para moverlo a la derecha del logo si es necesario */
-            }
-            .menu-toggle.active span:nth-child(1) {
-                transform: rotate(-45deg) translate(-5px, 6px);
-            }
-
-            .menu-toggle.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-toggle.active span:nth-child(3) {
-                transform: rotate(45deg) translate(-5px, -6px);
-            }
-
-            .hero-text h1 {
-                font-size: 2.2em;
-            }
-
-            .section-header h2 {
-                font-size: 2em;
-            }
-
-            .form-row {
-                flex-direction: column;
-                gap: 0; /* Eliminar gap cuando se apilan */
-            }
-            .form-row .form-group {
-                min-width: unset; /* Permitir que ocupe todo el ancho */
-            }
-        }
-
-    </style>
+    <title>JIVA LOGISTIC - Transporte y Logística Profesional</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header class="main-header">
-        <div class="logo">
-            <a href="#inicio">Cielo Esmeralda</a>
-        </div>
-        <nav>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="images/logo_jiva_logistic.png" alt="Logo JIVA LOGISTIC">
+            </div>
+            <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="hamburger-icon"></span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nuestra-historia">Nosotros</a></li>
-                <li><a href="#menu-digital">Menú</a></li>
-                <li><a href="#sucursales">Sucursales</a></li>
-                <li><a href="#reservaciones">Reservaciones</a></li>
+                <li><a href="#mision">Misión</a></li>
+                <li><a href="#flota">Flota</a></li>
+                <li><a href="#rastreo">Rastreo</a></li>
+                <li><a href="#cobertura">Cobertura</a></li>
+                <li><a href="#patios">Patios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#privacidad">Privacidad</a></li>
+                <li><a href="#qr-section">Presentación</a></li>
+                <li><a href="https://jivalogisticlandingpage.mystrikingly.com/">Blog</a></li>
             </ul>
+            <button id="voice-command-toggle" class="voice-btn">Voz</button>
         </nav>
-        <div class="nav-actions">
-            <button id="voice-command-toggle" class="voice-command-button" title="Activar Comandos por Voz"><i class="fas fa-microphone"></i></button>
-            <a href="#reservaciones" class="reserve-button">Reservar Ahora <i class="fas fa-arrow-right"></i></a>
-        </div>
-        <div class="menu-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
     </header>
 
     <main>
-        <section id="inicio" class="hero-section animated-section">
-            <div class="hero-content container">
-                <div class="hero-text">
-                    <h1>Bienvenido a <span>Cielo Esmeralda</span></h1>
-                    <p>Descubre una experiencia culinaria única donde la tradición se encuentra con la innovación. Sabores auténticos en un ambiente elegante y acogedor.</p>
-                    <div class="hero-buttons">
-                        <a href="#reservaciones" class="button button-primary">Reservar Mesa <i class="fas fa-arrow-right"></i></a>
-                        <a href="#menu-digital" class="button button-secondary">Ver Menú <i class="fas fa-bars"></i></a>
-                    </div>
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
+                <h1>JIVA LOGISTIC: Tu Socio en Transporte y Logística</h1>
+                <p>Somos una empresa especialista en el movimiento de carga contenerizada (20 a 40 pies) y servicio de transporte de carga (caja seca). En constante evolución y crecimiento, contamos con las herramientas e infraestructura para llevar tu mercancía de forma rápida, eficaz y segura a toda la República Mexicana. Nos encargamos de que llegue en tiempo y forma al destino requerido.</p>
+                <div class="values">
+                    <span>Calidad</span>
+                    <span>Seguridad</span>
+                    <span>Responsabilidad</span>
                 </div>
-                <div class="hero-image-carousel">
-                    <div class="carousel-slide">
-                        <img src="images/hero-carousel-1.jpg" alt="Plato de comida 1">
-                        <img src="images/hero-carousel-2.jpg" alt="Plato de comida 2">
-                        <img src="images/hero-carousel-3.jpg" alt="Plato de comida 3">
-                        </div>
-                    <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
-                </div>
+                <button class="cta-button" onclick="location.href='#contacto'">Solicita una Cotización</button>
+            </div>
+            <div class="hero-image">
+                <img src="images/imagen_principal_camion.jpg" alt="Camión JIVA LOGISTIC en operación">
             </div>
         </section>
 
-        <section id="nuestra-historia" class="section-common animated-section">
+        <section id="servicios" class="services-section">
             <div class="container">
-                <div class="section-header center">
-                    <i class="fas fa-leaf section-icon"></i>
-                    <h2>Nuestra Historia</h2>
-                    <p>Conoce la pasión y dedicación que define a Cielo Esmeralda.</p>
-                </div>
-                <div class="content-two-columns">
-                    <div class="text-content">
-                        <h3 class="elegant-title">Filosofía</h3>
-                        <p>En Cielo Esmeralda, creemos en la magia de los ingredientes frescos y de temporada, transformados en platillos que deleitan el paladar y cuentan una historia. Nuestra cocina es un homenaje a la tradición, con un toque de modernidad que sorprende y enamora.</p>
-                        <p>Cada visita es una oportunidad para crear recuerdos inolvidables, rodeado de un ambiente cálido y un servicio que te hace sentir en casa. Te invitamos a ser parte de nuestra familia.</p>
-                    </div>
-                    <div class="image-gallery">
-                        <img src="images/historia-1.jpg" alt="Interior del restaurante 1" class="rounded-image">
-                        <img src="images/historia-2.jpg" alt="Interior del restaurante 2" class="rounded-image">
-                        </div>
+                <h2>Nuestros Principales Servicios</h2>
+                <div class="services-list">
+                    <ul>
+                        <li>Transporte de carga contenerizada</li>
+                        <li>Transporte en caja seca México</li>
+                        <li>Logística de contenedores 20 y 40 pies</li>
+                        <li>Rastreo satelital transporte</li>
+                        <li>Transporte seguro de mercancía</li>
+                        <li>JIVA LOGISTICS transporte nacional</li>
+                    </ul>
                 </div>
             </div>
         </section>
-
-        <section id="menu-digital" class="section-common section-secondary-bg animated-section">
+        
+        <section id="mision" class="section-padded blue-bg">
             <div class="container">
-                <div class="section-header center">
-                    <i class="fas fa-book-open section-icon"></i>
-                    <h2 class="elegant-title">Nuestro Menú Digital</h2>
-                    <p>Escanea el código QR con tu dispositivo móvil para explorar nuestra exquisita selección.</p>
-                </div>
+                <h2>Nuestra Esencia</h2>
                 <div class="card-grid">
-                    <div class="card qr-card">
-                        <h3 class="elegant-title">Menú de Comida</h3>
-                        <img src="images/qr-food-menu.png" alt="Código QR Menú de Comida">
-                        </div>
-                    <div class="card qr-card">
-                        <h3 class="elegant-title">Menú de Bebidas</h3>
-                        <img src="images/qr-drinks-menu.png" alt="Código QR Menú de Bebidas">
-                        </div>
+                    <div class="card">
+                        <h3>Misión</h3>
+                        <p>Somos una empresa especialista en el movimiento de carga contenerizada; nuestro objetivo principal es ofrecer un servicio especializado con calidad, confiabilidad y seguridad. A precios competitivos, buscando la continuidad comercial a largo plazo.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Visión</h3>
+                        <p>Consolidarnos como empresa líder en el ramo de transporte de contenedores reconocida por su compromiso con la eficiencia y la innovación, brindando un mejor servicio de manera eficiente, estableciendo alianzas estratégicas comprometidas con las necesidades del cliente.</p>
+                    </div>
                 </div>
-                <div class="text-center mt-spacing-medium">
-                    <p class="text-secondary">¿Problemas con el QR? <a href="documents/menu-completo.pdf" class="text-link" target="_blank">Descarga el menú completo en PDF.</a></p>
-                    <a href="#reservaciones" class="button button-primary mt-spacing-small">Reservar Ahora <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </section>
+        
+        <section id="flota" class="section-padded">
+            <div class="container">
+                <h2>Nuestra Flota</h2>
+                <p>Contamos con 17 unidades: 11 sencillos, 5 full expandibles para carga de 40 y 20 pies para movimiento de cargas desconsolidadas, y 6 cajas secas.</p>
+                <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="images/camion1.jpg" alt="Camión de la flota JIVA LOGISTIC 1">
+                        <img src="images/camion2.jpg" alt="Camión de la flota JIVA LOGISTIC 2">
+                        <img src="images/camion3.jpg" alt="Camión de la flota JIVA LOGISTIC 3">
+                        <img src="images/caja_seca1.jpg" alt="Caja Seca JIVA LOGISTIC 1">
+                    </div>
+                    <button class="prev-btn"><</button>
+                    <button class="next-btn">></button>
+                </div>
+                <button class="cta-button" onclick="location.href='#contacto'">Cotiza tu envío con nuestra flota</button>
+            </div>
+        </section>
+
+        <section id="rastreo" class="section-padded blue-bg">
+            <div class="container">
+                <h2>Monitoreo Satelital 24/7</h2>
+                <div class="content-left-image">
+                    <img src="images/rastreo_satelital_icono.png" alt="Icono de Rastreo Satelital">
+                    <div>
+                        <p>Contamos con rastreo satelital 24/7 con monitoreo en tiempo real. Nuestros protocolos de seguridad están conformados por la última generación tecnológica en el transporte, con la cual podemos saber en todo momento la ubicación de su mercancía y apagar remotamente la unidad en caso de robo.</p>
+                        <p>Trabajamos con tecnologías de punta como ELITE, Zapata Aeropuerto, FREIT y PROTRACK para garantizar la seguridad de tu carga.</p>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="location.href='#contacto'">Más información sobre seguridad</button>
+            </div>
+        </section>
+
+        <section id="cobertura" class="section-padded">
+            <div class="container">
+                <h2>Cobertura Nacional</h2>
+                <p>Realizamos servicios a toda la República Mexicana.</p>
+                <img src="images/mapa_mexico_cobertura.jpg" alt="Mapa de cobertura en México" class="full-width-image">
+            </div>
+        </section>
+
+        <section id="patios" class="section-padded blue-bg">
+            <div class="container">
+                <h2>Nuestros Patios de Operaciones</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Patio de Tepotzotlán</h3>
+                        <p>Ubicación: Paseo de las Buganvilias, San Mateo Xaloc, Tepotzotlán, Estado de México, CP: 54602.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.868779973289!2d-99.23190822452335!3d19.789178681531773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e05d21a2c91%3A0xc3b8a3e7e8b6b0b2!2sPaseo%20de%20Las%20Buganvilias%2C%20San%20Mateo%20Xaloc%2C%2054602%20Tepotzotl%C3%A1n%2C%20Méx.!5e0!3m2!1ses-419!2smx!4v1700688636189!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/yC7Lw91jLz31uM3p7" target="_blank" class="map-link">Ver en Google Maps</a>
+                    </div>
+                    <div class="card">
+                        <h3>Patio Manzanillo</h3>
+                        <p>Ubicación: CARRETERA FEDERAL MANZANILLO - COLIMA KM 307+500, 28800 Manzanillo.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1880.8931149791465!2d-104.28636195740447!3d19.06208083896572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8424d5218d8e3b7b%3A0x7d0e3778a5e3d7b8!2sTransportes%20Valkar!5e0!3m2!1ses-419!2smx!4v1700688701047!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/9Wp2Rk1x2X2xY5p96" target="_blank" class="map-link">Ver en Google Maps</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="sucursales" class="section-common animated-section">
+        <section id="contacto" class="section-padded">
             <div class="container">
-                <div class="section-header center">
-                    <i class="fas fa-map-marker-alt section-icon"></i>
-                    <h2>Nuestras Sucursales</h2>
-                    <p>Encuentra tu Cielo Esmeralda más cercano y vive una experiencia inolvidable.</p>
+                <h2>Contáctanos</h2>
+                <p>Estamos listos para ayudarte con tus necesidades de transporte y logística. Por favor, rellena el formulario o utiliza los datos de contacto a continuación.</p>
+                <div class="card-grid contact-info-grid">
+                    <div class="card contact-card">
+                        <h3>Oficina Principal</h3>
+                        <p>Calle Córdoba 17 Int 3, Col Loma Bonita, Tecámac De Felipe Villanueva, CP: 55767.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.932822184478!2d-98.9836933!3d19.697475199999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d191240c5b525f%3A0xb6f5c8e7e8b3e8c9!2sC.%20C%C3%B3rdoba%2017%2C%20Loma%20Bonita%2C%2055767%20Tec%C3%A1mac%20de%20Felipe%20Villanueva%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700688755050!5m2!1ses-419!2smx" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/P3q4T3g5q9v2S2p19" target="_blank" class="map-link">Ver en Google Maps</a>
+                    </div>
+                    <div class="card contact-card">
+                        <h3>Información de Contacto</h3>
+                        <p><strong>Fernando Lucas:</strong> <a href="tel:+525516273406">5516273406</a></p>
+                        <p><strong>Armando Martinez:</strong> <a href="tel:+525542639390">5542639390</a></p>
+                        <p><strong>Email Operaciones:</strong> <a href="mailto:jiva.operaciones@gmail.com">jiva.operaciones@gmail.com</a></p>
+                        <p><strong>Email General:</strong> <a href="mailto:jivalogistics@outlook.com">jivalogistics@outlook.com</a></p>
+                        <p><strong>Email Alternativo:</strong> <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a></p>
+                    </div>
                 </div>
-                <div class="branches-grid">
-                    <div class="branch-card">
-                        <h3 class="elegant-title">Cielo Esmeralda - Aeropuerto</h3>
-                        <p><i class="fas fa-building"></i> Av. Aeropuerto Internacional #123, Col. Aviación, CDMX</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+525512345678" class="text-primary">55 1234 5678</a></p>
-                        <a href="https://maps.app.goo.gl/TUH4X" target="_blank" class="map-link"><i class="fas fa-external-link-alt"></i> Ver en Google Maps</a>
-                    </div>
-                    <div class="branch-card">
-                        <h3 class="elegant-title">Cielo Esmeralda - Chiluca</h3>
-                        <p><i class="fas fa-building"></i> Blvrd. de la Luz #456, Chiluca, Edo. Méx.</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+525598765432" class="text-primary">55 9876 5432</a></p>
-                        <a href="https://maps.app.goo.gl/TUH4X" target="_blank" class="map-link"><i class="fas fa-external-link-alt"></i> Ver en Google Maps</a>
-                    </div>
-                    <div class="branch-card">
-                        <h3 class="elegant-title">Cielo Esmeralda - Lomas Verdes</h3>
-                        <p><i class="fas fa-building"></i> Paseo Lomas Verdes #789, Naucalpan, Edo. Méx.</p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+525511223344" class="text-primary">55 1122 3344</a></p>
-                        <a href="https://maps.app.goo.gl/TUH4X" target="_blank" class="map-link"><i class="fas fa-external-link-alt"></i> Ver en Google Maps</a>
-                    </div>
-                    </div>
-            </div>
-        </section>
 
-        <section id="reservaciones" class="section-common section-secondary-bg animated-section">
-            <div class="container">
-                <div class="section-header center">
-                    <i class="fas fa-calendar-check section-icon"></i>
-                    <i class="fas fa-utensils section-icon"></i>
-                    <h2>Reserva tu Mesa</h2>
-                    <p>Asegura tu lugar en Cielo Esmeralda. Completa el formulario y prepárate para una velada inolvidable.</p>
-                </div>
-                <form id="contact-form" class="reservation-form-container">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="reservation-name"><i class="fas fa-user"></i> Nombre Completo</label>
-                            <input type="text" id="reservation-name" name="name" placeholder="Tu nombre" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reservation-tel"><i class="fas fa-phone"></i> Teléfono</label>
-                            <input type="tel" id="reservation-tel" name="tel" placeholder="55 1234 5678" required>
-                        </div>
+                <h3 class="contact-form-title">Envíanos un Mensaje</h3>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nombre:</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="reservation-email"><i class="fas fa-envelope"></i> Correo Electrónico</label>
-                        <input type="email" id="reservation-email" name="email" placeholder="tu.correo@ejemplo.com" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="reservation-date"><i class="fas fa-calendar-alt"></i> Fecha</label>
-                            <input type="date" id="reservation-date" name="date" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reservation-time"><i class="fas fa-clock"></i> Hora</label>
-                            <input type="time" id="reservation-time" name="time" required>
-                        </div>
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="reservation-branch"><i class="fas fa-map-marked-alt"></i> Sucursal</label>
-                        <select id="reservation-branch" name="branch" required>
-                            <option value="">Selecciona una sucursal</option>
-                            <option value="aeropuerto">Aeropuerto</option>
-                            <option value="chiluca">Chiluca</option>
-                            <option value="lomas-verdes">Lomas Verdes</option>
-                            </select>
+                        <label for="message">Mensaje:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="reservation-guests"><i class="fas fa-users"></i> Número de Comensales</label>
-                        <select id="reservation-guests" name="guests" required>
-                            <option value="">Selecciona el número</option>
-                            <option value="1">1 Persona</option>
-                            <option value="2">2 Personas</option>
-                            <option value="3">3 Personas</option>
-                            <option value="4">4 Personas</option>
-                            <option value="5+">5+ Personas</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="reservation-notes"><i class="fas fa-comment-dots"></i> Notas Adicionales (opcional)</label>
-                        <textarea id="reservation-notes" name="notes" rows="4" placeholder="Alguna petición especial, alergias, etc."></textarea>
-                    </div>
-                    <button type="submit" class="form-submit-button">Confirmar Reservación <i class="fas fa-check"></i></button>
+                    <button type="submit" class="cta-button">Enviar Mensaje</button>
                     <p id="contact-message"></p>
                 </form>
             </div>
         </section>
+        
+        <section id="privacidad" class="section-padded blue-bg">
+            <div class="container privacy-policy-container">
+                <h2>Políticas de Privacidad</h2>
+                <p>En JIVA LOGISTICS, estamos comprometidos con la protección de los datos personales de nuestros clientes, colaboradores y proveedores. Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos la información personal que se genera en el curso de nuestras operaciones logísticas y de transporte.</p>
 
-        <section id="contacto" class="section-common animated-section">
+                <h3>1. Identidad del Responsable</h3>
+                <p><strong>JIVA LOGISTICS</strong></p>
+                <p>Domicilio fiscal: Calle Córdoba 17 Int. 3, Col. Loma Bonita, Tecámac de Felipe Villanueva, C.P. 55767, Estado de México.</p>
+                <p>Correo: <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a></p>
+                <p>Teléfonos: <a href="tel:+525516273406">5516273406</a></p>
+
+                <h3>3. Finalidades del Tratamiento de Datos</h3>
+                <p>Los datos personales se utilizan para las siguientes finalidades:</p>
+                <ul>
+                    <li>Proveer los servicios de transporte y logística solicitados.</li>
+                    <li>Monitoreo y rastreo de unidades para seguridad de la carga.</li>
+                    <li>Comunicación con el cliente para seguimiento y atención.</li>
+                    <li>Facturación y procesos administrativos.</li>
+                    <li>Cumplimiento de obligaciones legales y contractuales.</li>
+                </ul>
+
+                <h3>4. Medidas de Seguridad</h3>
+                <p>En JIVA LOGISTICS contamos con protocolos de seguridad tecnológica y administrativa para proteger la información, incluyendo:</p>
+                <ul>
+                    <li>Rastreo satelital 24/7 con apagado remoto en caso de robo.</li>
+                    <li>Control de acceso a datos sensibles.</li>
+                    <li>Uso de plataformas seguras para la transmisión de información.</li>
+                </ul>
+
+                <h3>5. Transferencia de Datos</h3>
+                <p>No compartimos ni vendemos su información personal a terceros, salvo cuando sea necesario para cumplir con nuestras obligaciones contractuales o legales, o por requerimiento de una autoridad competente.</p>
+
+                <h3>6. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h3>
+                <p>Usted puede ejercer sus derechos de acceso, rectificación, cancelación u oposición enviando una solicitud al correo <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a>. Su solicitud será atendida en un plazo no mayor a 15 días hábiles.</p>
+
+                <h3>7. Cambios a la Política de Privacidad</h3>
+                <p>Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Cualquier cambio será publicado en nuestras plataformas oficiales.</p>
+
+                <h3>8. Consentimiento</h3>
+                <p>Al proporcionar sus datos, usted consiente que JIVA LOGISTICS los utilice conforme a esta política.</p>
+            </div>
+        </section>
+
+        <section id="qr-section" class="qr-section section-padded">
             <div class="container">
-                <div class="section-header center">
-                    <i class="fas fa-comments section-icon"></i>
-                    <h2>Contáctanos</h2>
-                    <p>¿Tienes preguntas o necesitas asistencia? Estamos aquí para ayudarte.</p>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3 class="elegant-title">Nuestras Sucursales</h3>
-                        <ul>
-                            <li>
-                                <i class="fas fa-building"></i>
-                                <div>
-                                    <strong>Cielo Esmeralda - Aeropuerto</strong>
-                                    Av. Aeropuerto Internacional #123, Col. Aviación, CDMX<br>
-                                    Tel: <a href="tel:+525512345678">55 1234 5678</a>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fas fa-building"></i>
-                                <div>
-                                    <strong>Cielo Esmeralda - Chiluca</strong>
-                                    Blvrd. de la Luz #456, Chiluca, Edo. Méx.<br>
-                                    Tel: <a href="tel:+525598765432">55 9876 5432</a>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fas fa-building"></i>
-                                <div>
-                                    <strong>Cielo Esmeralda - Lomas Verdes</strong>
-                                    Paseo Lomas Verdes #789, Naucalpan, Edo. Méx.<br>
-                                    Tel: <a href="tel:+525511223344">55 1122 3344</a>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fas fa-envelope"></i>
-                                <div>
-                                    <strong>Correo General</strong>
-                                    <a href="mailto:info@cieloesmeralda.com">info@cieloesmeralda.com</a>
-                                </div>
-                            </li>
-                            <li>
-                                <i class="fas fa-clock"></i>
-                                <div>
-                                    <strong>Horario General</strong>
-                                    Lunes a Viernes: 10:00 AM - 10:00 PM<br>
-                                    Sábados y Domingos: 12:00 PM - 11:00 PM
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="contact-form-area">
-                        <h3 class="elegant-title">Envíanos un Mensaje</h3>
-                        <form id="contact-form-general"> <div class="form-group">
-                                <label for="contact-name"><i class="fas fa-user"></i> Nombre Completo</label>
-                                <input type="text" id="contact-name" name="name" placeholder="Tu nombre" required>
-                            </div>
-                            <div class="form-group
+                <h2>Nuestra Presentación en QR</h2>
+                <p>Escanea el código QR para descargar nuestra presentación completa en PDF.</p>
+                <a href="images/JIVA_LOGISTIC_actual.pdf" target="_blank">
+                    <img src="images/qr_presentacion_jiva.png" alt="Código QR de la Presentación JIVA LOGISTIC" class="qr-code-image">
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2025 JIVA LOGISTIC. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="#privacidad">Política de Privacidad</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div id="chatbot-button" class="chatbot-button">
+        💬
+    </div>
+    <div id="chatbot-container">
+        <div id="chatbot-header" class="chatbot-header">
+            <h3>JIVA Bot</h3>
+            <button id="close-chatbot-btn">X</button>
+        </div>
+        <div id="chat-messages">
+            <p class="bot-message">¡Hola! Soy tu asistente virtual de JIVA LOGISTICS. ¿En qué puedo ayudarte hoy?</p>
+            <p class="bot-message">Puedes preguntar sobre:<br> "Misión", "Flota", "Rastreo", "Cobertura", "Patios", "Contacto", "Privacidad", "Servicios" o "Presentación".</p>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+            <button id="send-chat-btn">Enviar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
