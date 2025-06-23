@@ -20,7 +20,6 @@ body {
     color: var(--text-color);
     background-color: var(--background-light);
     overflow-x: hidden; /* Evita scroll horizontal */
-    /* REMOVIDO: La línea superior que estaba aquí */
 }
 
 .container {
@@ -58,7 +57,7 @@ body {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: flex;
+    display: flex; /* Asegura que los enlaces se muestren en desktop */
     gap: 25px;
 }
 
@@ -86,7 +85,6 @@ body {
     z-index: 1001; /* Asegura que esté por encima de nav-links en móviles */
     width: 40px; /* Ancho para el contenedor del icono */
     height: 30px; /* Alto para el contenedor del icono */
-    display: flex; /* Para centrar el icono de hamburguesa */
     align-items: center;
     justify-content: center;
 }
@@ -174,7 +172,24 @@ section {
 }
 
 .blue-bg {
-    background-color: var(--background-dark);
+    /* Fondo azul para secciones, se usa para privacidad también */
+    background-color: var(--background-dark); /* Ligeramente más oscuro, puedes cambiar a primary-color si quieres un azul más fuerte */
+}
+
+/* Ajuste específico para la sección de Política de Privacidad */
+#privacy-policy {
+    background-color: var(--primary-color); /* Azul Oscuro para la política de privacidad */
+    color: var(--light-text-color); /* Texto claro para este fondo */
+}
+
+#privacy-policy h2, #privacy-policy h3 {
+    color: var(--light-text-color); /* Títulos claros en la sección de privacidad */
+}
+#privacy-policy a {
+    color: var(--accent-color); /* Enlaces en la política de privacidad */
+}
+#privacy-policy a:hover {
+    color: var(--light-text-color);
 }
 
 h1, h2, h3 {
@@ -749,11 +764,13 @@ h3::after {
 /* Esta sección ya tiene la clase blue-bg, lo que le da el fondo azul */
 .privacy-policy-container {
     text-align: left;
+    /* Asegura que no haya un borde superior aquí si no lo deseas */
+    border-top: none;
 }
 
 .privacy-policy-container h3 {
     margin-top: 30px;
-    color: var(--secondary-color);
+    /* Ya están establecidos con var(--light-text-color) */
 }
 
 .privacy-policy-container ul {
@@ -766,14 +783,6 @@ h3::after {
     margin-bottom: 10px;
 }
 
-.privacy-policy-container a {
-    color: var(--secondary-color);
-    text-decoration: none;
-}
-
-.privacy-policy-container a:hover {
-    text-decoration: underline;
-}
 
 /* Sección de QR */
 .qr-section {
@@ -976,6 +985,153 @@ h3::after {
     background-color: var(--secondary-color);
 }
 
+/* --- Estilos del Modal (Pop-up de Servicios) --- */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1050; /* Por encima del chatbot */
+    left: 50%;
+    top: 50%;
+    width: 90%; /* Ajustar ancho para pantallas grandes */
+    max-width: 1000px; /* Ancho máximo */
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    overflow-y: auto; /* Para desplazamiento si el contenido es largo */
+    max-height: 90vh; /* Altura máxima del modal */
+}
+
+.modal-overlay {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1040; /* Por debajo del modal, por encima del contenido */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    position: relative;
+    text-align: center;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.modal-intro-text {
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 30px;
+}
+
+.modal .close-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: var(--primary-color);
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal .close-button:hover,
+.modal .close-button:focus {
+    color: var(--secondary-color);
+}
+
+.services-modal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.services-modal-grid .service-card {
+    background-color: var(--background-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Para que el botón quede abajo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.services-modal-grid .service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.services-modal-grid .service-card h3 {
+    color: var(--secondary-color);
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.services-modal-grid .service-card p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.services-modal-grid .service-card ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+    color: var(--text-color);
+}
+.services-modal-grid .service-card ul li {
+    margin-bottom: 5px;
+}
+
+.services-modal-grid .service-card .note {
+    font-style: italic;
+    font-size: 0.85em;
+    color: #666;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-cta-button {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: auto; /* Empuja el botón hacia abajo */
+    align-self: center; /* Centra el botón en la tarjeta */
+    width: 90%;
+    max-width: 250px;
+}
+
+.modal-cta-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.service-card-image {
+    max-width: 100%;
+    height: 150px; /* Altura fija para las imágenes */
+    object-fit: cover; /* Recorta la imagen para cubrir el área */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 992px) {
@@ -987,13 +1143,13 @@ h3::after {
 @media (max-width: 768px) {
     .navbar {
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: space-between; /* Ajustado para que el logo, toggle y botón de voz se distribuyan */
     }
 
     .navbar .logo {
-        flex-basis: 100%;
-        text-align: center;
-        margin-bottom: 15px;
+        flex-basis: auto; /* Permite que el logo tenga el tamaño que necesita */
+        margin-bottom: 0;
+        order: 1; /* Ordena el logo primero */
     }
 
     .nav-links {
@@ -1022,13 +1178,13 @@ h3::after {
     }
 
     .menu-toggle {
-        display: block; /* Mostrar botón de hamburguesa */
-        order: 1; /* Posicionarlo antes del botón de voz si se desea */
-        margin-right: 15px;
+        display: flex; /* Mostrar botón de hamburguesa en móvil */
+        order: 2; /* Posicionarlo en el medio */
+        margin-right: 15px; /* Espacio entre hamburguesa y botón de voz */
     }
 
     .voice-btn {
-        order: 2; /* Posicionarlo después del toggle */
+        order: 3; /* Posicionarlo al final */
         margin-left: 0; /* Eliminar margen para mejor alineación */
     }
 
@@ -1089,6 +1245,20 @@ h3::after {
     /* Responsivo para la nueva sección de slogans */
     .slogan-grid {
         grid-template-columns: 1fr; /* Una columna en móviles */
+    }
+
+    /* Responsivo para el modal */
+    .modal {
+        width: 95%; /* Más ancho en móviles */
+        padding: 20px;
+    }
+    .services-modal-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles para las tarjetas de servicio */
+    }
+    .modal .close-button {
+        top: 5px;
+        right: 5px;
+        font-size: 1.8em;
     }
 }
 
