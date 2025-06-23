@@ -2,7 +2,7 @@
 :root {
     --primary-color: #003366; /* Azul Oscuro (sin cambios) */
     --secondary-color: #0056b3; /* Azul Medio (sin cambios) */
-    --accent-color: #2a75bb; /* CAMBIO 2: Azul en lugar de Naranja. Ajustado a un tono de azul */
+    --accent-color: #2a75bb; /* Azul en lugar de Naranja. Ajustado a un tono de azul */
     --text-color: #333; /* Gris Oscuro para texto */
     --light-text-color: #f4f4f4; /* Texto claro para fondos oscuros */
     --background-light: #f9f9f9; /* Fondo claro */
@@ -20,6 +20,7 @@ body {
     color: var(--text-color);
     background-color: var(--background-light);
     overflow-x: hidden; /* Evita scroll horizontal */
+    /* REMOVIDO: La línea superior que estaba aquí */
 }
 
 .container {
@@ -64,16 +65,14 @@ body {
 .nav-links li a {
     color: var(--light-text-color);
     text-decoration: none;
-    /* CAMBIO 7: Letras más pequeñas en el menú superior */
-    font-size: 0.95em; 
-    /* FIN CAMBIO 7 */
+    font-size: 0.95em;
     font-weight: bold;
-    transition: transform 0.3s ease; /* CAMBIO 3: Transición para agrandar */
+    transition: transform 0.3s ease; /* Transición para agrandar */
 }
 
 .nav-links li a:hover {
-    color: var(--light-text-color); /* CAMBIO 3: Mismo color al pasar el cursor */
-    transform: scale(1.1); /* CAMBIO 3: Agranda el texto al pasar el cursor */
+    color: var(--light-text-color); /* Mismo color al pasar el cursor */
+    transform: scale(1.1); /* Agranda el texto al pasar el cursor */
 }
 
 /* Botón de menú para móviles */
@@ -100,11 +99,10 @@ body {
     height: 3px;
     background-color: var(--light-text-color);
     transition: all 0.3s ease;
-    position: absolute; /* CAMBIO 4: Posición absoluta para controlar cada línea */
+    position: absolute; /* Posición absoluta para controlar cada línea */
     left: 5px; /* Para centrar el ícono */
 }
 
-/* CAMBIO 4: Ajuste para el menú de hamburguesa parejo */
 .hamburger-icon::before {
     content: '';
     top: 0px; /* Primera línea arriba */
@@ -133,12 +131,11 @@ body {
     transform: rotate(-45deg);
     top: 13.5px; /* Ajuste para que la X quede centrada */
 }
-/* FIN CAMBIO 4 */
 
 
 /* Botón de voz */
 .voice-btn {
-    background-color: var(--accent-color); /* CAMBIO 2: Azul */
+    background-color: var(--accent-color); /* Azul */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -150,7 +147,7 @@ body {
 }
 
 .voice-btn:hover {
-    background-color: var(--secondary-color); /* CAMBIO 2: Tono más oscuro de azul */
+    background-color: var(--secondary-color); /* Tono más oscuro de azul */
     transform: translateY(-2px);
 }
 
@@ -204,19 +201,19 @@ h2::after {
     transform: translateX(-50%);
     width: 80px;
     height: 4px;
-    background-color: var(--accent-color); /* CAMBIO 2: Azul */
+    background-color: var(--accent-color); /* Azul */
     border-radius: 2px;
 }
 
-/* CAMBIO 8: Eliminar línea amarilla debajo de H3 */
+/* Eliminar línea amarilla debajo de H3 */
 h3::after {
     content: none; /* Elimina la pseudo-clase after si existe */
 }
-/* FIN CAMBIO 8 */
+
 
 /* Botón CTA (Call to Action) */
 .cta-button {
-    background-color: var(--accent-color); /* CAMBIO 2: Azul */
+    background-color: var(--accent-color); /* Azul */
     color: white;
     padding: 15px 30px;
     border: none;
@@ -230,14 +227,14 @@ h3::after {
 }
 
 .cta-button:hover {
-    background-color: var(--secondary-color); /* CAMBIO 2: Tono más oscuro de azul */
+    background-color: var(--secondary-color); /* Tono más oscuro de azul */
     transform: translateY(-2px);
 }
 
 /* Hero Section */
 .hero-section {
     display: flex;
-    flex-direction: row; /* CAMBIO 9: Para que texto y video estén en fila en desktop */
+    flex-direction: row; /* Para que texto y video estén en fila en desktop */
     align-items: center;
     padding: 60px 20px;
     background-color: var(--background-dark);
@@ -264,7 +261,7 @@ h3::after {
     margin-bottom: 30px;
 }
 
-/* CAMBIO 6: Estilos para el video en la sección Hero */
+/* Estilos para el video en la sección Hero */
 .hero-video {
     flex: 1; /* Permite que el video tome el espacio disponible */
     max-width: 600px; /* Ajusta el ancho máximo del video */
@@ -279,7 +276,6 @@ h3::after {
     border-radius: 10px;
     box-shadow: 0 5px 15px var(--shadow-color);
 }
-/* FIN CAMBIO 6 */
 
 
 .values {
@@ -299,6 +295,52 @@ h3::after {
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
+/* NUEVOS ESTILOS: Sección de tarjetas de slogans */
+.slogan-cards-section {
+    background-color: var(--background-light); /* o cualquier color que prefieras */
+    padding: 60px 0;
+}
+
+.slogan-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Ajustado para 4 columnas si el espacio lo permite */
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.slogan-card {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    text-align: center; /* Centrar el texto en las tarjetas */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 150px; /* Para mantener un tamaño uniforme si el contenido es corto */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slogan-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.slogan-card h3 {
+    color: var(--primary-color);
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.slogan-card p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+/* FIN NUEVOS ESTILOS */
+
 
 /* Services Section */
 .services-section .services-list {
@@ -337,7 +379,7 @@ h3::after {
 .services-section .services-list li::before {
     content: '✅'; /* Un ícono de checkmark */
     font-size: 1.2em;
-    color: var(--accent-color); /* CAMBIO 2: Azul */
+    color: var(--accent-color); /* Azul */
 }
 
 
@@ -558,7 +600,7 @@ h3::after {
     color: green; /* Color por defecto, se cambia con JS */
 }
 
-/* CAMBIO 9: Estilos para la nueva sección de Estrategia Digital y Redes Sociales */
+/* Estilos para la nueva sección de Estrategia Digital y Redes Sociales */
 .digital-strategy-section {
     text-align: left; /* Alinea el texto a la izquierda */
     margin-top: 60px;
@@ -586,7 +628,8 @@ h3::after {
 
 .social-links-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    /* Ajustado para 4 columnas en desktop, se adaptará en móvil */
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     gap: 20px;
     margin-top: 20px;
     margin-bottom: 30px;
@@ -609,12 +652,21 @@ h3::after {
     color: var(--secondary-color);
 }
 
-.social-icon-link img {
-    width: 50px;
-    height: 50px;
+/* Estilos para los iconos de Font Awesome */
+.social-icon-link i {
+    font-size: 2.2em; /* Tamaño de los iconos */
     margin-bottom: 8px;
-    border-radius: 50%; /* Si quieres que los iconos sean redondos */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color); /* Color inicial de los iconos */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon-link:hover i {
+    color: var(--secondary-color); /* Color al pasar el cursor */
+    transform: scale(1.1); /* Ligeramente más grande al pasar el cursor */
+}
+
+.social-icon-link span {
+    font-size: 0.9em; /* Tamaño del texto debajo del icono */
 }
 
 .social-contact-buttons {
@@ -648,11 +700,11 @@ h3::after {
 .telegram-button:hover { background-color: #006dae; }
 .messenger-button { background-color: #0078FF; }
 .messenger-button:hover { background-color: #005bb8; }
-.form-button { 
+.form-button {
     background-color: var(--accent-color); /* Usa el nuevo color de acento azul */
 }
-.form-button:hover { 
-    background-color: var(--secondary-color); 
+.form-button:hover {
+    background-color: var(--secondary-color);
 }
 
 
@@ -692,10 +744,9 @@ h3::after {
     color: var(--primary-color);
 }
 
-/* FIN CAMBIO 9 */
-
 
 /* Política de Privacidad */
+/* Esta sección ya tiene la clase blue-bg, lo que le da el fondo azul */
 .privacy-policy-container {
     text-align: left;
 }
@@ -770,7 +821,7 @@ h3::after {
 }
 
 .footer-links li a:hover {
-    color: var(--accent-color); /* CAMBIO 2: Azul */
+    color: var(--accent-color); /* Azul */
 }
 
 
@@ -833,7 +884,7 @@ h3::after {
     color: white; /* Asegura que el título sea blanco */
 }
 
-/* CAMBIO 5: Posición del botón de cierre del chatbot */
+/* Posición del botón de cierre del chatbot */
 #close-chatbot-btn {
     position: absolute; /* Posicionamiento absoluto dentro del header */
     top: 10px; /* Distancia desde arriba */
@@ -852,7 +903,6 @@ h3::after {
 #close-chatbot-btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
-/* FIN CAMBIO 5 */
 
 .chat-messages {
     flex-grow: 1;
@@ -982,7 +1032,7 @@ h3::after {
         margin-left: 0; /* Eliminar margen para mejor alineación */
     }
 
-    /* CAMBIO 9: Ajuste responsivo para la sección hero (video y texto) */
+    /* Ajuste responsivo para la sección hero (video y texto) */
     .hero-section {
         flex-direction: column; /* Apilar en columna en móviles */
         padding: 40px 20px;
@@ -995,7 +1045,6 @@ h3::after {
     .hero-video {
         max-width: 100%; /* Ocupar todo el ancho disponible */
     }
-    /* FIN CAMBIO 9 */
 
     .hero-content h1 {
         font-size: 2.2em;
@@ -1027,15 +1076,19 @@ h3::after {
 
     /* Ajuste para los iconos de redes sociales en móvil */
     .social-links-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr)); /* Más columnas para iconos pequeños */
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); /* Más columnas para iconos más pequeños */
         gap: 10px;
     }
-    .social-icon-link img {
-        width: 40px;
-        height: 40px;
+    .social-icon-link i {
+        font-size: 1.8em; /* Ajustar tamaño del icono en móvil */
     }
     .social-cta-button {
         width: 100%; /* Botones de contacto de redes sociales ocupan todo el ancho */
+    }
+
+    /* Responsivo para la nueva sección de slogans */
+    .slogan-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles */
     }
 }
 
@@ -1057,7 +1110,7 @@ h3::after {
         padding: 6px 10px;
         font-size: 0.8em;
     }
-    
+
     .chatbot-button {
         width: 50px;
         height: 50px;
