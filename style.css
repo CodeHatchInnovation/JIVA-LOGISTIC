@@ -225,36 +225,34 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
-/* La clase hero-image fue cambiada a hero-video para aplicar estos estilos */
+/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) - MODIFICADO */
 .hero-video { /* Asegúrate que tu HTML tiene <div class="hero-video"> para el video */
     flex: 1;
-    max-width: 500px; /* Ancho máximo para el video en desktop */
     position: relative;
-    width: 100%;
-    /* REMOVIDO: padding-bottom, para no forzar una altura excesiva */
-    height: auto; /* Permite que la altura se ajuste al contenido del video */
-    overflow: hidden;
+    width: 100%; /* Ocupa todo el ancho disponible por su flex-item */
     background-color: var(--black); /* Fondo negro mientras carga */
     border-radius: 8px; /* Mantener el borde redondeado */
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Mantener la sombra */
 
-    /* NUEVO: Ajustes para que el video se adapte y no tenga barras negras si es más pequeño */
-    display: flex; /* Usamos flexbox para centrar el video dentro del contenedor */
+    /* NUEVO: Contenedor flexible con altura mínima y máxima para control */
+    min-height: 250px; /* Altura mínima para pantallas pequeñas */
+    max-height: 500px; /* Altura máxima para pantallas grandes */
+    overflow: hidden; /* Asegura que el contenido que se desborde no sea visible */
+    display: flex; /* Para centrar el video dentro de este contenedor */
     justify-content: center;
     align-items: center;
 }
 
 .hero-video video,
 .hero-video iframe { /* Aplica a videos HTML5 y a iframes (YouTube/Vimeo) */
-    position: static; /* Cambiado de absolute a static para que flexbox lo centre */
+    position: absolute; /* Para que el video llene el contenedor padre */
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    /* CAMBIADO: object-fit de cover a contain */
-    /* contain: Escala el video para que quepa completamente dentro del contenedor, manteniendo su relación de aspecto. Puede haber barras si la relación de aspecto del video no coincide con la del contenedor. */
-    /* cover: Escala el video para que cubra todo el contenedor, pudiendo recortar partes del video. */
-    /* Elegimos 'contain' para evitar el recorte y que el video siempre se vea completo, y ajustamos el contenedor para minimizar el espacio negro. */
-    object-fit: contain; /* Asegura que el video se vea completo dentro del espacio */
+    /* CAMBIADO: object-fit a 'cover' para que el video siempre llene el espacio */
+    /* Esto podría recortar los bordes del video si la relación de aspecto no coincide */
+    object-fit: cover; /* Escala el video para que cubra todo el contenedor, minimizando barras negras */
     border-radius: 8px; /* Para mantener los bordes redondeados del video en sí */
 }
 
@@ -542,19 +540,17 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* ESTILOS PARA LOS MAPAS (RESPONSIVO) */
-.patio-card .map-container { /* Asume que hay un .map-container dentro de .patio-card */
+/* ESTILOS PARA LOS MAPAS (RESPONSIVO) - REVISADO */
+.patio-card .map-container {
     position: relative;
-    /* CAMBIADO: Ajustar el padding-bottom para una relación de aspecto común, por ejemplo 3:2 (66.66%) o 4:3 (75%) */
-    /* Si el mapa tiene un ancho fijo, esto puede causar el problema. */
-    /* Para que el mapa siempre se ajuste al ancho disponible, la altura debe ser proporcional a ese ancho. */
-    padding-bottom: 66.66%; /* Relación de aspecto 3:2 (ajusta según la proporción real de tus mapas de Google) */
-    height: 0;
+    /* Usamos padding-bottom para mantener la proporción de 3:2 (altura es 66.66% del ancho) */
+    padding-bottom: 66.66%; /* Mantener una proporción de aspecto para el mapa */
+    height: 0; /* Necesario con padding-bottom para que solo el padding defina la altura */
     overflow: hidden;
-    max-width: 100%; /* Asegura que el contenedor del mapa no se desborde */
-    background: #e0e0e0; /* Color de fondo mientras carga el mapa */
-    border-radius: 8px; /* Mantener el borde redondeado */
-    margin-bottom: 15px; /* Espacio debajo del mapa */
+    max-width: 100%;
+    background: #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
 .patio-card .map-container iframe {
@@ -563,7 +559,7 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    border: 0; /* Elimina el borde predeterminado del iframe de Google Maps */
+    border: 0;
 }
 
 .map-link {
@@ -1214,16 +1210,13 @@ hr {
         font-size: 1.1em;
     }
 
-    /* Ajuste para el video principal en tabletas */
+    /* AJUSTES PARA EL VIDEO PRINCIPAL EN TABLETAS Y MÓVILES */
     .hero-video {
-        max-width: 80%; /* Reduce un poco el tamaño para tabletas */
-        height: auto; /* IMPORTANTE: Asegura que la altura se ajuste */
-        padding-bottom: 0; /* REMOVIDO: para evitar el espacio extra */
-    }
-    .hero-video video,
-    .hero-video iframe {
-        /* Para que el video se adapte a la altura natural si no hay padding-bottom */
-        max-height: 400px; /* Limita la altura en pantallas medianas si el video es muy alto */
+        width: 100%; /* Ocupa todo el ancho del contenedor en vista de columna */
+        height: 350px; /* ALTURA FIJA PARA TABLETAS (puedes ajustar este valor) */
+        /* Eliminamos max-height para que la altura fija tenga prioridad aquí */
+        min-height: unset; /* Reinicia el min-height de desktop */
+        max-height: unset; /* Reinicia el max-height de desktop */
     }
 
 
@@ -1362,18 +1355,10 @@ hr {
         font-size: 1.8em;
     }
 
-    /* --- Ajustes específicos para móviles (mapas y video) --- */
+    /* AJUSTES PARA EL VIDEO PRINCIPAL EN MÓVILES */
     .hero-video {
-        max-width: 100%; /* El video ocupa todo el ancho disponible */
-        height: auto; /* Permite que la altura se ajuste al contenido del video */
-        padding-bottom: 0; /* REMOVIDO: para evitar el espacio extra */
+        height: 250px; /* ALTURA FIJA PARA MÓVILES (puedes ajustar este valor) */
     }
-    .hero-video video,
-    .hero-video iframe {
-        /* Para que el video se adapte a la altura natural */
-        max-height: 300px; /* Limita la altura en pantallas pequeñas si el video es muy alto */
-    }
-
 
     .patio-card {
         max-width: 100%; /* Las tarjetas de patio ocupan todo el ancho */
@@ -1381,7 +1366,6 @@ hr {
     }
 
     .patio-card .map-container {
-        /* NUEVO: asegurar que el mapa se ajuste al 100% del ancho del contenedor */
         padding-bottom: 66.66%; /* Mantiene la proporción 3:2, si esa es la que prefieres para los mapas */
     }
 }
