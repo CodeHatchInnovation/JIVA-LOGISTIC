@@ -300,7 +300,7 @@ h2 {
 }
 
 
-/* --- Estilos para las tarjetas de frases (MODIFICADO) --- */
+/* --- Estilos para las tarjetas de frases --- */
 .frases-destacadas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -340,7 +340,7 @@ h2 {
 }
 
 
-/* --- Misión y Visión Section (MODIFICADO para tarjetas blancas) --- */
+/* --- Misión y Visión Section --- */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -371,11 +371,9 @@ h2 {
     line-height: 1.7;
 }
 
-/* Si quieres que el texto dentro de las tarjetas en la sección azul SÍ sea blanco,
-   pero el fondo de la tarjeta sea blanco, puedes añadir esto: */
 .blue-bg .card h3,
 .blue-bg .card p,
-.blue-bg .card a { /* También para los enlaces si los hay */
+.blue-bg .card a {
     color: var(--dark-gray); /* Cambiado a dark-gray para contraste con fondo blanco de tarjeta */
 }
 
@@ -432,7 +430,7 @@ h2 {
 /* --- Rastreo Satelital Section --- */
 .content-left-image {
     display: flex;
-    align-items: flex-start; /* Alinea el contenido arriba */
+    align-items: flex-start;
     gap: 30px;
     text-align: left;
     padding: 20px;
@@ -446,7 +444,7 @@ h2 {
     height: auto;
     flex-shrink: 0;
     border-radius: 8px;
-    margin-top: 10px; /* Alinea mejor con el título */
+    margin-top: 10px;
 }
 
 .content-left-image div {
@@ -464,7 +462,7 @@ h2 {
 }
 
 .content-left-image ul {
-    list-style: disc inside; /* Viñetas */
+    list-style: disc inside;
     padding-left: 20px;
 }
 
@@ -473,12 +471,12 @@ h2 {
     flex-wrap: wrap;
     gap: 15px;
     margin-top: 20px;
-    justify-content: flex-start; /* Alinea los logos a la izquierda */
+    justify-content: flex-start;
 }
 
 .image-grid span {
-    background-color: var(--accent-color); /* ¡Ahora usan el nuevo color de acento! */
-    color: var(--white); /* Texto blanco para contraste con el acento azul */
+    background-color: var(--accent-color);
+    color: var(--white);
     padding: 8px 15px;
     border-radius: 5px;
     font-weight: bold;
@@ -512,9 +510,9 @@ iframe {
     margin-top: 20px;
 }
 
-/* Para centrar el segundo mapa si es necesario (añadido al HTML como clase 'centered-map') */
+/* Para centrar el segundo mapa si es necesario */
 .centered-map {
-    display: block; /* Necesario para que margin: auto funcione */
+    display: block;
     margin-left: auto;
     margin-right: auto;
 }
@@ -616,7 +614,7 @@ hr {
 }
 
 .social-contact-buttons .cta-button {
-    margin-top: 0; /* Ajuste para que el botón no tenga margen extra */
+    margin-top: 0;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -629,11 +627,11 @@ hr {
 .social-contact-buttons .social-messenger { background-color: #0078FF; color: white; }
 .social-contact-buttons .social-messenger:hover { background-color: #0056D4; }
 .social-contact-buttons .social-form {
-    background-color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
-    color: var(--white); /* Texto blanco para contraste */
+    background-color: var(--accent-color);
+    color: var(--white);
 }
 .social-contact-buttons .social-form:hover {
-    background-color: var(--secondary-blue); /* Un azul más oscuro al pasar el ratón */
+    background-color: var(--secondary-blue);
 }
 
 
@@ -660,9 +658,9 @@ hr {
 }
 
 .social-icons-footer-list a:hover {
-    background-color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
+    background-color: var(--accent-color);
     transform: translateY(-3px);
-    color: var(--white); /* Para que el icono se vea mejor */
+    color: var(--white);
 }
 
 .contact-form-title {
@@ -710,16 +708,16 @@ hr {
 }
 
 .contact-form .cta-button {
-    width: auto; /* Para que el botón no ocupe todo el ancho */
+    width: auto;
     display: block;
-    margin: 20px auto 0; /* Centra el botón */
+    margin: 20px auto 0;
 }
 
 #contact-message {
     text-align: center;
     margin-top: 20px;
     font-weight: bold;
-    color: green; /* Color para mensajes de éxito */
+    color: green;
 }
 
 /* --- Privacy Policy Section --- */
@@ -733,7 +731,7 @@ hr {
 }
 
 .privacy-policy-container h3 {
-    color: var(--accent-color); /* Usa el nuevo color de acento */
+    color: var(--accent-color);
     margin-top: 30px;
     margin-bottom: 15px;
 }
@@ -748,13 +746,13 @@ hr {
     margin-bottom: 15px;
 }
 
-.privacy-policy-container ul ul { /* Para listas anidadas */
+.privacy-policy-container ul ul {
     list-style: circle inside;
     margin-left: 30px;
 }
 
 .privacy-policy-container a {
-    color: var(--accent-color); /* Usa el nuevo color de acento */
+    color: var(--accent-color);
     text-decoration: underline;
 }
 
@@ -767,10 +765,10 @@ hr {
 
 /* --- QR Section --- */
 .qr-code-image {
-    max-width: 250px; /* Tamaño máximo para el QR */
+    max-width: 250px;
     height: auto;
     margin-top: 20px;
-    border: 5px solid var(--white); /* Borde blanco alrededor del QR */
+    border: 5px solid var(--white);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
@@ -909,6 +907,189 @@ hr {
 }
 
 
+/* --- ESTILOS PARA EL MODAL/POP-UP DEL CATÁLOGO --- */
+
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Permanece en la misma posición al hacer scroll */
+    z-index: 10000; /* Asegura que esté por encima de todo lo demás */
+    left: 0;
+    top: 0;
+    width: 100%; /* Cubre todo el ancho */
+    height: 100%; /* Cubre toda la altura */
+    overflow: auto; /* Habilita scroll si el contenido es demasiado grande */
+    background-color: rgba(0,0,0,0.7); /* Fondo oscuro semitransparente */
+    display: flex; /* Para centrar el contenido vertical y horizontalmente */
+    align-items: center;
+    justify-content: center;
+    padding: 20px; /* Relleno general para evitar que el contenido toque los bordes */
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    max-width: 800px; /* Ancho máximo del modal */
+    width: 95%; /* Ocupa casi todo el ancho en pantallas pequeñas */
+    position: relative; /* Para posicionar el botón de cerrar */
+    max-height: 90vh; /* Altura máxima, permite scroll interno */
+    overflow-y: auto; /* Habilita el scroll interno si el contenido es largo */
+    animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.close-button {
+    color: var(--dark-gray);
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--primary-blue);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.modal-header .modal-image {
+    max-width: 100%;
+    height: auto;
+    max-height: 200px; /* Altura máxima para la imagen de cabecera */
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    color: var(--primary-blue);
+    font-size: 2.2em;
+    margin-bottom: 10px;
+}
+
+.modal-header p {
+    color: var(--text-color);
+    font-size: 1.1em;
+}
+
+.modal-body .service-item {
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    text-align: left; /* Alinea el texto de los servicios a la izquierda */
+}
+
+.modal-body .service-item h3 {
+    color: var(--primary-blue);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+}
+
+.modal-body .service-item p {
+    color: var(--dark-gray);
+    margin-bottom: 15px;
+}
+
+.modal-body .service-item ul {
+    list-style: none; /* Quitamos las viñetas por defecto */
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.modal-body .service-item ul li {
+    position: relative;
+    padding-left: 25px; /* Espacio para el ícono */
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.modal-body .service-item ul li::before {
+    content: '\f00c'; /* Icono de Font Awesome para el checkmark */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--primary-blue); /* Color del checkmark */
+    position: absolute;
+    left: 0;
+    top: 2px; /* Ajuste vertical del ícono */
+}
+
+.modal-body .service-item .note {
+    font-style: italic;
+    font-size: 0.9em;
+    color: var(--text-color);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-body .service-item .cta-button {
+    display: block; /* Hace que el botón ocupe todo el ancho */
+    width: fit-content; /* Se ajusta al contenido del texto */
+    margin: 0 auto; /* Centra el botón */
+    text-align: center;
+}
+
+/* Media Queries para el modal */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 20px;
+        width: 90%;
+    }
+    .modal-header h2 {
+        font-size: 1.8em;
+    }
+    .close-button {
+        font-size: 30px;
+        right: 15px;
+    }
+    .modal-body .service-item {
+        padding: 20px;
+    }
+    .modal-body .service-item h3 {
+        font-size: 1.4em;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+        width: 95%;
+    }
+    .modal-header h2 {
+        font-size: 1.5em;
+    }
+    .modal-header p {
+        font-size: 0.95em;
+    }
+    .modal-body .service-item {
+        padding: 15px;
+    }
+    .modal-body .service-item h3 {
+        font-size: 1.2em;
+    }
+    .modal-body .service-item p,
+    .modal-body .service-item ul li {
+        font-size: 0.9em;
+    }
+}
+
+
 /* --- Footer --- */
 .main-footer {
     background-color: var(--primary-blue);
@@ -936,7 +1117,7 @@ hr {
     margin: 0;
     display: flex;
     gap: 20px;
-    flex-wrap: wrap; /* Permite que los enlaces se envuelvan en pantallas pequeñas */
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -947,7 +1128,7 @@ hr {
 }
 
 .footer-links a:hover {
-    color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
+    color: var(--accent-color);
 }
 
 
@@ -1023,23 +1204,23 @@ hr {
     }
 
     .logo {
-        flex-grow: 1; /* Permite que el logo ocupe más espacio */
+        flex-grow: 1;
     }
 
     .menu-toggle {
-        display: block; /* Muestra el botón de menú */
+        display: block;
     }
 
     .nav-links {
         flex-direction: column;
         width: 100%;
-        display: none; /* Oculto por defecto en móvil */
+        display: none;
         background-color: var(--primary-blue);
         padding-top: 10px;
     }
 
     .nav-links.active {
-        display: flex; /* Muestra el menú cuando está activo */
+        display: flex;
     }
 
     .nav-links li {
@@ -1053,7 +1234,7 @@ hr {
     }
 
     .voice-btn {
-        margin-top: 10px; /* Espacio si el botón de voz está en el menú desplegable */
+        margin-top: 10px;
     }
 
     h1 {
@@ -1070,7 +1251,7 @@ hr {
     }
 
     .frases-destacadas {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Ajuste para pantallas más pequeñas */
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 20px;
         padding: 40px 15px;
     }
@@ -1080,7 +1261,7 @@ hr {
     }
 
     .tarjeta-frase img {
-        max-width: 100px; /* Reducir tamaño de imagen en móviles */
+        max-width: 100px;
     }
 
     .tarjeta-frase p {
@@ -1097,11 +1278,11 @@ hr {
     }
 
     .chatbot-container {
-        width: 90%; /* Ajusta el ancho para móviles */
+        width: 90%;
         right: 5%;
         left: 5%;
-        height: 80vh; /* Altura en relación al viewport */
-        bottom: 20px; /* Menos espacio en la parte inferior */
+        height: 80vh;
+        bottom: 20px;
     }
     .chatbot-button {
         bottom: 20px;
@@ -1127,7 +1308,7 @@ hr {
     }
 
     .frases-destacadas {
-        grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+        grid-template-columns: 1fr;
     }
 
     .services-list {
@@ -1143,7 +1324,7 @@ hr {
 
     .social-icons-list a,
     .social-contact-buttons .cta-button {
-        width: 100%; /* Ocupar todo el ancho disponible */
-        justify-content: center; /* Centrar el contenido del botón/enlace */
+        width: 100%;
+        justify-content: center;
     }
 }
