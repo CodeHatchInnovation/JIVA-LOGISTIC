@@ -1,11 +1,11 @@
-/* Variables CSS (si no las tienes, agrégalas al principio de tu archivo) */
+/* --- Variables CSS (actualizadas) --- */
 :root {
     --primary-blue: #003366; /* Azul oscuro corporativo */
     --secondary-blue: #0056b3; /* Un azul un poco más claro */
     --light-gray: #f8f8f8;
     --dark-gray: #333;
     --text-color: #555;
-    --accent-color: #f0ad4e; /* O un color de acento que prefieras */
+    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
     --white: #ffffff;
     --black: #000000;
 }
@@ -129,7 +129,7 @@ h2 {
 /* Botón de voz */
 .voice-btn {
     background-color: var(--accent-color);
-    color: var(--dark-gray);
+    color: var(--dark-gray); /* Cambiado a dark-gray para mejor contraste con accent-color */
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -139,7 +139,8 @@ h2 {
 }
 
 .voice-btn:hover {
-    background-color: #e09e3e;
+    background-color: var(--secondary-blue); /* Ajuste para que combine con el nuevo accent-color */
+    color: var(--white); /* Asegura texto blanco al pasar el ratón */
 }
 
 /* Menú hamburguesa para móviles */
@@ -299,47 +300,47 @@ h2 {
 }
 
 
-/* --- Estilos para las tarjetas de frases --- */
+/* --- Estilos para las tarjetas de frases (MODIFICADO) --- */
 .frases-destacadas {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 4 columnas para desktop, responsivo */
-    gap: 30px; /* Espacio entre las tarjetas */
-    padding: 60px 20px; /* Relleno superior/inferior y lateral */
-    background-color: var(--light-gray); /* Un fondo para esta sección */
-    margin-top: 0; /* Asegura que no haya margen extra si se puso en una sección */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 60px 20px;
+    background-color: var(--light-gray); /* Fondo de la sección donde están las tarjetas */
+    margin-top: 0;
 }
 
 .tarjeta-frase {
-    background-color: var(--white); /* Fondo blanco para la tarjeta */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
-    padding: 25px; /* Relleno interno de la tarjeta */
-    text-align: center; /* Centra el contenido (imagen y texto) */
-    display: flex; /* Para organizar imagen y texto en columna */
+    background-color: var(--white); /* ¡Todas las tarjetas de frases son blancas! */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    text-align: center;
+    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Espacio entre imagen y texto */
-    align-items: center; /* Centra horizontalmente */
-    height: 100%; /* Asegura que todas las tarjetas tengan la misma altura si están en un grid */
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
 }
 
 .tarjeta-frase img {
-    max-width: 150px; /* Tamaño máximo para las imágenes de las tarjetas */
+    max-width: 180px; /* Tamaño un poco más grande para la imagen */
     height: auto;
-    border-radius: 50%; /* Si quieres que las imágenes sean circulares */
-    object-fit: cover; /* Para asegurar que las imágenes se vean bien en círculo/cuadrado */
-    margin-bottom: 20px; /* Espacio entre la imagen y el texto */
-    border: 3px solid var(--primary-blue); /* Borde alrededor de la imagen */
+    border-radius: 8px; /* ¡Ahora son rectangulares, no ovaladas! */
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: none; /* Quitamos el borde azul */
 }
 
 .tarjeta-frase p {
-    font-size: 1.1em; /* Tamaño de fuente para las frases */
+    font-size: 1.1em;
     color: var(--dark-gray);
-    font-weight: 500; /* Ligeramente más negrita */
+    font-weight: 500;
     line-height: 1.5;
 }
 
 
-/* --- Misión y Visión Section --- */
+/* --- Misión y Visión Section (MODIFICADO para tarjetas blancas) --- */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -348,7 +349,7 @@ h2 {
 }
 
 .card {
-    background-color: var(--white);
+    background-color: var(--white); /* ¡Todas las tarjetas son blancas! */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     padding: 30px;
@@ -370,14 +371,14 @@ h2 {
     line-height: 1.7;
 }
 
-.blue-bg .card {
-    background-color: var(--secondary-blue); /* Tarjetas un poco más claras en fondo azul */
-    color: var(--white);
+/* Si quieres que el texto dentro de las tarjetas en la sección azul SÍ sea blanco,
+   pero el fondo de la tarjeta sea blanco, puedes añadir esto: */
+.blue-bg .card h3,
+.blue-bg .card p,
+.blue-bg .card a { /* También para los enlaces si los hay */
+    color: var(--dark-gray); /* Cambiado a dark-gray para contraste con fondo blanco de tarjeta */
 }
 
-.blue-bg .card h3, .blue-bg .card p {
-    color: var(--white); /* Texto blanco en tarjetas de fondo azul */
-}
 
 /* --- Flota Section --- */
 .carousel-container {
@@ -476,8 +477,8 @@ h2 {
 }
 
 .image-grid span {
-    background-color: var(--accent-color);
-    color: var(--dark-gray);
+    background-color: var(--accent-color); /* ¡Ahora usan el nuevo color de acento! */
+    color: var(--white); /* Texto blanco para contraste con el acento azul */
     padding: 8px 15px;
     border-radius: 5px;
     font-weight: bold;
@@ -511,6 +512,12 @@ iframe {
     margin-top: 20px;
 }
 
+/* Para centrar el segundo mapa si es necesario (añadido al HTML como clase 'centered-map') */
+.centered-map {
+    display: block; /* Necesario para que margin: auto funcione */
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* --- Contacto Section --- */
 .section-padded {
@@ -621,8 +628,13 @@ hr {
 .social-contact-buttons .social-telegram:hover { background-color: #006AA7; }
 .social-contact-buttons .social-messenger { background-color: #0078FF; color: white; }
 .social-contact-buttons .social-messenger:hover { background-color: #0056D4; }
-.social-contact-buttons .social-form { background-color: #f0ad4e; color: var(--dark-gray); }
-.social-contact-buttons .social-form:hover { background-color: #e09e3e; }
+.social-contact-buttons .social-form {
+    background-color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
+    color: var(--white); /* Texto blanco para contraste */
+}
+.social-contact-buttons .social-form:hover {
+    background-color: var(--secondary-blue); /* Un azul más oscuro al pasar el ratón */
+}
 
 
 .social-icons-footer-list {
@@ -648,9 +660,9 @@ hr {
 }
 
 .social-icons-footer-list a:hover {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
     transform: translateY(-3px);
-    color: var(--dark-gray);
+    color: var(--white); /* Para que el icono se vea mejor */
 }
 
 .contact-form-title {
@@ -721,7 +733,7 @@ hr {
 }
 
 .privacy-policy-container h3 {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Usa el nuevo color de acento */
     margin-top: 30px;
     margin-bottom: 15px;
 }
@@ -742,7 +754,7 @@ hr {
 }
 
 .privacy-policy-container a {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Usa el nuevo color de acento */
     text-decoration: underline;
 }
 
@@ -935,7 +947,7 @@ hr {
 }
 
 .footer-links a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* ¡Usa el nuevo color de acento! */
 }
 
 
@@ -1050,6 +1062,11 @@ hr {
 
     h2 {
         font-size: 2em;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 0.9em;
     }
 
     .frases-destacadas {
