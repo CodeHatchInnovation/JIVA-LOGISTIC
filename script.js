@@ -321,24 +321,30 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('El botón con ID "voice-command-toggle" no se encontró, la navegación por voz no se activará.');
     }
 
-    // --- NUEVO CÓDIGO PARA EL MODAL DEL CATÁLOGO ---
+    // --- CÓDIGO MODIFICADO PARA EL MODAL DEL CATÁLOGO ---
     const openCatalogBtn = document.getElementById('open-catalog-btn');
     const catalogModal = document.getElementById('catalog-modal');
     const closeCatalogBtn = document.getElementById('close-catalog-btn');
 
     if (openCatalogBtn && catalogModal && closeCatalogBtn) {
+        // 1. Aseguramos que el modal esté oculto al cargar la página.
+        //    Esta línea es crucial para el estado inicial.
+        catalogModal.style.display = 'none';
+
         openCatalogBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // Evita que el enlace salte a otra sección
-            catalogModal.style.display = 'none'; // Muestra el modal (usando flex para centrar)
-            document.body.style.overflow = 'hidden'; // Evita scroll en el fondo
+            e.preventDefault(); // Evita el comportamiento predeterminado del enlace
+            // 2. Aquí es donde cambiamos el display para MOSTRAR el modal.
+            //    Si en tu CSS usas 'flex' para mostrarlo, déjalo así. Si usas 'block', cámbialo a 'block'.
+            catalogModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Evita scroll en el fondo al abrir el modal
         });
 
         closeCatalogBtn.addEventListener('click', () => {
-            catalogModal.style.display = 'none'; // Oculta el modal
+            catalogModal.style.display = 'none'; // Oculta el modal al hacer clic en el botón de cerrar
             document.body.style.overflow = ''; // Restaura el scroll del fondo
         });
 
-        // Cierra el modal si se hace clic fuera del contenido
+        // Cierra el modal si se hace clic fuera del contenido del modal
         window.addEventListener('click', (e) => {
             if (e.target === catalogModal) {
                 catalogModal.style.display = 'none';
