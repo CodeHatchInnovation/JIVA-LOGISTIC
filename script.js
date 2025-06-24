@@ -10,11 +10,23 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.classList.toggle('active');
         });
 
+        // Este listener se modificó ligeramente para cerrar el menú
+        // cuando se hace clic fuera, incluyendo los enlaces dentro del nav
         document.addEventListener('click', (event) => {
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
                 navLinks.classList.remove('active');
                 menuToggle.classList.remove('active');
             }
+        });
+
+        // Cierra el menú al hacer clic en un enlace (para móviles)
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+                }
+            });
         });
     }
 
@@ -28,11 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let counter = 0;
         const size = carouselImages[0].clientWidth;
 
+        // Asegúrate de que el carrusel se muestre correctamente al cargar
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
         nextBtn.addEventListener('click', () => {
-            if (counter >= carouselImages.length - 1) {
-                counter = -1;
+            if (counter >= carouselImages.length - 1) { // Si ya está en la última imagen
+                counter = -1; // Vuelve al inicio virtual para el loop
             }
             counter++;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -40,15 +53,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         prevBtn.addEventListener('click', () => {
-            if (counter <= 0) {
-                counter = carouselImages.length;
+            if (counter <= 0) { // Si ya está en la primera imagen
+                counter = carouselImages.length; // Va al final virtual para el loop
             }
             counter--;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         });
-    }
 
+        // Opcional: Ajustar el tamaño del carrusel en redimensionamiento
+        window.addEventListener('resize', () => {
+            const newSize = carouselImages[0].clientWidth;
+            carouselSlide.style.transition = 'none'; // Desactiva la transición temporalmente
+            carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
+        });
+    }
 
     // --- Lógica del Formulario de Contacto ---
     const contactForm = document.getElementById('contact-form');
@@ -59,13 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             contactMessage.textContent = 'Enviando mensaje...';
-            contactMessage.style.color = 'var(--accent-color)'; 
+            contactMessage.style.color = 'var(--accent-color)';
 
             const formData = new FormData(contactForm);
             const data = Object.fromEntries(formData.entries());
 
             console.log('Datos del formulario de contacto:', data);
 
+            // Simulación de envío con un retraso
             await new Promise(resolve => setTimeout(resolve, 1500));
 
             contactMessage.textContent = '¡Mensaje enviado con éxito! (Simulado). Nos pondremos en contacto contigo pronto.';
@@ -79,36 +99,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Lógica del Chatbot ---
-    // IMPORTANTE: Asegúrate de que los elementos del chatbot existan en el HTML desde el inicio.
     const chatbotButton = document.getElementById('chatbot-button');
     const chatbotContainer = document.getElementById('chatbot-container');
-    const closeChatbotBtn = document.getElementById('close-chatbot-btn'); // Botón de cierre explícito
+    const closeChatbotBtn = document.getElementById('close-chatbot-btn');
     const chatInput = document.getElementById('chat-input');
     const sendChatBtn = document.getElementById('send-chat-btn');
     const chatMessages = document.getElementById('chat-messages');
 
-    // Asegurarse de que todos los elementos críticos del chatbot existan antes de configurar los listeners
     if (chatbotButton && chatbotContainer && closeChatbotBtn && chatInput && sendChatBtn && chatMessages) {
         chatbotContainer.style.display = 'none'; // Asegura que esté oculto al inicio
 
-        // Event listener para el botón PRINCIPAL (flotante) que abre/cierra el chatbot
         chatbotButton.addEventListener('click', () => {
-            const isHidden = chatbotContainer.style.display === 'none' || chatbotContainer.style.display === '';
+            const isHidden = chatbotContainer.style.display === 'none';
             chatbotContainer.style.display = isHidden ? 'flex' : 'none';
-            
+
             if (isHidden) {
                 chatInput.focus(); // Enfocar el input al abrir
                 chatMessages.scrollTop = chatMessages.scrollHeight; // Desplazar al final
+                chatbotContainer.classList.add('active'); // Añadir clase 'active' para transiciones CSS
+            } else {
+                chatbotContainer.classList.remove('active'); // Remover clase 'active' al cerrar
             }
-            // Puedes cambiar el texto/icono del botón flotante aquí si lo deseas
-            // chatbotButton.textContent = isHidden ? '✖' : '💬'; 
         });
 
-        // Event listener para el botón de cierre dentro del chatbot (el "tache")
         closeChatbotBtn.addEventListener('click', () => {
             chatbotContainer.style.display = 'none';
-            // Si el botón principal cambia de icono, resetéalo aquí también
-            // chatbotButton.textContent = '💬'; 
+            chatbotContainer.classList.remove('active'); // Remover clase 'active' al cerrar
         });
 
         sendChatBtn.addEventListener('click', sendMessage);
@@ -162,15 +178,28 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (/(privacidad|politicas|aviso)/.test(message)) {
                 return "Nuestras <a href='#privacidad'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
             } else if (/(servicios)/.test(message)) {
-                return "Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística de contenedores 20 y 40 pies, rastreo satelital y transporte seguro de mercancía. Para ver todos nuestros servicios, visita la sección de <a href='#servicios'>Nuestros Principales Servicios</a>.";
+                // Aquí el chatbot podría abrir el modal de servicios si se le pregunta
+                return 'Ofrecemos transporte de carga contenerizada, transporte en caja seca, logística inversa y más. ¿Te gustaría ver nuestro <button id="open-catalog-from-chat" class="chat-button-inline">Catálogo de Servicios</button>?';
             } else if (/(presentacion|qr|pdf|descargar)/.test(message)) {
-                 return "Puedes ver nuestra presentación completa en PDF escaneando el código QR en la sección <a href='#qr-section'>Nuestra Presentación en QR</a>";
+                return "Puedes ver nuestra presentación completa en PDF escaneando el código QR en la sección <a href='#qr-section'>Nuestra Presentación en QR</a>";
             } else if (/(gracias|adios|bye)/.test(message)) {
                 return "¡De nada! Si tienes más preguntas, no dudes en consultar. ¡Hasta luego!";
             } else {
                 return "Lo siento, no entendí tu pregunta. Por favor, intenta de nuevo o reformula. Puedes preguntar sobre:<br> \"Misión\", \"Flota\", \"Rastreo\", \"Cobertura\", \"Patios\", \"Contacto\", \"Privacidad\", \"Servicios\" o \"Presentación\".";
             }
         }
+
+        // Listener para el botón "Catálogo de Servicios" dentro del chat
+        chatMessages.addEventListener('click', (event) => {
+            if (event.target.id === 'open-catalog-from-chat') {
+                const openCatalogBtn = document.getElementById('open-catalog-btn');
+                if (openCatalogBtn) {
+                    openCatalogBtn.click(); // Simula un clic en el botón principal del catálogo
+                    chatbotContainer.style.display = 'none'; // Cierra el chatbot al abrir el modal
+                    chatbotContainer.classList.remove('active');
+                }
+            }
+        });
     } else {
         console.warn('Algunos elementos del chatbot no se encontraron en el DOM. Asegúrate de que estén presentes en tu HTML con los IDs correctos (chatbot-button, chatbot-container, close-chatbot-btn, chat-input, send-chat-btn, chat-messages).');
     }
@@ -180,7 +209,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const voiceNavToggleBtn = document.getElementById('voice-command-toggle'); // ID del botón de voz para navegación
 
     if (voiceNavToggleBtn) { // Solo ejecutar si el botón existe
-        // Verificar soporte para la Web Speech API
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition;
 
         if (!SpeechRecognition) {
@@ -220,9 +248,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 let errorMessage = 'No se pudo iniciar el reconocimiento de voz.';
                 if (e.name === 'InvalidStateError') {
                     errorMessage += ' Parece que ya está activo o se intentó iniciar mientras estaba en un estado inválido.';
-                    // Intentar detener y reiniciar si es un InvalidStateError
-                    recognition.stop();
-                    setTimeout(() => { // Pequeña pausa para permitir que se detenga completamente
+                    recognition.stop(); // Intentar detener
+                    setTimeout(() => { // Pequeña pausa antes de reintentar
                         try {
                             recognition.start();
                         } catch (retryError) {
@@ -230,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             alert(errorMessage + ' Intenta de nuevo.');
                         }
                     }, 100);
-                    return; // Salir para evitar alert duplicado si se reintenta
+                    return;
                 } else if (e.name === 'SecurityError') {
                     errorMessage += ' Asegúrate de estar en un contexto seguro (HTTPS o localhost) y de haber dado permisos al micrófono.';
                 }
@@ -294,17 +321,45 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('El botón con ID "voice-command-toggle" no se encontró, la navegación por voz no se activará.');
     }
 
+    // --- NUEVO CÓDIGO PARA EL MODAL DEL CATÁLOGO ---
+    const openCatalogBtn = document.getElementById('open-catalog-btn');
+    const catalogModal = document.getElementById('catalog-modal');
+    const closeCatalogBtn = document.getElementById('close-catalog-btn');
+
+    if (openCatalogBtn && catalogModal && closeCatalogBtn) {
+        openCatalogBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita que el enlace salte a otra sección
+            catalogModal.style.display = 'flex'; // Muestra el modal (usando flex para centrar)
+            document.body.style.overflow = 'hidden'; // Evita scroll en el fondo
+        });
+
+        closeCatalogBtn.addEventListener('click', () => {
+            catalogModal.style.display = 'none'; // Oculta el modal
+            document.body.style.overflow = ''; // Restaura el scroll del fondo
+        });
+
+        // Cierra el modal si se hace clic fuera del contenido
+        window.addEventListener('click', (e) => {
+            if (e.target === catalogModal) {
+                catalogModal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+        });
+    }
+
+
     // --- Lógica para desplazamiento suave de enlaces de ancla (general) ---
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const chatbotContainerEl = document.getElementById('chatbot-container');
-            
+
             // Si el chatbot está abierto y el clic viene de un enlace DENTRO del chatbot, ciérralo.
             if (chatbotContainerEl && chatbotContainerEl.style.display === 'flex') {
                 if (e.target.closest('#chatbot-container')) {
-                     chatbotContainerEl.style.display = 'none'; // Cierra el chatbot
+                    chatbotContainerEl.style.display = 'none'; // Cierra el chatbot
+                    chatbotContainerEl.classList.remove('active'); // También remueve la clase active
                 }
             }
             document.querySelector(targetId).scrollIntoView({
