@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.classList.toggle('active');
         });
 
-        // Cierra el menú al hacer clic fuera del menú o del botón de toggle
+        // Cierra el menú al hacer clic fuera
         document.addEventListener('click', (event) => {
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target) && window.innerWidth <= 768) {
                 navLinks.classList.remove('active');
@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Cierra el menú al hacer clic en un enlace de navegación (solo en móviles)
+        // Cierra el menú al hacer clic en un enlace de navegación
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
+                if (window.innerWidth <= 768) { // Solo cierra en móvil al hacer clic en enlace
                     navLinks.classList.remove('active');
                     menuToggle.classList.remove('active');
                 }
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
         let counter = 0;
-        const getSlideSize = () => carouselImages[0].clientWidth;
+        const getSlideSize = () => carouselImages[0].clientWidth; // Función para obtener el tamaño dinámicamente
         let size = getSlideSize();
 
         // Inicializar la posición del carrusel
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nextBtn.addEventListener('click', () => {
             size = getSlideSize(); // Actualizar el tamaño antes de mover
             if (counter >= carouselImages.length - 1) {
-                counter = -1; // Vuelve al inicio para un loop infinito
+                counter = -1; // Vuelve al inicio si llega al final (loop infinito)
             }
             counter++;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
@@ -64,22 +64,23 @@ document.addEventListener('DOMContentLoaded', () => {
         prevBtn.addEventListener('click', () => {
             size = getSlideSize(); // Actualizar el tamaño antes de mover
             if (counter <= 0) {
-                counter = carouselImages.length; // Vuelve al final para un loop infinito
+                counter = carouselImages.length; // Vuelve al final si llega al inicio (loop infinito)
             }
             counter--;
             carouselSlide.style.transition = 'transform 0.5s ease-in-out';
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
         });
 
-        // Auto-play del carrusel
+        // Auto-play (opcional)
         setInterval(() => {
             nextBtn.click();
         }, 5000); // Cambia de imagen cada 5 segundos
 
-        // Ajustar el tamaño al redimensionar la ventana para mantener la posición correcta
+
+        // Opcional: Ajustar el tamaño al redimensionar la ventana
         window.addEventListener('resize', () => {
             const newSize = carouselImages[0].clientWidth;
-            carouselSlide.style.transition = 'none'; // Desactiva la transición temporalmente para el ajuste
+            carouselSlide.style.transition = 'none'; // Desactiva la transición temporalmente
             carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
         });
     }
@@ -117,11 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Lógica del Chatbot ---
-    const chatbotButton = document.getElementById('chatbot-toggle-btn');
+    // IMPORTANTE: Asegúrate de que los elementos del chatbot existan en el HTML desde el inicio.
+    const chatbotButton = document.getElementById('chatbot-toggle-btn'); // Actualizado a chatbot-toggle-btn
     const chatbotContainer = document.getElementById('chatbot-container');
-    const closeChatbotBtn = document.getElementById('close-chatbot-btn');
-    const chatInput = document.getElementById('user-input');
-    const sendChatBtn = document.getElementById('send-button');
+    const closeChatbotBtn = document.getElementById('close-chatbot-btn'); // Botón de cierre explícito
+    const chatInput = document.getElementById('user-input'); // Actualizado a user-input
+    const sendChatBtn = document.getElementById('send-button'); // Actualizado a send-button
     const chatMessages = document.getElementById('chat-messages');
 
     // Asegurarse de que todos los elementos críticos del chatbot existan antes de configurar los listeners
@@ -155,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userInput = chatInput.value.trim();
             if (userInput === '') return;
 
-            const userMessageDiv = document.createElement('div');
+            const userMessageDiv = document.createElement('div'); // Cambiado a div
             userMessageDiv.classList.add('user-message');
             userMessageDiv.textContent = userInput;
             chatMessages.appendChild(userMessageDiv);
@@ -166,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 const botResponse = getBotResponse(userInput);
-                const botMessageDiv = document.createElement('div');
+                const botMessageDiv = document.createElement('div'); // Cambiado a div
                 botMessageDiv.classList.add('bot-message');
                 botMessageDiv.innerHTML = botResponse; // Usar innerHTML para enlaces en las respuestas
                 chatMessages.appendChild(botMessageDiv);
@@ -182,23 +184,23 @@ document.addEventListener('DOMContentLoaded', () => {
             if (/(hola|saludos)/.test(message)) {
                 return "¡Hola! ¿En qué puedo ayudarte hoy?";
             } else if (/(mision|vision|esencia)/.test(message)) {
-                return "Nuestra Misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra Visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación. Para más información, visita nuestra sección de <a href='#about'>Acerca de Nosotros</a>.";
+                return "Nuestra Misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra Visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación. Para más información, visita nuestra sección de <a href='#about'>Acerca de Nosotros</a>."; // Actualizado a #about
             } else if (/(flota|camiones|unidades)/.test(message)) {
-                return "Contamos con una flota moderna y diversificada para satisfacer tus necesidades. Para ver la flota completa, visita nuestra sección de <a href='#fleet'>Nuestra Flota</a>.";
+                return "Contamos con una flota moderna y diversificada para satisfacer tus necesidades. Para ver la flota completa, visita nuestra sección de <a href='#fleet'>Nuestra Flota</a>."; // Actualizado a #fleet
             } else if (/(rastreo|seguridad|monitoreo|satelital)/.test(message)) {
-                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real. Para más detalles, visita nuestra sección de <a href='#tracking'>Rastreo Satelital 24/7</a>.";
+                return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real. Para más detalles, visita nuestra sección de <a href='#tracking'>Rastreo Satelital 24/7</a>."; // Actualizado a #tracking
             } else if (/(cobertura|donde operan|ciudades|nacional)/.test(message)) {
-                return "Realizamos servicios de transporte a toda la República Mexicana. Para más información, visita nuestra sección de <a href='#coverage'>Cobertura Nacional</a>.";
+                return "Realizamos servicios de transporte a toda la República Mexicana. Para más información, visita nuestra sección de <a href='#coverage'>Cobertura Nacional</a>."; // Actualizado a #coverage
             } else if (/(patios|ubicacion|tepotzotlan|manzanillo|operaciones)/.test(message)) {
-                return "Tenemos patios de operaciones en la Ciudad de México y Monterrey. Para ver sus ubicaciones y mapas, visita nuestra sección de <a href='#patios'>Nuestros Patios y Bodegas</a>.";
+                return "Tenemos patios de operaciones en la Ciudad de México y Monterrey. Para ver sus ubicaciones y mapas, visita nuestra sección de <a href='#patios'>Nuestros Patios y Bodegas</a>."; // Actualizado a #patios
             } else if (/(contacto|cotizacion|telefono|email|contactar|llamar)/.test(message)) {
-                return "Puedes contactarnos a través de nuestro <a href='#contact'>formulario de Contacto</a>, o consultar los números y correos en la sección de Contacto.";
+                return "Puedes contactarnos a través de nuestro <a href='#contact'>formulario de Contacto</a>, o consultar los números y correos en la sección de Contacto."; // Actualizado a #contact y referencia general
             } else if (/(privacidad|politicas|aviso)/.test(message)) {
-                return "Nuestras <a href='#privacy-policy'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página.";
+                return "Nuestras <a href='#privacy-policy'>políticas de privacidad</a> detallan cómo recopilamos y protegemos tus datos personales. Puedes revisarlas completas en la sección de Privacidad de la página."; // Actualizado a #privacy-policy
             } else if (/(servicios)/.test(message)) {
-                return "Ofrecemos transporte de carga consolidada y dedicada, logística inversa, almacenamiento, soluciones de cadena de frío y más. Para ver todos nuestros servicios, visita la sección de <a href='#services'>Nuestros Servicios</a>.";
+                return "Ofrecemos transporte de carga consolidada y dedicada, logística inversa, almacenamiento, soluciones de cadena de frío y más. Para ver todos nuestros servicios, visita la sección de <a href='#services'>Nuestros Servicios</a>."; // Actualizado a #services
             } else if (/(presentacion|qr|pdf|descargar)/.test(message)) {
-                return "Puedes ver nuestra presentación completa escaneando el código QR en la sección <a href='#qr-code'>Escanea Nuestro QR</a>.";
+                return "Puedes ver nuestra presentación completa escaneando el código QR en la sección <a href='#qr-code'>Escanea Nuestro QR</a>."; // Actualizado a #qr-code
             } else if (/(gracias|adios|bye)/.test(message)) {
                 return "¡De nada! Si tienes más preguntas, no dudes en consultar. ¡Hasta luego!";
             } else if (/(asuntos a\/b|estrategia a\/b)/.test(message)) {
@@ -213,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // --- Lógica de NAVEGACIÓN por Voz ---
-    const voiceNavToggleBtn = document.getElementById('voice-button');
+    const voiceNavToggleBtn = document.getElementById('voice-button'); // ID del botón de voz para navegación, cambiado a 'voice-button'
 
     if (voiceNavToggleBtn) { // Solo ejecutar si el botón existe
         // Verificar soporte para la Web Speech API
@@ -238,9 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 section.scrollIntoView({ behavior: 'smooth' });
                 console.log(`Navegando a la sección: ${id}`);
                 // Cierra el menú de navegación móvil si está abierto
-                if (navLinks && navLinks.classList.contains('active')) { // Verificar que navLinks exista
+                if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
-                    if (menuToggle) menuToggle.classList.remove('active'); // Verificar que menuToggle exista
+                    menuToggle.classList.remove('active');
                 }
             } else {
                 console.warn(`La sección con ID "${id}" no se encontró.`);
@@ -260,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 voiceNavToggleBtn.classList.remove('listening'); // Quitar clase de escucha
                 let errorMessage = 'No se pudo iniciar el reconocimiento de voz.';
                 if (e.name === 'InvalidStateError') {
-                    errorMessage += ' Parece que ya está activo o se intentó iniciar mientras estaba en un estado inválido. Intentando reiniciar...';
+                    errorMessage += ' Parece que ya está activo o se intentó iniciar mientras estaba en un estado inválido.';
                     // Intentar detener y reiniciar si es un InvalidStateError
                     recognition.stop(); // Intentar detener cualquier instancia previa
                     setTimeout(() => { // Pequeña pausa para permitir que se detenga completamente
@@ -268,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
                             recognition.start(); // Reintentar iniciar
                             voiceNavToggleBtn.textContent = 'Escuchando...';
                             voiceNavToggleBtn.classList.add('listening');
-                            console.log('✅ Reconocimiento de voz para navegación reiniciado con éxito.');
                         } catch (retryError) {
                             console.error('Error al reintentar iniciar el reconocimiento:', retryError);
                             alert(errorMessage + ' Intenta de nuevo.'); // Si falla el reintento, mostrar alert
@@ -290,27 +291,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Lógica de comandos de navegación directa ---
             if (transcript.includes('inicio') || transcript.includes('ir a inicio') || transcript.includes('principal')) {
-                scrollToSection('hero');
-            } else if (transcript.includes('misión') || transcript.includes('mision y vision') || transcript.includes('acerca de')) {
-                scrollToSection('about');
+                scrollToSection('hero'); // Actualizado a 'hero'
+            } else if (transcript.includes('misión') || transcript.includes('mision y vision') || transcript.includes('acerca de')) { // Actualizado a 'acerca de'
+                scrollToSection('about'); // Actualizado a 'about'
             } else if (transcript.includes('flota') || transcript.includes('camiones') || transcript.includes('unidades')) {
                 scrollToSection('fleet');
             } else if (transcript.includes('rastreo') || transcript.includes('satelital') || transcript.includes('monitoreo')) {
-                scrollToSection('tracking');
+                scrollToSection('tracking'); // Actualizado a 'tracking'
             } else if (transcript.includes('cobertura') || transcript.includes('nacional')) {
                 scrollToSection('coverage');
-            } else if (transcript.includes('patios') || transcript.includes('operaciones') || transcript.includes('bodegas')) {
+            } else if (transcript.includes('patios') || transcript.includes('operaciones') || transcript.includes('bodegas')) { // Agregado 'bodegas'
                 scrollToSection('patios');
             } else if (transcript.includes('contacto') || transcript.includes('contactar') || transcript.includes('llamar')) {
                 scrollToSection('contact');
             } else if (transcript.includes('privacidad') || transcript.includes('politicas de privacidad') || transcript.includes('aviso de privacidad')) {
-                scrollToSection('privacy-policy');
+                scrollToSection('privacy-policy'); // Actualizado a 'privacy-policy'
             } else if (transcript.includes('presentación') || transcript.includes('descargar presentación') || transcript.includes('qr')) {
-                scrollToSection('qr-code');
+                scrollToSection('qr-code'); // Actualizado a 'qr-code'
             } else if (transcript.includes('servicios') || transcript.includes('nuestros servicios')) {
                 scrollToSection('services');
             } else if (transcript.includes('asuntos a/b') || transcript.includes('estrategia a/b')) {
-                // Para enlaces externos, abrimos una nueva ventana
+                // Para este caso, como es un enlace externo, quizás no quieras un scroll, sino abrir la URL.
+                // O puedes desplazar a una sección si la creaste en tu HTML.
+                // Si quieres abrir la URL:
                 window.open('https://jivalogistictestab.my.canva.site/estrategia-de-asuntos-a-b-con-jiva-logistics', '_blank');
                 alert('Abriendo la página de Asuntos A/B.');
             }
@@ -326,7 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.error === 'not-allowed') {
                 alert('Permiso de micrófono denegado para comandos de voz. Revisa la configuración de tu navegador (haz clic en el candado en la barra de direcciones).');
             } else if (event.error === 'no-speech') {
-                console.log('No se detectó voz para comando de navegación.'); // Mensaje menos intrusivo
+                console.log('No se detectó voz para comando de navegación.');
+                // No mostrar un alert si simplemente no hubo voz para evitar ser intrusivo
             } else {
                 alert('Ocurrió un error en el reconocimiento de voz para navegación: ' + event.error);
             }
@@ -366,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pequeño retraso para permitir que el scroll inicie antes de cerrar el menú
                 setTimeout(() => {
                     navLinks.classList.remove('active');
-                    if (menuToggle) menuToggle.classList.remove('active');
+                    menuToggle.classList.remove('active');
                 }, 300);
             }
         });
@@ -402,6 +406,8 @@ document.addEventListener('DOMContentLoaded', () => {
         modalCtaButtons.forEach(button => {
             button.addEventListener('click', (e) => {
                 e.preventDefault(); // Evita cualquier acción por defecto
+                // Aquí podrías agregar un alert o un console.log si quieres
+                // alert('Funcionalidad de cotización por definir.');
                 console.log('Botón "Cotiza este servicio" presionado (funcionalidad pendiente).');
             });
         });
@@ -409,4 +415,4 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Algunos elementos del modal de servicios no se encontraron. Asegúrate de que los IDs open-services-modal-btn, services-modal, modal-overlay y .close-button estén correctos.');
     }
 
-}); // Fin de document.addEventListener('DOMContentLoaded')"
+}); // Fin de document.addEventListener('DOMContentLoaded')
