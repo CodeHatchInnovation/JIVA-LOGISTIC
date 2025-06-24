@@ -1368,4 +1368,32 @@ iframe {
     .social-icons-footer-list a i {
         font-size: 1.6em;
     }
+
+    .frases-destacadas {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Crea columnas responsivas */
+   gap: 20px;
+   padding: 20px;
+   margin-top: 30px; /* Espacio superior */
+}
+
+.tarjeta-frase {
+   background-color: #fff;
+   border-radius: 8px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   padding: 15px;
+   text-align: center;
+}
+
+.tarjeta-frase img {
+   max-width: 100%;
+   height: auto;
+   border-radius: 4px;
+   margin-bottom: 10px;
+}
+
+.tarjeta-frase p {
+   font-size: 1em;
+   color: #333;
+}
 }
