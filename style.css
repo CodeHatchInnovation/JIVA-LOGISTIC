@@ -7,8 +7,8 @@
     --gray-medium: #CCCCCC;
     --text-dark: #333333;
     --text-light: #F0F0F0;
-    --accent-color: #4CAF50; /* ¡NUEVO VERDE DE ACENTO! */
-    --accent-hover: #45a049; /* Tono más oscuro para hover */
+    --accent-color: #003366; /* ¡Color de acento ahora es el azul principal para botones e iconos! */
+    --accent-hover: #0055AA; /* Tono más oscuro para hover de acento */
     --spacing-large: 60px;
     --spacing-medium: 40px;
     --spacing-small: 25px;
@@ -93,9 +93,9 @@ body {
     transform: translateY(-2px);
 }
 
-/* El botón de voz solo se añade si el HTML lo tiene, no lo estoy tocando aquí */
+/* El botón de voz */
 .voice-btn {
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Color azul */
     color: var(--white);
     border: none;
     padding: 8px 12px;
@@ -107,7 +107,7 @@ body {
 }
 
 .voice-btn:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--accent-hover); /* Tono más oscuro de azul en hover */
     transform: translateY(-2px);
 }
 
@@ -213,7 +213,7 @@ p {
 
 /* Botones Call to Action */
 .cta-button {
-    background-color: var(--accent-color);
+    background-color: var(--primary-blue); /* Cambiado a azul */
     color: var(--white);
     padding: 12px 25px;
     text-decoration: none;
@@ -229,7 +229,7 @@ p {
 }
 
 .cta-button:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--accent-hover); /* Tono más oscuro de azul para hover */
     transform: translateY(-2px);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
 }
@@ -343,7 +343,7 @@ p {
 
 .map-link:hover {
     text-decoration: underline;
-    color: var(--accent-color);
+    color: var(--light-blue); /* Cambiado a azul claro */
 }
 
 iframe {
@@ -426,6 +426,43 @@ iframe {
 .content-left-image div {
     flex: 1;
     min-width: 300px;
+}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-grid .small-logo {
+    max-width: 80px; /* Ajusta según el tamaño deseado */
+    height: auto;
+    filter: grayscale(100%); /* Efecto blanco y negro */
+    opacity: 0.7;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+.image-grid .small-logo-placeholder { /* Estilo para los placeholders si no hay logos reales */
+    background-color: var(--gray-medium);
+    color: var(--text-dark);
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+    min-width: 80px; /* Para que tengan un tamaño mínimo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; /* Altura fija para consistencia */
+}
+
+
+.image-grid .small-logo:hover {
+    filter: grayscale(0%); /* Color al pasar el ratón */
+    opacity: 1;
 }
 
 .full-width-image {
@@ -558,7 +595,7 @@ iframe {
 }
 
 .privacy-policy-container a:hover {
-    color: var(--accent-color);
+    color: var(--primary-blue); /* Mantiene el color principal en hover */
 }
 
 /* Footer */
@@ -594,14 +631,14 @@ iframe {
     color: var(--light-blue);
 }
 
-/* INICIO DE ESTILOS CHATBOT - SOLO ESTO SE MODIFICA O AÑADE */
+/* INICIO DE ESTILOS CHATBOT */
 
 /* Chatbot Button Flotante */
 .chatbot-button {
     position: fixed;
     bottom: var(--spacing-medium);
     right: var(--spacing-medium);
-    background-color: var(--accent-color);
+    background-color: var(--accent-color); /* Color azul */
     color: var(--white);
     width: 55px;
     height: 55px;
@@ -617,7 +654,7 @@ iframe {
 }
 
 .chatbot-button:hover {
-    background-color: var(--accent-hover);
+    background-color: var(--accent-hover); /* Tono más oscuro de azul en hover */
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
@@ -837,7 +874,7 @@ iframe {
 
 .services-list li::before {
     content: '✓';
-    color: var(--accent-color);
+    color: var(--primary-blue); /* Icono de check azul */
     font-weight: bold;
     font-size: 1.2em;
     flex-shrink: 0;
@@ -909,7 +946,7 @@ iframe {
     content: '\f00c'; /* Icono de check de Font Awesome */
     font-family: 'Font Awesome 6 Free'; /* Asegúrate de que Font Awesome esté cargado */
     font-weight: 900; /* Para que aparezca el icono sólido */
-    color: var(--accent-color);
+    color: var(--primary-blue); /* Color azul para los checks */
     position: absolute;
     left: 0;
     top: 2px;
@@ -931,7 +968,7 @@ iframe {
     align-items: center;
     gap: 8px;
     text-decoration: none;
-    color: var(--primary-blue);
+    color: var(--primary-blue); /* Texto azul */
     font-weight: bold;
     font-size: 0.95em;
     transition: color 0.3s ease, transform 0.2s ease;
@@ -940,19 +977,19 @@ iframe {
 .social-icons-list a i,
 .social-icons-footer-list a i {
     font-size: 1.5em; /* Tamaño de los iconos */
-    color: var(--accent-color); /* Color del icono */
+    color: var(--primary-blue); /* Color azul de los iconos */
     transition: color 0.3s ease;
 }
 
 .social-icons-list a:hover,
 .social-icons-footer-list a:hover {
-    color: var(--accent-hover);
+    color: var(--accent-hover); /* Tono más oscuro de azul en hover */
     transform: translateY(-2px);
 }
 
 .social-icons-list a:hover i,
 .social-icons-footer-list a:hover i {
-    color: var(--primary-blue); /* Cambia el color del icono al hacer hover */
+    color: var(--accent-hover); /* Tono más oscuro de azul en hover para el icono */
 }
 
 /* Estilos para los botones de contacto directo */
@@ -965,7 +1002,7 @@ iframe {
     margin-bottom: var(--spacing-medium);
 }
 
-/* Colores específicos para los botones de redes */
+/* Colores específicos para los botones de redes (mantienen colores de marca) */
 .cta-button.social-whatsapp { background-color: #25D366; }
 .cta-button.social-whatsapp:hover { background-color: #1DA851; }
 
@@ -995,7 +1032,7 @@ iframe {
 }
 
 .social-icons-footer-list a:hover i {
-    color: var(--accent-color); /* Color de acento al pasar el ratón */
+    color: var(--accent-hover); /* Tono más oscuro de azul al pasar el ratón */
 }
 
 /* Responsive Design (Media Queries) - Se mantiene igual */
@@ -1175,6 +1212,14 @@ iframe {
         padding: var(--spacing-small);
     }
 
+    .contact-form label {
+        font-size: 0.85em;
+    }
+    .contact-form input, .contact-form textarea {
+        padding: 6px;
+        font-size: 0.85em;
+    }
+
     .chatbot-button {
         width: 45px;
         height: 45px;
@@ -1206,6 +1251,13 @@ iframe {
         margin: var(--spacing-small) auto;
     }
 
+    .services-list ul {
+        grid-template-columns: 1fr;
+    }
+    .services-list li {
+        font-size: 0.95em;
+        padding: 15px;
+    }
     /* Media Queries para ajustar la nueva sección */
     .digital-strategy-section {
         padding: var(--spacing-small);
@@ -1303,13 +1355,6 @@ iframe {
     }
     .privacy-policy-container ul {
         margin-left: 10px;
-    }
-    .services-list ul {
-        grid-template-columns: 1fr;
-    }
-    .services-list li {
-        font-size: 0.95em;
-        padding: 15px;
     }
     /* Media Queries para ajustar la nueva sección */
     .digital-strategy-section p,
