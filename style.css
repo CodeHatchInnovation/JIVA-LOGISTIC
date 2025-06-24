@@ -26,12 +26,14 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray);
+    /* Asegura que el padding horizontal del body controle los límites */
+    padding: 0 15px; /* MODIFICADO: Añadido padding horizontal general para el body */
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 20px; /* MODIFICADO: Mantenemos el padding del container */
 }
 
 /* --- Estilos Generales de Secciones y Botones --- */
@@ -225,35 +227,31 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) - MODIFICADO */
-.hero-video { /* Asegúrate que tu HTML tiene <div class="hero-video"> para el video */
+/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) - REVISADO */
+.hero-video {
     flex: 1;
     position: relative;
-    width: 100%; /* Ocupa todo el ancho disponible por su flex-item */
-    background-color: var(--black); /* Fondo negro mientras carga */
-    border-radius: 8px; /* Mantener el borde redondeado */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Mantener la sombra */
-
-    /* NUEVO: Contenedor flexible con altura mínima y máxima para control */
-    min-height: 250px; /* Altura mínima para pantallas pequeñas */
-    max-height: 500px; /* Altura máxima para pantallas grandes */
-    overflow: hidden; /* Asegura que el contenido que se desborde no sea visible */
-    display: flex; /* Para centrar el video dentro de este contenedor */
+    width: 100%; /* Permite que ocupe el ancho disponible dentro de hero-section */
+    max-width: 700px; /* MODIFICADO: Ancho máximo considerable para desktop */
+    height: 400px; /* MODIFICADO: Altura fija en desktop para asegurar un buen tamaño */
+    background-color: var(--black);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden; /* Muy importante para el object-fit: cover */
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .hero-video video,
-.hero-video iframe { /* Aplica a videos HTML5 y a iframes (YouTube/Vimeo) */
-    position: absolute; /* Para que el video llene el contenedor padre */
+.hero-video iframe {
+    position: absolute; /* Para que ocupe todo el espacio del .hero-video */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* CAMBIADO: object-fit a 'cover' para que el video siempre llene el espacio */
-    /* Esto podría recortar los bordes del video si la relación de aspecto no coincide */
-    object-fit: cover; /* Escala el video para que cubra todo el contenedor, minimizando barras negras */
-    border-radius: 8px; /* Para mantener los bordes redondeados del video en sí */
+    object-fit: cover; /* MUY IMPORTANTE: Recorta el video para que llene el espacio, eliminando barras negras */
+    border-radius: 8px;
 }
 
 
@@ -511,13 +509,14 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Patios Section (Mapas Responsivos) --- */
+/* --- Patios Section (Mapas Responsivos) - REVISADO --- */
 .patio-locations {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 30px; /* Mantiene el espacio entre las tarjetas */
     margin-top: 30px;
     justify-content: center;
+    padding: 0 15px; /* MODIFICADO: Añadido padding horizontal para que no se desborde */
 }
 
 .patio-card {
@@ -526,9 +525,11 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     flex: 1;
-    min-width: 300px;
+    min-width: 300px; /* MODIFICADO: Mantén un tamaño mínimo para que no se hagan demasiado pequeños */
     max-width: 500px; /* Límite para que no sean demasiado grandes en desktop */
     text-align: center;
+    /* MODIFICADO: box-sizing ya está en *, pero lo reconfirmamos */
+    box-sizing: border-box;
 }
 
 .patio-card h3 {
@@ -543,23 +544,26 @@ h2 {
 /* ESTILOS PARA LOS MAPAS (RESPONSIVO) - REVISADO */
 .patio-card .map-container {
     position: relative;
-    /* Usamos padding-bottom para mantener la proporción de 3:2 (altura es 66.66% del ancho) */
-    padding-bottom: 66.66%; /* Mantener una proporción de aspecto para el mapa */
-    height: 0; /* Necesario con padding-bottom para que solo el padding defina la altura */
+    padding-bottom: 66.66%; /* Relación de aspecto 3:2 (ajusta si tus mapas de Google tienen otra proporción) */
+    height: 0;
     overflow: hidden;
-    max-width: 100%;
+    width: 100%; /* MODIFICADO: Asegura que el contenedor del mapa ocupe el 100% de la tarjeta */
     background: #e0e0e0;
     border-radius: 8px;
     margin-bottom: 15px;
+    /* MODIFICADO: Aseguramos que no haya desbordamiento interno */
+    box-sizing: border-box;
 }
 
 .patio-card .map-container iframe {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100%; /* MUY IMPORTANTE: El iframe ocupa el 100% del contenedor con padding-bottom */
     height: 100%;
     border: 0;
+    /* MODIFICADO: Aseguramos que el iframe también respete su caja */
+    box-sizing: border-box;
 }
 
 .map-link {
@@ -1210,15 +1214,12 @@ hr {
         font-size: 1.1em;
     }
 
-    /* AJUSTES PARA EL VIDEO PRINCIPAL EN TABLETAS Y MÓVILES */
+    /* AJUSTES PARA EL VIDEO PRINCIPAL EN TABLETAS */
     .hero-video {
-        width: 100%; /* Ocupa todo el ancho del contenedor en vista de columna */
-        height: 350px; /* ALTURA FIJA PARA TABLETAS (puedes ajustar este valor) */
-        /* Eliminamos max-height para que la altura fija tenga prioridad aquí */
-        min-height: unset; /* Reinicia el min-height de desktop */
-        max-height: unset; /* Reinicia el max-height de desktop */
+        width: 100%;
+        height: 350px; /* Altura fija para tabletas */
+        max-width: 600px; /* MODIFICADO: Un ancho máximo también en tabletas para que no se vea gigantesco */
     }
-
 
     .values {
         justify-content: center;
@@ -1357,20 +1358,32 @@ hr {
 
     /* AJUSTES PARA EL VIDEO PRINCIPAL EN MÓVILES */
     .hero-video {
-        height: 250px; /* ALTURA FIJA PARA MÓVILES (puedes ajustar este valor) */
+        height: 250px; /* Altura fija para móviles */
+        max-width: 100%; /* Asegura que no tenga límite de ancho impuesto por el 992px breakpoint */
+    }
+
+    /* REVISADO: Patios Section en móviles */
+    .patio-locations {
+        gap: 20px; /* MODIFICADO: Un poco menos de espacio en móviles */
+        padding: 0 10px; /* MODIFICADO: Ajuste de padding para pantallas muy pequeñas */
     }
 
     .patio-card {
-        max-width: 100%; /* Las tarjetas de patio ocupan todo el ancho */
-        margin-bottom: 20px; /* Espacio entre tarjetas */
+        min-width: unset; /* MODIFICADO: Permitir que se hagan más pequeños si es necesario en móviles */
+        width: 100%; /* MODIFICADO: Ocupar todo el ancho disponible */
+        max-width: 100%; /* Asegurar que no exceda el ancho en móviles */
+        margin-bottom: 20px;
     }
 
     .patio-card .map-container {
-        padding-bottom: 66.66%; /* Mantiene la proporción 3:2, si esa es la que prefieres para los mapas */
+        padding-bottom: 75%; /* MODIFICADO: Aumenta la proporción a 4:3 para que el mapa sea más alto */
     }
 }
 
 @media (max-width: 480px) {
+    body {
+        padding: 0 10px; /* MODIFICADO: Reducir padding general para pantallas muy pequeñas */
+    }
     h1 {
         font-size: 2em;
     }
