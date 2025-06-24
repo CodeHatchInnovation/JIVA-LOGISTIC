@@ -61,6 +61,8 @@ body {
     margin: 0 auto;
     padding: 0 var(--spacing-small);
     width: 100%;
+    /* Agregado para mobile, si es necesario, pero lo manejamos en la media query */
+    /* flex-wrap: wrap; */ 
 }
 
 .logo img {
@@ -105,6 +107,8 @@ body {
     font-size: 0.9em;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Aseguramos que sea block por defecto, aunque flex en navbar lo maneja */
+    display: inline-block; 
 }
 
 .voice-btn:hover {
@@ -262,7 +266,7 @@ p {
     margin-bottom: var(--spacing-small);
 }
 
-/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) - CORREGIDO */
+/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) - CORREGIDO PARA VISIBILIDAD */
 .hero-video {
     flex: 1;
     position: relative;
@@ -273,7 +277,7 @@ p {
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     overflow: hidden; /* Muy importante para el object-fit: cover */
-    display: flex;
+    display: flex; /* Asegura que el contenedor del video es un flex container */
     justify-content: center;
     align-items: center;
 }
@@ -347,13 +351,11 @@ p {
 }
 
 /* Ajustes específicos para las tarjetas de patio (si tienen una clase adicional como .patio-card) */
-/* Si tus tarjetas de patio SÓLO usan la clase .card, estas reglas se aplicarán */
-/* Si tus tarjetas de patio tienen una clase específica como .patio-card, podríamos poner reglas aquí */
 .patio-card .map-container {
     position: relative;
     width: 100%;
     /* Relación de aspecto 3:2, puedes ajustar si es necesario */
-    padding-bottom: 66.66%; 
+    padding-bottom: 66.66%;
     height: 0;
     overflow: hidden;
     margin-top: var(--spacing-small);
@@ -904,12 +906,13 @@ p {
     }
 
     /* Video en móvil: Asegurar que es responsivo y se mantiene el aspect-ratio */
-    .hero-video { 
+    .hero-video {
         height: auto; /* Dejar que la altura se ajuste automáticamente */
         padding-bottom: 56.25%; /* Para 16:9 aspect ratio (altura / ancho * 100%) */
         margin-top: var(--spacing-medium);
         position: relative; /* Necesario para los hijos con position: absolute */
         max-width: 100%; /* Asegura que no se desborde */
+        display: block; /* Aseguramos que siempre se muestre */
     }
 
     /* Asegurar que el iframe/video ocupe todo el espacio del contenedor con aspect-ratio */
@@ -922,7 +925,6 @@ p {
         height: 100%;
         object-fit: cover;
     }
-
 
     .card-grid {
         gap: var(--spacing-small);
@@ -957,14 +959,14 @@ p {
     }
 
     .navbar {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea si no caben */
         justify-content: space-between;
-        max-width: 100%; 
+        max-width: 100%;
         padding: 0 15px;
     }
 
     .nav-links {
-        display: none;
+        display: none; /* Oculto por defecto en móvil */
         flex-direction: column;
         width: 100%;
         text-align: center;
@@ -979,7 +981,7 @@ p {
     }
 
     .nav-links.active {
-        display: flex;
+        display: flex; /* Mostrar cuando está activo */
     }
 
     .nav-links li {
@@ -998,10 +1000,13 @@ p {
     }
 
     .voice-btn {
-        display: block; /* Asegura que el botón de voz sea visible */
+        display: block !important; /* Asegura que el botón de voz sea visible y un bloque */
         order: 2; /* Colócalo entre el logo y el menú hamburguesa */
         margin-left: auto; /* Empuja el botón de voz a la derecha */
         margin-right: 15px; /* Espacio entre el botón de voz y el hamburguesa */
+        /* Aseguramos un tamaño base para empezar */
+        font-size: 0.9em;
+        padding: 8px 12px;
     }
 
     .logo img {
@@ -1016,9 +1021,8 @@ p {
         padding: 8px var(--spacing-small);
     }
 
+    /* El botón de voz: Ajustes de tamaño, la visibilidad ya la maneja la media query superior */
     .voice-btn {
-        /* Los ajustes de tamaño se hacen en la media query de 480px o menos, 
-           aquí solo nos aseguramos de que la posición sea correcta */
         font-size: 0.85em;
         padding: 6px 12px;
     }
@@ -1125,7 +1129,7 @@ p {
 
     .patio-card .map-container {
         /* Mantenemos el 75% para una buena relación de aspecto en móviles/tabletas */
-        padding-bottom: 75%; 
+        padding-bottom: 75%;
     }
 }
 
