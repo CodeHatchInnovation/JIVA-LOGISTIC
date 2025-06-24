@@ -3,339 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JIVA LOGISTICS: Transporte y Logística</title>
-    <link rel="stylesheet" href="style.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>JIVA LOGISTIC - Transporte y Logística Profesional</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="navbar">
-        <div class="container">
+    <header class="main-header">
+        <nav class="navbar">
             <div class="logo">
-                <img src="logo-jiva.png" alt="JIVA LOGISTICS Logo"> </div>
-            <nav class="nav-links">
-                <a href="#hero">Inicio</a>
-                <a href="#about">Misión</a>
-                <a href="#fleet">Flota</a>
-                <a href="#tracking">Rastreo</a>
-                <a href="#coverage">Cobertura</a>
-                <a href="#patios">Patios</a>
-                <a href="#contact">Contacto</a>
-                <a href="#privacy-policy">Privacidad</a>
-                <a href="#services">Servicios</a>
-                <a href="#qr-code">Presentación</a>
-                <a href="#blog">Blog</a> <a href="https://jivalogistictestab.my.canva.site/estrategia-de-asuntos-a-b-con-jiva-logistics" target="_blank">Asuntos A/B</a>
-            </nav>
-            <button id="voice-button" class="voice-nav-button">Voz</button>
-            <div class="menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+                <img src="images/logo_jiva_logistic.png" alt="Logo JIVA LOGISTIC">
             </div>
-        </div>
+            <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                <span class="hamburger-icon"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#mision">Misión</a></li>
+                <li><a href="#flota">Flota</a></li>
+                <li><a href="#rastreo">Rastreo</a></li>
+                <li><a href="#cobertura">Cobertura</a></li>
+                <li><a href="#patios">Patios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#privacidad">Privacidad</a></li>
+                <li><a href="#qr-section">Presentación</a></li>
+                <li><a href="https://jivalogistictestab.my.canva.site/estrategia-de-asuntos-a-b-con-jiva-logistics">Asuntos A/B</a></li>
+                <li><a href="https://jivalogisticlandingpage.mystrikingly.com/">Blog</a></li>
+            </ul>
+            <button id="voice-command-toggle" class="voice-btn">Voz</button>
+        </nav>
     </header>
 
     <main>
-        <section id="hero" class="hero-section">
-            <div class="container">
+        <section id="inicio" class="hero-section">
+            <div class="hero-content">
                 <h1>JIVA LOGISTIC: Tu Socio en Transporte y Logística</h1>
                 <p>Somos una empresa especialista en el movimiento de carga contenerizada (20 a 40 pies) y servicio de transporte de carga (caja seca). En constante evolución y crecimiento, contamos con las herramientas e infraestructura para llevar tu mercancía de forma rápida, eficaz y segura a toda la República Mexicana. Nos encargamos de que llegue en tiempo y forma al destino requerido.</p>
-                <div class="hero-features">
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Calidad</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Seguridad</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Responsabilidad</span>
-                    </div>
+                <div class="values">
+                    <span>Calidad</span>
+                    <span>Seguridad</span>
+                    <span>Responsabilidad</span>
                 </div>
-                <button class="cta-button">Solicita una Cotización</button>
-                <div class="video-placeholder">
-                    <video controls src="ruta/a/tu/video.mp4" poster="ruta/a/miniatura.jpg"></video>
-                </div>
+                <button class="cta-button" onclick="location.href='https://docs.google.com/forms/d/e/1FAIpQLSePcAfyOLARN71DCdDRPA9VS1EGymcBfqPu3QSGmFqrBNspaQ/viewform'">Solicita una Cotización</button>
+            </div>
+            <div class="hero-image">
+                <img src="images/imagen_principal_camion.jpg" alt="Camión JIVA LOGISTIC en operación">
             </div>
         </section>
 
-        <section id="about" class="about-section">
+        <section id="servicios" class="services-section">
             <div class="container">
-                <h2>Acerca de Nosotros</h2>
-                <div class="mission-vision">
-                    <div class="item">
-                        <h3>Misión</h3>
-                        <p>Ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo.</p>
-                    </div>
-                    <div class="item">
-                        <h3>Visión</h3>
-                        <p>Consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación.</p>
-                    </div>
+                <h2>Nuestros Principales Servicios</h2>
+                <div class="services-list">
+                    <ul>
+                        <li>Transporte de carga contenerizada</li>
+                        <li>Transporte en caja seca México</li>
+                        <li>Logística de contenedores 20 y 40 pies</li>
+                        <li>Rastreo satelital transporte</li>
+                        <li>Transporte seguro de mercancía</li>
+                        <li>JIVA LOGISTICS transporte nacional</li>
+                    </ul>
                 </div>
-                <p>En JIVA LOGISTICS, nos esforzamos por ser el socio logístico de confianza para nuestros clientes, impulsando su crecimiento y eficiencia operativa a través de soluciones de transporte personalizadas y de alta calidad.</p>
             </div>
         </section>
-
-        <section id="fleet" class="fleet-section">
+        
+        <section id="mision" class="section-padded blue-bg">
+            <div class="container">
+                <h2>Nuestra Esencia</h2>
+                <div class="card-grid">
+                    <div class="card">
+                        <h3>Misión</h3>
+                        <p>Somos una empresa especialista en el movimiento de carga contenerizada; nuestro objetivo principal es ofrecer un servicio especializado con calidad, confiabilidad y seguridad. A precios competitivos, buscando la continuidad comercial a largo plazo.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Visión</h3>
+                        <p>Consolidarnos como empresa líder en el ramo de transporte de contenedores reconocida por su compromiso con la eficiencia y la innovación, brindando un mejor servicio de manera eficiente, estableciendo alianzas estratégicas comprometidas con las necesidades del cliente.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="flota" class="section-padded">
             <div class="container">
                 <h2>Nuestra Flota</h2>
-                <p>Contamos con una flota moderna y diversificada para satisfacer tus necesidades de transporte.</p>
+                <p>Contamos con 17 unidades: 11 sencillos, 5 full expandibles para carga de 40 y 20 pies para movimiento de cargas desconsolidadas, y 6 cajas secas.</p>
                 <div class="carousel-container">
                     <div class="carousel-slide">
-                        <img src="image_a73c3a.jpg" alt="Camión 1">
-                        <img src="image_a7387c.png" alt="Camión 2">
-                        <img src="image_a74ae5.png" alt="Camión 3">
-                        <img src="image_a74b5d.png" alt="Camión 4">
-                        <img src="image_a7a4d6.png" alt="Camión 5">
-                        </div>
-                    <button class="prev-btn">❮</button>
-                    <button class="next-btn">❯</button>
+                        <img src="images/camion1.jpg" alt="Camión de la flota JIVA LOGISTIC 1">
+                        <img src="images/camion2.jpg" alt="Camión de la flota JIVA LOGISTIC 2">
+                        <img src="images/camion3.jpg" alt="Camión de la flota JIVA LOGISTIC 3">
+                        <img src="images/caja_seca1.jpg" alt="Caja Seca JIVA LOGISTIC 1">
+                    </div>
+                    <button class="prev-btn"><</button>
+                    <button class="next-btn">></button>
                 </div>
-                <button class="cta-button">Cotiza tu envío con nuestra flota</button>
+                <button class="cta-button" onclick="location.href='#contacto'">Cotiza tu envío con nuestra flota</button>
             </div>
         </section>
 
-        <section id="tracking" class="tracking-section">
+        <section id="rastreo" class="section-padded blue-bg">
             <div class="container">
-                <h2>Rastreo Satelital 24/7</h2>
-                <p>Ofrecemos monitoreo satelital continuo para garantizar la seguridad y la ubicación de tu carga en todo momento.</p>
-                <div class="tracking-features">
-                    <div class="feature-item">
-                        <i class="fas fa-satellite-dish"></i>
-                        <span>Rastreo en tiempo real</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-bell"></i>
-                        <span>Alertas personalizadas</span>
-                    </div>
-                    <div class="feature-item">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Seguridad reforzada</span>
+                <h2>Monitoreo Satelital 24/7</h2>
+                <div class="content-left-image">
+                    <img src="images/rastreo_satelital_icono.png" alt="Icono de Rastreo Satelital">
+                    <div>
+                        <p>Contamos con rastreo satelital 24/7 con monitoreo en tiempo real. Nuestros protocolos de seguridad están conformados por la última generación tecnológica en el transporte, con la cual podemos saber en todo momento la ubicación de su mercancía y apagar remotamente la unidad en caso de robo.</p>
+                        <p>Trabajamos con tecnologías de punta como ELITE, Zapata Aeropuerto, FREIT y PROTRACK para garantizar la seguridad de tu carga.</p>
                     </div>
                 </div>
-                <p>Con nuestra tecnología de vanguardia, tendrás total tranquilidad sabiendo dónde está tu mercancía 24 horas al día, 7 días a la semana.</p>
+                <button class="cta-button" onclick="location.href='#contacto'">Más información sobre seguridad</button>
             </div>
         </section>
 
-        <section id="coverage" class="coverage-section">
+        <section id="cobertura" class="section-padded">
             <div class="container">
                 <h2>Cobertura Nacional</h2>
-                <p>Realizamos servicios de transporte a toda la República Mexicana, conectando tus negocios a lo largo del país.</p>
-                <img src="mapa-mexico.png" alt="Mapa de Cobertura Nacional"> <p>No importa dónde necesites enviar o recibir tu carga, JIVA LOGISTICS tiene la capacidad de llegar a tu destino.</p>
+                <p>Realizamos servicios a toda la República Mexicana.</p>
+                <img src="images/mapa_mexico_cobertura.jpg" alt="Mapa de cobertura en México" class="full-width-image">
             </div>
         </section>
 
-        <section id="patios" class="patios-section">
+        <section id="patios" class="section-padded blue-bg">
             <div class="container">
-                <h2>Nuestros Patios y Bodegas</h2>
-                <p>Contamos con puntos estratégicos de operación para optimizar tus rutas y almacenamiento.</p>
-                <div class="patios-grid">
-                    <div class="patio-card">
+                <h2>Nuestros Patios de Operaciones</h2>
+                <div class="card-grid">
+                    <div class="card">
                         <h3>Patio de Tepotzotlán</h3>
-                        <p>Ubicación: Paseo de los Buganvillas San Mateo Xaloc, Tepotzotlán, Estado de México, CP: 54602.</p>
-                        <div class="map-placeholder">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.840742123565!2d-99.21323388556608!3d19.789069686616053!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e8d9d5d5d67%3A0x6b7d7b7b7b7b7b7b!2sPaseo%20de%20los%20Buganvillas%2C%20San%20Mateo%20Xaloc%2C%20Tepotzotl%C3%A1n%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                        <img src="image_4fcef3.png" alt="Patio Tepotzotlán 1">
-                        <img src="image_4fd655.png" alt="Patio Tepotzotlán 2">
+                        <p>Ubicación: Paseo de las Buganvilias, San Mateo Xaloc, Tepotzotlán, Estado de México, CP: 54602.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3753.868779973289!2d-99.23190822452335!3d19.789178681531773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d21e05d21a2c91%3A0xc3b8a3e7e8b6b0b2!2sPaseo%20de%20Las%20Buganvilias%2C%20San%20Mateo%20Xaloc%2C%2054602%20Tepotzotl%C3%A1n%2C%20Méx.!5e0!3m2!1ses-419!2smx!4v1700688636189!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/yC7Lw91jLz31uM3p7" target="_blank" class="map-link">Ver en Google Maps</a>
                     </div>
-                    <div class="patio-card">
+                    <div class="card">
                         <h3>Patio Manzanillo</h3>
-                        <p>Ubicación: CARRETERA FEDERAL MANZANILLO - COLIMA KM 307+500, 28800 Manzanillo, Col.</p>
-                        <div class="map-placeholder">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.126488358482!2d-104.34098908557434!3d19.04369798711417!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x84252a1212b2b2b1%3A0x6b7d7b7b7b7b7b7b!2sCARRETERA%20FEDERAL%20MANZANILLO%20-%20COLIMA%20KM%20307%2B500%2C%2028800%20Manzanillo%2C%20Col.!5e0!3m2!1ses-419!2smx!4v1700000000000!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                        </div>
-                        <img src="image_9476a0.png" alt="Patio Manzanillo 1">
-                        <img src="image_59c2e0.png" alt="Patio Manzanillo 2">
+                        <p>Ubicación: CARRETERA FEDERAL MANZANILLO - COLIMA KM 307+500, 28800 Manzanillo.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1880.8931149791465!2d-104.28636195740447!3d19.06208083896572!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8424d5218d8e3b7b%3A0x7d0e3778a5e3d7b8!2sTransportes%20Valkar!5e0!3m2!1ses-419!2smx!4v1700688701047!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/9Wp2Rk1x2X2xY5p96" target="_blank" class="map-link">Ver en Google Maps</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
+        <section id="contacto" class="section-padded">
             <div class="container">
                 <h2>Contáctanos</h2>
-                <p>¿Listo para trabajar con una empresa logística moderna?</p>
-                <p>Contáctanos directamente desde tu red favorita:</p>
-                <div class="social-contact-buttons">
-                    <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="social-button whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    <a href="https://t.me/XXXXXXXXXX" target="_blank" class="social-button telegram"><i class="fab fa-telegram-plane"></i> Telegram</a>
-                    <a href="https://m.me/XXXXXXXXXX" target="_blank" class="social-button messenger"><i class="fab fa-facebook-messenger"></i> Messenger</a>
+                <p>Estamos listos para ayudarte con tus necesidades de transporte y logística. Por favor, rellena el formulario o utiliza los datos de contacto a continuación.</p>
+                <div class="card-grid contact-info-grid">
+                    <div class="card contact-card">
+                        <h3>Oficina Principal</h3>
+                        <p>Calle Córdoba 17 Int 3, Col Loma Bonita, Tecámac De Felipe Villanueva, CP: 55767.</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3755.932822184478!2d-98.9836933!3d19.697475199999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d191240c5b525f%3A0xb6f5c8e7e8b3e8c9!2sC.%20C%C3%B3rdoba%2017%2C%20Loma%20Bonita%2C%2055767%20Tec%C3%A1mac%20de%20Felipe%20Villanueva%2C%20M%C3%A9x.!5e0!3m2!1ses-419!2smx!4v1700688755050!5m2!1ses-419!2smx" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <a href="https://maps.app.goo.gl/P3q4T3g5q9v2S2p19" target="_blank" class="map-link">Ver en Google Maps</a>
+                    </div>
+                    <div class="card contact-card">
+                        <h3>Información de Contacto</h3>
+                        <p><strong>Fernando Lucas:</strong> <a href="tel:+525516273406">5516273406</a></p>
+                        <p><strong>Armando Martinez:</strong> <a href="tel:+525542639390">5542639390</a></p>
+                        <p><strong>Email Operaciones:</strong> <a href="mailto:jiva.operaciones@gmail.com">jiva.operaciones@gmail.com</a></p>
+                        <p><strong>Email General:</strong> <a href="mailto:jivalogistics@outlook.com">jivalogistics@outlook.com</a></p>
+                        <p><strong>Email Alternativo:</strong> <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a></p>
+                    </div>
                 </div>
-                <p>O usa nuestro formulario de contacto:</p>
+
+                <h3 class="contact-form-title">Envíanos un Mensaje</h3>
                 <form id="contact-form" class="contact-form">
                     <div class="form-group">
                         <label for="name">Nombre:</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email:</label>
+                        <label for="email">Correo Electrónico:</label>
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Mensaje:</label>
                         <textarea id="message" name="message" rows="5" required></textarea>
                     </div>
-                    <button type="submit" class="submit-button">Enviar Mensaje</button>
-                    <p id="contact-message" class="form-message"></p>
+                    <button type="submit" class="cta-button">Enviar Mensaje</button>
+                    <p id="contact-message"></p>
                 </form>
-                <p class="social-media-promo">Para saber nuestras últimas novedades visita nuestras otras redes sociales:</p>
-                <div class="social-media-links">
-                    <a href="https://facebook.com/jivalogistics" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
-                    <a href="https://tiktok.com/@jivalogistics" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
-                    <a href="https://snapchat.com/add/jivalogistics" target="_blank"><i class="fab fa-snapchat"></i> Snapchat</a>
-                    <a href="https://x.com/jivalogistics" target="_blank"><i class="fab fa-twitter"></i> X</a>
-                    <a href="https://instagram.com/jivalogistics" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-                    <a href="https://linkedin.com/company/jivalogistics" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://youtube.com/jivalogistics" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
-                    <a href="https://pinterest.com/jivalogistics" target="_blank"><i class="fab fa-pinterest"></i> Pinterest</a>
-                </div>
-                <p class="tagline">En Jiva Logistics, conectamos tu carga con resultados.</p>
             </div>
         </section>
-
-        <section id="privacy-policy" class="privacy-policy-section">
-            <div class="container">
+        
+        <section id="privacidad" class="section-padded blue-bg">
+            <div class="container privacy-policy-container">
                 <h2>Políticas de Privacidad</h2>
                 <p>En JIVA LOGISTICS, estamos comprometidos con la protección de los datos personales de nuestros clientes, colaboradores y proveedores. Esta Política de Privacidad describe cómo recopilamos, usamos, almacenamos y protegemos la información personal que se genera en el curso de nuestras operaciones logísticas y de transporte.</p>
+
                 <h3>1. Identidad del Responsable</h3>
-                <p>JIVA LOGISTICS</p>
+                <p><strong>JIVA LOGISTICS</strong></p>
                 <p>Domicilio fiscal: Calle Córdoba 17 Int. 3, Col. Loma Bonita, Tecámac de Felipe Villanueva, C.P. 55767, Estado de México.</p>
                 <p>Correo: <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a></p>
                 <p>Teléfonos: <a href="tel:+525516273406">5516273406</a></p>
+
                 <h3>3. Finalidades del Tratamiento de Datos</h3>
-                <p>La información personal que recopilamos de usted será utilizada para las siguientes finalidades:</p>
+                <p>Los datos personales se utilizan para las siguientes finalidades:</p>
                 <ul>
-                    <li>Proveer los servicios y productos solicitados.</li>
-                    <li>Notificarle sobre nuevos servicios o productos que tengan relación con los ya contratados o adquiridos.</li>
-                    <li>Elaborar estudios y programas que son necesarios para determinar hábitos de consumo.</li>
-                    <li>Realizar evaluaciones periódicas de nuestros productos y servicios a efecto de mejorar la calidad de los mismos.</li>
-                    <li>Evaluar la calidad del servicio que brindamos.</li>
-                    <li>Dar cumplimiento a las obligaciones que hemos contraído con usted.</li>
+                    <li>Proveer los servicios de transporte y logística solicitados.</li>
+                    <li>Monitoreo y rastreo de unidades para seguridad de la carga.</li>
+                    <li>Comunicación con el cliente para seguimiento y atención.</li>
+                    <li>Facturación y procesos administrativos.</li>
+                    <li>Cumplimiento de obligaciones legales y contractuales.</li>
                 </ul>
-                <p>Para más detalles sobre nuestra política, por favor, contacte a nuestros canales de soporte.</p>
+
+                <h3>4. Medidas de Seguridad</h3>
+                <p>En JIVA LOGISTICS contamos con protocolos de seguridad tecnológica y administrativa para proteger la información, incluyendo:</p>
+                <ul>
+                    <li>Rastreo satelital 24/7 con apagado remoto en caso de robo.</li>
+                    <li>Control de acceso a datos sensibles.</li>
+                    <li>Uso de plataformas seguras para la transmisión de información.</li>
+                </ul>
+
+                <h3>5. Transferencia de Datos</h3>
+                <p>No compartimos ni vendemos su información personal a terceros, salvo cuando sea necesario para cumplir con nuestras obligaciones contractuales o legales, o por requerimiento de una autoridad competente.</p>
+
+                <h3>6. Derechos ARCO (Acceso, Rectificación, Cancelación y Oposición)</h3>
+                <p>Usted puede ejercer sus derechos de acceso, rectificación, cancelación u oposición enviando una solicitud al correo <a href="mailto:jivalogistic573@gmail.com">jivalogistic573@gmail.com</a>. Su solicitud será atendida en un plazo no mayor a 15 días hábiles.</p>
+
+                <h3>7. Cambios a la Política de Privacidad</h3>
+                <p>Nos reservamos el derecho de modificar esta Política de Privacidad en cualquier momento. Cualquier cambio será publicado en nuestras plataformas oficiales.</p>
+
+                <h3>8. Consentimiento</h3>
+                <p>Al proporcionar sus datos, usted consiente que JIVA LOGISTICS los utilice conforme a esta política.</p>
             </div>
         </section>
 
-        <section id="services" class="services-section">
-            <div class="container">
-                <h2>Nuestros Principales Servicios</h2>
-                <p>Explora a continuación los detalles de nuestros principales servicios logísticos. Haz clic para más información:</p>
-                <div class="service-buttons">
-                    <button class="service-toggle-btn">Transporte de Carga Contenerizada</button>
-                    <button class="service-toggle-btn">Transporte en Caja Seca México</button>
-                    <button class="service-toggle-btn">Logística de Contenedores</button>
-                    <button class="service-toggle-btn">Rastreo Satelital Transporte</button>
-                    <button class="service-toggle-btn">Seguridad de Mercancía</button>
-                    <button class="service-toggle-btn">Transporte Nacional</button>
-                </div>
-                <button id="open-services-modal-btn" class="cta-button">Ver Todos los Servicios</button>
-            </div>
-        </section>
-
-        <section id="qr-code" class="qr-code-section">
+        <section id="qr-section" class="qr-section section-padded">
             <div class="container">
                 <h2>Nuestra Presentación en QR</h2>
                 <p>Escanea el código QR para descargar nuestra presentación completa en PDF.</p>
-                <img src="image_a7a4d6.png" alt="Código QR de Presentación" class="qr-code-image"> <p>Una forma rápida y sencilla de acceder a toda nuestra información.</p>
-            </div>
-        </section>
-
-        <section id="blog" class="blog-section">
-            <div class="container">
-                <h2>Nuestro Blog</h2>
-                <p>Mantente al día con las últimas noticias y tendencias en logística.</p>
-                <div class="blog-posts-grid">
-                    <div class="blog-post-card">
-                        <h3>Título del Post 1</h3>
-                        <p>Breve descripción del contenido del post...</p>
-                        <a href="enlace-a-post1.html">Leer más</a>
-                    </div>
-                    <div class="blog-post-card">
-                        <h3>Título del Post 2</h3>
-                        <p>Breve descripción del contenido del post...</p>
-                        <a href="enlace-a-post2.html">Leer más</a>
-                    </div>
-                    </div>
+                <a href="images/JIVA_LOGISTIC_actual.pdf" target="_blank">
+                    <img src="images/qr_presentacion_jiva.png" alt="Código QR de la Presentación JIVA LOGISTIC" class="qr-code-image">
+                </a>
             </div>
         </section>
 
     </main>
 
-    <footer>
+    <footer class="main-footer">
         <div class="container">
-            <p>&copy; 2025 JIVA LOGISTIC. Todos los derechos reservados.</p>
-            <div class="footer-links">
-                <a href="#privacy-policy">Política de Privacidad</a>
-                <a href="#contact">Contacto</a>
-            </div>
+            <p>© 2025 JIVA LOGISTIC. Todos los derechos reservados.</p>
+            <ul class="footer-links">
+                <li><a href="#privacidad">Política de Privacidad</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
         </div>
     </footer>
 
-    <button id="chatbot-toggle-btn" class="floating-chatbot-button">
-        <i class="fas fa-comments"></i>
-    </button>
-
+    <div id="chatbot-button" class="chatbot-button">
+        💬
+    </div>
     <div id="chatbot-container">
-        <div class="chatbot-header">
+        <div id="chatbot-header" class="chatbot-header">
             <h3>JIVA Bot</h3>
-            <button id="close-chatbot-btn" class="close-button">X</button>
+            <button id="close-chatbot-btn">X</button>
         </div>
-        <div id="chat-messages" class="chatbot-messages">
-            <div class="bot-message">¡Hola! Soy tu asistente virtual de JIVA LOGISTICS. ¿En qué puedo ayudarte hoy?</div>
-            <div class="bot-message">Puedes preguntar sobre:<br> "Misión", "Flota", "Rastreo", "Cobertura", "Patios", "Contacto", "Privacidad", "Servicios" o "Presentación".</div>
+        <div id="chat-messages">
+            <p class="bot-message">¡Hola! Soy tu asistente virtual de JIVA LOGISTICS. ¿En qué puedo ayudarte hoy?</p>
+            <p class="bot-message">Puedes preguntar sobre:<br> "Misión", "Flota", "Rastreo", "Cobertura", "Patios", "Contacto", "Privacidad", "Servicios" o "Presentación".</p>
         </div>
-        <div class="chatbot-input-area">
-            <input type="text" id="user-input" placeholder="Escribe tu mensaje...">
-            <button id="send-button"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-
-    <div id="modal-overlay" class="modal-overlay"></div>
-    <div id="services-modal" class="modal">
-        <div class="modal-content">
-            <button class="close-button">X</button>
-            <h3>Catálogo Completo de Servicios</h3>
-            <div class="service-cards-container">
-                <div class="service-card">
-                    <h4>Transporte de Carga Contenerizada</h4>
-                    <img src="image_99195a.png" alt="Transporte Contenerizado">
-                    <p>Servicio especializado en el movimiento eficiente y seguro de contenedores de 20 y 40 pies a nivel nacional.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                <div class="service-card">
-                    <h4>Transporte en Caja Seca México</h4>
-                    <img src="image_9a0594.png" alt="Transporte Caja Seca">
-                    <p>Transporte terrestre de mercancías generales en unidades de caja seca, garantizando la integridad de tu carga.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                <div class="service-card">
-                    <h4>Logística de Contenedores 20 y 40 pies</h4>
-                    <img src="image_a6c345.png" alt="Logística de Contenedores">
-                    <p>Gestión integral de la cadena de suministro para contenedores, desde el puerto hasta el destino final.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                <div class="service-card">
-                    <h4>Rastreo Satelital Transporte</h4>
-                    <img src="iconos/rastreo.png" alt="Icono Rastreo"> <p>Monitoreo en tiempo real de tus unidades y carga a través de tecnología satelital avanzada, 24/7.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                <div class="service-card">
-                    <h4>Seguridad de Mercancía</h4>
-                    <img src="iconos/seguridad.png" alt="Icono Seguridad">
-                    <p>Estrategias y medidas de seguridad robustas para proteger tu mercancía durante todo el trayecto.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                <div class="service-card">
-                    <h4>Transporte Nacional</h4>
-                    <img src="iconos/nacional.png" alt="Icono Nacional">
-                    <p>Servicios de transporte de carga que cubren toda la República Mexicana, con eficiencia y confiabilidad.</p>
-                    <button class="modal-cta-button">Cotiza este servicio</button>
-                </div>
-                </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+            <button id="send-chat-btn">Enviar</button>
         </div>
     </div>
 
-    <script src="script.js"></script> </body>
+    <script src="script.js"></script>
+</body>
 </html>
