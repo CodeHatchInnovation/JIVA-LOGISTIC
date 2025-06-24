@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openCatalogBtn && catalogModal && closeCatalogBtn) {
         openCatalogBtn.addEventListener('click', (e) => {
             e.preventDefault(); // Evita que el enlace salte a otra sección
-            catalogModal.style.display = 'flex'; // Muestra el modal (usando flex para centrar)
+            catalogModal.style.display = 'none'; // Muestra el modal (usando flex para centrar)
             document.body.style.overflow = 'hidden'; // Evita scroll en el fondo
         });
 
