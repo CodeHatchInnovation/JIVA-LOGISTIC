@@ -1,11 +1,11 @@
-/* --- Variables CSS (actualizadas) --- */
+/* --- Variables CSS --- */
 :root {
     --primary-blue: #003366; /* Azul oscuro corporativo */
     --secondary-blue: #0056b3; /* Un azul un poco más claro */
     --light-gray: #f8f8f8;
     --dark-gray: #333;
     --text-color: #555;
-    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
+    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante */
     --white: #ffffff;
     --black: #000000;
 }
@@ -92,11 +92,12 @@ h2 {
 
 .navbar {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    flex-wrap: nowrap; /* Evita que los elementos del header principal salten de línea */
 }
 
 .logo img {
@@ -106,9 +107,11 @@ h2 {
 
 .nav-links {
     list-style: none;
-    display: flex;
+    display: flex; /* Esto se sobreescribirá en móvil */
     margin: 0;
     padding: 0;
+    flex-grow: 1; /* Ocupa el espacio disponible */
+    justify-content: flex-end; /* Alinea los enlaces a la derecha */
 }
 
 .nav-links li {
@@ -136,8 +139,8 @@ h2 {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    /* Aseguramos que sea inline-block por defecto */
-    display: inline-block;
+    display: inline-block; /* Asegura que siempre sea visible */
+    margin-left: 20px; /* Para separar un poco del último enlace de navegación en desktop */
 }
 
 .voice-btn:hover {
@@ -147,12 +150,13 @@ h2 {
 
 /* Menú hamburguesa para móviles */
 .menu-toggle {
-    display: none;
+    display: none; /* Oculto por defecto en desktop */
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
     z-index: 1001;
+    order: 3; /* Asegura su orden en el navbar para mobile */
 }
 
 .hamburger-icon {
@@ -198,6 +202,29 @@ h2 {
     top: 0;
 }
 
+/* Nuevas reglas para el botón de cerrar (X) en el menú móvil */
+.close-menu-item {
+    display: none; /* Oculto por defecto en desktop */
+}
+
+.close-menu-button {
+    background: none;
+    border: none;
+    color: var(--white); /* Color para que contraste con el menú azul */
+    font-size: 2.5em; /* Tamaño grande para el ícono de la X */
+    cursor: pointer;
+    position: absolute; /* Permite posicionarlo con top/right dentro de .nav-links */
+    top: 15px; /* Ajusta la distancia desde arriba */
+    right: 20px; /* Ajusta la distancia desde la derecha */
+    z-index: 1002; /* Asegura que esté por encima de los enlaces */
+    padding: 0; /* Elimina padding para control total */
+    line-height: 1; /* Ayuda a centrar verticalmente el contenido */
+}
+
+.close-menu-button:hover {
+    color: var(--accent-color);
+}
+
 /* --- Hero Section --- */
 .hero-section {
     display: flex;
@@ -239,8 +266,7 @@ h2 {
     background-color: var(--black);
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    /* Aseguramos que el display sea block para que siempre se renderice */
-    display: block; 
+    display: block;
 }
 
 .hero-video video,
@@ -1243,15 +1269,15 @@ hr {
     }
 
     .navbar {
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Asegura que logo, voice-btn y toggle estén en una sola fila */
         justify-content: space-between;
         align-items: center;
         padding: 0 15px;
     }
 
     .logo {
-        flex-grow: 1;
         order: 1;
+        flex-grow: 1;
     }
 
     /* Botón de voz para pantallas pequeñas - CORRECCIÓN CLAVE */
@@ -1265,32 +1291,52 @@ hr {
     }
 
     .menu-toggle {
-        display: block;
+        display: block; /* Muestra el botón de hamburguesa en móvil */
         order: 3; /* Posición al final */
     }
 
     .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
+        flex-direction: column; /* Apila los enlaces verticalmente */
+        width: 100%; /* Ocupa todo el ancho disponible */
+        display: none; /* Oculto por defecto, se muestra con la clase 'active' */
         background-color: var(--primary-blue);
-        padding-top: 10px;
-        position: static; /* Asegura que no se posicione de forma absoluta */
+        padding-top: 60px; /* Espacio para el logo y la X */
+        position: fixed; /* Ocupa toda la pantalla */
+        top: 0;
+        left: 0;
+        height: 100%; /* Ocupa toda la altura de la ventana */
+        overflow-y: auto; /* Permite desplazamiento si hay muchos enlaces */
+        z-index: 999; /* Por debajo del toggle y el botón de cerrar */
+        align-items: center; /* Centra los elementos horizontalmente */
+        justify-content: flex-start; /* Alinea los elementos desde arriba */
     }
 
     .nav-links.active {
-        display: flex;
-        flex-direction: column;
+        display: flex; /* Muestra el menú cuando está activo */
     }
 
     .nav-links li {
-        margin: 10px 0;
+        margin: 15px 0; /* Más espacio entre enlaces */
         text-align: center;
+        width: 100%; /* Asegura que cada li ocupe el ancho completo */
     }
 
     .nav-links a {
         padding: 10px 0;
         display: block;
+        font-size: 1.2em; /* Hace los enlaces más grandes */
+    }
+
+    /* Muestra el botón de cerrar en el menú móvil */
+    .close-menu-item {
+        display: block; /* Siempre visible cuando el menú está abierto */
+        position: absolute; /* Permite que el botón de cerrar se posicione respecto al nav-links */
+        top: 0;
+        right: 0;
+        width: 100%; /* Ocupa todo el ancho para su contexto de posicionamiento */
+        text-align: right; /* Alinea el botón de cerrar a la derecha dentro de este li */
+        padding-right: 15px; /* Pequeño padding para no pegarlo al borde */
+        padding-top: 15px; /* Espacio desde el top del menú */
     }
 
     h1 {
