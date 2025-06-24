@@ -26,14 +26,15 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--light-gray);
-    /* Asegura que el padding horizontal del body controle los límites */
-    padding: 0 15px; /* MODIFICADO: Añadido padding horizontal general para el body */
+    /* MODIFICADO: Asegura que el padding horizontal del body controle los límites, compatible con el header */
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px; /* MODIFICADO: Mantenemos el padding del container */
+    padding: 0 20px;
 }
 
 /* --- Estilos Generales de Secciones y Botones --- */
@@ -41,6 +42,9 @@ section {
     padding: 60px 0;
     background-color: var(--white);
     text-align: center;
+    /* MODIFICADO: Añadir padding lateral a las secciones para que el contenido no toque los bordes */
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 section:nth-of-type(even) { /* Para secciones alternas, si deseas un fondo diferente */
@@ -90,6 +94,7 @@ h2 {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 100%; /* MODIFICADO: Asegura que ocupe todo el ancho */
 }
 
 .navbar {
@@ -98,7 +103,9 @@ h2 {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    /* MODIFICADO: Padding consistente para el contenido del navbar */
     padding: 0 20px;
+    width: 100%; /* MODIFICADO: Asegura que el navbar use el 100% de su padre (main-header) */
 }
 
 .logo img {
@@ -231,9 +238,9 @@ h2 {
 .hero-video {
     flex: 1;
     position: relative;
-    width: 100%; /* Permite que ocupe el ancho disponible dentro de hero-section */
-    max-width: 700px; /* MODIFICADO: Ancho máximo considerable para desktop */
-    height: 400px; /* MODIFICADO: Altura fija en desktop para asegurar un buen tamaño */
+    width: 100%;
+    max-width: 700px; /* Ancho máximo considerable para desktop */
+    height: 400px; /* Altura fija en desktop para asegurar un buen tamaño */
     background-color: var(--black);
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -245,12 +252,12 @@ h2 {
 
 .hero-video video,
 .hero-video iframe {
-    position: absolute; /* Para que ocupe todo el espacio del .hero-video */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* MUY IMPORTANTE: Recorta el video para que llene el espacio, eliminando barras negras */
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -509,14 +516,15 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Patios Section (Mapas Responsivos) - REVISADO --- */
+/* --- Patios Section (Mapas Responsivos) - REVISADO */
 .patio-locations {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px; /* Mantiene el espacio entre las tarjetas */
+    gap: 30px;
     margin-top: 30px;
     justify-content: center;
-    padding: 0 15px; /* MODIFICADO: Añadido padding horizontal para que no se desborde */
+    /* MODIFICADO: Padding horizontal para controlar los límites */
+    padding: 0 15px;
 }
 
 .patio-card {
@@ -525,10 +533,9 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     flex: 1;
-    min-width: 300px; /* MODIFICADO: Mantén un tamaño mínimo para que no se hagan demasiado pequeños */
-    max-width: 500px; /* Límite para que no sean demasiado grandes en desktop */
+    min-width: 280px; /* MODIFICADO: Reducir min-width para móviles */
+    max-width: 500px;
     text-align: center;
-    /* MODIFICADO: box-sizing ya está en *, pero lo reconfirmamos */
     box-sizing: border-box;
 }
 
@@ -541,17 +548,15 @@ h2 {
     margin-bottom: 20px;
 }
 
-/* ESTILOS PARA LOS MAPAS (RESPONSIVO) - REVISADO */
 .patio-card .map-container {
     position: relative;
-    padding-bottom: 66.66%; /* Relación de aspecto 3:2 (ajusta si tus mapas de Google tienen otra proporción) */
+    padding-bottom: 66.66%; /* Relación de aspecto 3:2. Puedes probar 75% para 4:3 */
     height: 0;
     overflow: hidden;
-    width: 100%; /* MODIFICADO: Asegura que el contenedor del mapa ocupe el 100% de la tarjeta */
+    width: 100%;
     background: #e0e0e0;
     border-radius: 8px;
     margin-bottom: 15px;
-    /* MODIFICADO: Aseguramos que no haya desbordamiento interno */
     box-sizing: border-box;
 }
 
@@ -559,10 +564,9 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%; /* MUY IMPORTANTE: El iframe ocupa el 100% del contenedor con padding-bottom */
+    width: 100%;
     height: 100%;
     border: 0;
-    /* MODIFICADO: Aseguramos que el iframe también respete su caja */
     box-sizing: border-box;
 }
 
@@ -971,19 +975,19 @@ hr {
 /* --- ESTILOS PARA EL MODAL/POP-UP DEL CATÁLOGO --- */
 
 .modal {
-    display: none; /* Oculto por defecto */
-    position: fixed; /* Permanece en la misma posición al hacer scroll */
-    z-index: 10000; /* Asegura que esté por encima de todo lo demás */
+    display: none;
+    position: fixed;
+    z-index: 10000;
     left: 0;
     top: 0;
-    width: 100%; /* Cubre todo el ancho */
-    height: 100%; /* Cubre toda la altura */
-    overflow: auto; /* Habilita scroll si el contenido es demasiado grande */
-    background-color: rgba(0,0,0,0.7); /* Fondo oscuro semitransparente */
-    display: flex; /* Para centrar el contenido vertical y horizontalmente */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px; /* Relleno general para evitar que el contenido toque los bordes */
+    padding: 20px;
 }
 
 .modal-content {
@@ -992,12 +996,12 @@ hr {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    max-width: 800px; /* Ancho máximo del modal */
-    width: 95%; /* Ocupa casi todo el ancho en pantallas pequeñas */
-    position: relative; /* Para posicionar el botón de cerrar */
-    max-height: 90vh; /* Altura máxima, permite scroll interno */
-    overflow-y: auto; /* Habilita el scroll interno si el contenido es largo */
-    animation: fadeIn 0.3s ease-out; /* Animación de entrada */
+    max-width: 800px;
+    width: 95%;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: fadeIn 0.3s ease-out;
 }
 
 @keyframes fadeIn {
@@ -1028,393 +1032,4 @@ hr {
     margin-bottom: 25px;
 }
 
-.modal-header .modal-image {
-    max-width: 100%;
-    height: auto;
-    max-height: 200px; /* Altura máxima para la imagen de cabecera */
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-
-.modal-header h2 {
-    color: var(--primary-blue);
-    font-size: 2.2em;
-    margin-bottom: 10px;
-}
-
-.modal-header p {
-    color: var(--text-color);
-    font-size: 1.1em;
-}
-
-.modal-body .service-item {
-    background-color: var(--light-gray);
-    border-radius: 8px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    text-align: left; /* Alinea el texto de los servicios a la izquierda */
-}
-
-.modal-body .service-item h3 {
-    color: var(--primary-blue);
-    font-size: 1.6em;
-    margin-bottom: 10px;
-}
-
-.modal-body .service-item p {
-    color: var(--dark-gray);
-    margin-bottom: 15px;
-}
-
-.modal-body .service-item ul {
-    list-style: none; /* Quitamos las viñetas por defecto */
-    padding: 0;
-    margin-bottom: 15px;
-}
-
-.modal-body .service-item ul li {
-    position: relative;
-    padding-left: 25px; /* Espacio para el ícono */
-    margin-bottom: 8px;
-    color: var(--text-color);
-}
-
-.modal-body .service-item ul li::before {
-    content: '\f00c'; /* Icono de Font Awesome para el checkmark */
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
-    color: var(--primary-blue); /* Color del checkmark */
-    position: absolute;
-    left: 0;
-    top: 2px; /* Ajuste vertical del ícono */
-}
-
-.modal-body .service-item .note {
-    font-style: italic;
-    font-size: 0.9em;
-    color: var(--text-color);
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.modal-body .service-item .cta-button {
-    display: block; /* Hace que el botón ocupe todo el ancho */
-    width: fit-content; /* Se ajusta al contenido del texto */
-    margin: 0 auto; /* Centra el botón */
-    text-align: center;
-}
-
-/* Media Queries para el modal */
-@media (max-width: 768px) {
-    .modal-content {
-        padding: 20px;
-        width: 90%;
-    }
-    .modal-header h2 {
-        font-size: 1.8em;
-    }
-    .close-button {
-        font-size: 30px;
-        right: 15px;
-    }
-    .modal-body .service-item {
-        padding: 20px;
-    }
-    .modal-body .service-item h3 {
-        font-size: 1.4em;
-    }
-}
-
-@media (max-width: 480px) {
-    .modal-content {
-        padding: 15px;
-        width: 95%;
-    }
-    .modal-header h2 {
-        font-size: 1.5em;
-    }
-    .modal-header p {
-        font-size: 0.95em;
-    }
-    .modal-body .service-item {
-        padding: 15px;
-    }
-    .modal-body .service-item h3 {
-        font-size: 1.2em;
-    }
-    .modal-body .service-item p,
-    .modal-body .service-item ul li {
-        font-size: 0.9em;
-    }
-}
-
-
-/* --- Footer --- */
-.main-footer {
-    background-color: var(--primary-blue);
-    color: var(--white);
-    padding: 30px 0;
-    text-align: center;
-    margin-top: 50px;
-}
-
-.main-footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.main-footer p {
-    margin: 0;
-    font-size: 0.9em;
-}
-
-.footer-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.footer-links a {
-    color: var(--white);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.footer-links a:hover {
-    color: var(--accent-color);
-}
-
-
-/* --- Media Queries (Responsividad) --- */
-@media (max-width: 992px) {
-    .hero-section {
-        flex-direction: column;
-        text-align: center;
-        padding: 60px 20px;
-    }
-
-    .hero-content {
-        max-width: 100%;
-        margin-bottom: 40px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.8em;
-    }
-
-    .hero-content p {
-        font-size: 1.1em;
-    }
-
-    /* AJUSTES PARA EL VIDEO PRINCIPAL EN TABLETAS */
-    .hero-video {
-        width: 100%;
-        height: 350px; /* Altura fija para tabletas */
-        max-width: 600px; /* MODIFICADO: Un ancho máximo también en tabletas para que no se vea gigantesco */
-    }
-
-    .values {
-        justify-content: center;
-    }
-
-    .services-list {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
-    .card-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .content-left-image {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .content-left-image img {
-        margin-bottom: 20px;
-        margin-right: 0;
-    }
-
-    .image-grid {
-        justify-content: center;
-    }
-
-    .contact-info-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .social-icons-list {
-        justify-content: center;
-    }
-}
-
-@media (max-width: 768px) {
-    .main-header {
-        padding: 10px 0;
-    }
-
-    .navbar {
-        flex-wrap: wrap;
-        padding: 0 15px;
-    }
-
-    .logo {
-        flex-grow: 1;
-    }
-
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        background-color: var(--primary-blue);
-        padding-top: 10px;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 10px 0;
-        text-align: center;
-    }
-
-    .nav-links a {
-        padding: 10px 0;
-        display: block;
-    }
-
-    .voice-btn {
-        margin-top: 10px;
-    }
-
-    h1 {
-        font-size: 2.5em;
-    }
-
-    h2 {
-        font-size: 2em;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-
-    .frases-destacadas {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 20px;
-        padding: 40px 15px;
-    }
-
-    .tarjeta-frase {
-        padding: 20px;
-    }
-
-    .tarjeta-frase img {
-        max-width: 100px;
-    }
-
-    .tarjeta-frase p {
-        font-size: 1em;
-    }
-
-    .carousel-container button {
-        padding: 10px 5px;
-        font-size: 1.2em;
-    }
-
-    .contact-form {
-        padding: 20px;
-    }
-
-    .chatbot-container {
-        width: 90%;
-        right: 5%;
-        left: 5%;
-        height: 80vh;
-        bottom: 20px;
-    }
-    .chatbot-button {
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        font-size: 1.8em;
-    }
-
-    /* AJUSTES PARA EL VIDEO PRINCIPAL EN MÓVILES */
-    .hero-video {
-        height: 250px; /* Altura fija para móviles */
-        max-width: 100%; /* Asegura que no tenga límite de ancho impuesto por el 992px breakpoint */
-    }
-
-    /* REVISADO: Patios Section en móviles */
-    .patio-locations {
-        gap: 20px; /* MODIFICADO: Un poco menos de espacio en móviles */
-        padding: 0 10px; /* MODIFICADO: Ajuste de padding para pantallas muy pequeñas */
-    }
-
-    .patio-card {
-        min-width: unset; /* MODIFICADO: Permitir que se hagan más pequeños si es necesario en móviles */
-        width: 100%; /* MODIFICADO: Ocupar todo el ancho disponible */
-        max-width: 100%; /* Asegurar que no exceda el ancho en móviles */
-        margin-bottom: 20px;
-    }
-
-    .patio-card .map-container {
-        padding-bottom: 75%; /* MODIFICADO: Aumenta la proporción a 4:3 para que el mapa sea más alto */
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 0 10px; /* MODIFICADO: Reducir padding general para pantallas muy pequeñas */
-    }
-    h1 {
-        font-size: 2em;
-    }
-
-    h2 {
-        font-size: 1.8em;
-    }
-
-    .cta-button {
-        padding: 10px 20px;
-        font-size: 0.9em;
-    }
-
-    .frases-destacadas {
-        grid-template-columns: 1fr;
-    }
-
-    .services-list {
-        grid-template-columns: 1fr;
-    }
-
-    .digital-strategy-section h4 {
-        font-size: 1.3em;
-    }
-    .digital-strategy-section h5 {
-        font-size: 1.1em;
-    }
-
-    .social-icons-list a,
-    .social-contact-buttons .cta-button {
-        width: 100%;
-        justify-content: center;
-    }
-}
+.modal-header .modal-image
