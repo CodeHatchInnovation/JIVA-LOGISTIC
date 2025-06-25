@@ -83,7 +83,7 @@ h2 {
 /* --- Header y Navegación --- */
 .main-header {
     background-color: var(--primary-blue);
-    padding: 10px 0;
+    padding: 5px 0; /* MODIFICACIÓN: Header más pequeño */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -1403,24 +1403,24 @@ hr {
     }
 
     .patio-card {
-        width: 90%; /* Ajusta el ancho de la tarjeta para que tenga un margen lateral */
-        max-width: 400px; /* Limita el ancho para que no se estire demasiado en tabletas verticales */
-        min-width: unset; /* Reinicia el min-width para permitir que sea más pequeña */
-        padding: 20px; /* Reduce el padding interior */
+        width: 85%; /* MODIFICACIÓN: Ajuste para ser más pequeño */
+        max-width: 400px;
+        min-width: unset;
+        padding: 15px; /* MODIFICACIÓN: Relleno reducido */
     }
 
     .patio-card h3 {
-        font-size: 1.3em; /* Reduce el tamaño del título */
+        font-size: 1.3em;
         margin-bottom: 10px;
     }
 
     .patio-card p {
-        font-size: 0.95em; /* Reduce el tamaño del párrafo */
+        font-size: 0.95em;
         margin-bottom: 15px;
     }
 
     .patio-card .map-container {
-        padding-bottom: 70%; /* Ajusta la proporción del mapa para que sea un poco menos alto */
+        padding-bottom: 60%; /* MODIFICACIÓN: Altura del mapa reducida */
         height: 0; /* Asegura que la altura se base en el padding-bottom */
     }
 }
@@ -1469,20 +1469,20 @@ hr {
 
     /* --- AJUSTES PARA PATIOS EN 480PX Y MENORES (Móviles pequeños) --- */
     .patio-card {
-        width: 95%; /* Hace la tarjeta casi de ancho completo para aprovechar el espacio */
-        padding: 15px; /* Reduce aún más el padding */
+        width: 90%; /* MODIFICACIÓN: Ajuste para ser más pequeño */
+        padding: 10px; /* MODIFICACIÓN: Relleno reducido */
         margin-bottom: 15px; /* Reduce el espacio entre tarjetas */
     }
 
     .patio-card h3 {
-        font-size: 1.1em; /* Reduce aún más el tamaño del título */
+        font-size: 1.1em;
     }
 
     .patio-card p {
-        font-size: 0.85em; /* Reduce aún más el tamaño del párrafo */
+        font-size: 0.85em;
     }
 
     .patio-card .map-container {
-        padding-bottom: 65%; /* Hace el mapa un poco menos alto en los móviles más pequeños */
+        padding-bottom: 55%; /* MODIFICACIÓN: Altura del mapa reducida */
     }
 }
