@@ -1,11 +1,11 @@
-/* --- Variables CSS --- */
+/* --- Variables CSS (actualizadas) --- */
 :root {
     --primary-blue: #003366; /* Azul oscuro corporativo */
     --secondary-blue: #0056b3; /* Un azul un poco más claro */
     --light-gray: #f8f8f8;
     --dark-gray: #333;
     --text-color: #555;
-    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante */
+    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
     --white: #ffffff;
     --black: #000000;
 }
@@ -41,17 +41,17 @@ section {
     text-align: center;
 }
 
-section:nth-of-type(even) {
+section:nth-of-type(even) { /* Para secciones alternas, si deseas un fondo diferente */
     background-color: var(--light-gray);
 }
 
 .blue-bg {
-    background-color: var(--primary-blue) !important;
+    background-color: var(--primary-blue) !important; /* Fondo azul oscuro */
     color: var(--white);
 }
 
 .blue-bg h2, .blue-bg h3, .blue-bg p, .blue-bg li, .blue-bg strong {
-    color: var(--white);
+    color: var(--white); /* Asegura que el texto dentro sea blanco */
 }
 
 .cta-button {
@@ -83,7 +83,7 @@ h2 {
 /* --- Header y Navegación --- */
 .main-header {
     background-color: var(--primary-blue);
-    padding: 0; /* MODIFICACIÓN CLAVE: Eliminar padding para que esté pegado */
+    padding: 10px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -92,28 +92,23 @@ h2 {
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 5px 20px; /* MODIFICACIÓN: Aplicar padding interno a la barra de navegación */
-    flex-wrap: nowrap; /* Evita que los elementos del header principal salten de línea */
-    min-height: 70px; /* MODIFICACIÓN: Establecer una altura mínima para el header si lo deseas */
+    padding: 0 20px;
 }
 
 .logo img {
-    height: 60px;
+    height: 60px; /* Ajusta el tamaño del logo */
     vertical-align: middle;
-    display: block; /* MODIFICACIÓN: Ayuda a eliminar cualquier espacio extra debajo de la imagen */
 }
 
 .nav-links {
     list-style: none;
-    display: flex; /* Esto se sobreescribirá en móvil */
+    display: flex;
     margin: 0;
     padding: 0;
-    flex-grow: 1; /* Ocupa el espacio disponible */
-    justify-content: flex-end; /* Alinea los enlaces a la derecha */
 }
 
 .nav-links li {
@@ -128,26 +123,24 @@ h2 {
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: var(--accent-color); /* Color de acento al pasar el ratón */
 }
 
 /* Botón de voz */
 .voice-btn {
     background-color: var(--accent-color);
-    color: var(--dark-gray);
+    color: var(--dark-gray); /* Cambiado a dark-gray para mejor contraste con accent-color */
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    display: inline-block; /* Asegura que siempre sea visible */
-    margin-left: 20px; /* Para separar un poco del último enlace de navegación en desktop */
 }
 
 .voice-btn:hover {
-    background-color: var(--secondary-blue);
-    color: var(--white);
+    background-color: var(--secondary-blue); /* Ajuste para que combine con el nuevo accent-color */
+    color: var(--white); /* Asegura texto blanco al pasar el ratón */
 }
 
 /* Menú hamburguesa para móviles */
@@ -157,8 +150,6 @@ h2 {
     border: none;
     cursor: pointer;
     padding: 10px;
-    z-index: 1001;
-    order: 3; /* Asegura su orden en el navbar para mobile */
 }
 
 .hamburger-icon {
@@ -204,33 +195,11 @@ h2 {
     top: 0;
 }
 
-/* Nuevas reglas para el botón de cerrar (X) en el menú móvil */
-.close-menu-item {
-    display: none; /* Oculto por defecto en desktop */
-}
-
-.close-menu-button {
-    background: none;
-    border: none;
-    color: var(--white); /* Color para que contraste con el menú azul */
-    font-size: 2.5em; /* Tamaño grande para el ícono de la X */
-    cursor: pointer;
-    position: absolute; /* Permite posicionarlo con top/right dentro de .nav-links */
-    top: 15px; /* Ajusta la distancia desde arriba */
-    right: 20px; /* Ajusta la distancia desde la derecha */
-    z-index: 1002; /* Asegura que esté por encima de los enlaces */
-    padding: 0; /* Elimina padding para control total */
-    line-height: 1; /* Ayuda a centrar verticalmente el contenido */
-}
-
-.close-menu-button:hover {
-    color: var(--accent-color);
-}
 
 /* --- Hero Section --- */
 .hero-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: row; /* Desktop: contenido y imagen lado a lado */
     align-items: center;
     justify-content: center;
     padding: 80px 20px;
@@ -256,29 +225,17 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
-.hero-video {
+.hero-image {
     flex: 1;
     max-width: 500px;
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-    height: 0; /* Necesario para que padding-bottom defina la altura */
-    overflow: hidden;
-    background-color: var(--black);
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    display: block;
+    text-align: center;
 }
 
-.hero-video video,
-.hero-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .values {
@@ -297,6 +254,7 @@ h2 {
     font-size: 0.9em;
 }
 
+
 /* --- Services Section --- */
 .services-section .container {
     padding-top: 40px;
@@ -307,16 +265,16 @@ h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
-    list-style: none;
+    list-style: none; /* Eliminar viñetas por defecto */
     padding: 0;
     margin-bottom: 40px;
 }
 
 .services-list ul {
-    list-style: none;
+    list-style: none; /* Asegurar que no haya viñetas si la lista está anidada */
     padding: 0;
     margin: 0;
-    display: contents;
+    display: contents; /* Hace que los li se comporten como hijos directos del grid */
 }
 
 .services-list li {
@@ -333,13 +291,14 @@ h2 {
 }
 
 .services-list li::before {
-    content: '\f00c';
-    font-family: 'Font Awesome 6 Free';
-    font-weight: 900;
+    content: '\f00c'; /* Unicode para el icono de check-mark de Font Awesome */
+    font-family: 'Font Awesome 6 Free'; /* Asegúrate de que esta fuente esté cargada */
+    font-weight: 900; /* Para que el icono sea sólido */
     color: var(--primary-blue);
     font-size: 1.2em;
     margin-right: 10px;
 }
+
 
 /* --- Estilos para las tarjetas de frases --- */
 .frases-destacadas {
@@ -347,12 +306,12 @@ h2 {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 60px 20px;
-    background-color: var(--light-gray);
+    background-color: var(--light-gray); /* Fondo de la sección donde están las tarjetas */
     margin-top: 0;
 }
 
 .tarjeta-frase {
-    background-color: var(--white);
+    background-color: var(--white); /* ¡Todas las tarjetas de frases son blancas! */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 25px;
@@ -365,12 +324,12 @@ h2 {
 }
 
 .tarjeta-frase img {
-    max-width: 180px;
+    max-width: 180px; /* Tamaño un poco más grande para la imagen */
     height: auto;
-    border-radius: 8px;
+    border-radius: 8px; /* ¡Ahora son rectangulares, no ovaladas! */
     object-fit: cover;
     margin-bottom: 20px;
-    border: none;
+    border: none; /* Quitamos el borde azul */
 }
 
 .tarjeta-frase p {
@@ -379,6 +338,7 @@ h2 {
     font-weight: 500;
     line-height: 1.5;
 }
+
 
 /* --- Misión y Visión Section --- */
 .card-grid {
@@ -389,7 +349,7 @@ h2 {
 }
 
 .card {
-    background-color: var(--white);
+    background-color: var(--white); /* ¡Todas las tarjetas son blancas! */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     padding: 30px;
@@ -414,8 +374,9 @@ h2 {
 .blue-bg .card h3,
 .blue-bg .card p,
 .blue-bg .card a {
-    color: var(--dark-gray);
+    color: var(--dark-gray); /* Cambiado a dark-gray para contraste con fondo blanco de tarjeta */
 }
+
 
 /* --- Flota Section --- */
 .carousel-container {
@@ -531,56 +492,7 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Patios Section (Mapas Responsivos) --- */
-.patio-locations {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-    justify-content: center;
-}
-
-.patio-card {
-    background-color: var(--white);
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    flex: 1;
-    min-width: 300px;
-    max-width: 500px;
-    text-align: center;
-}
-
-.patio-card h3 {
-    color: var(--primary-blue);
-    margin-bottom: 15px;
-}
-
-.patio-card p {
-    margin-bottom: 20px;
-}
-
-/* ESTILOS PARA LOS MAPAS (RESPONSIVO) */
-.patio-card .map-container {
-    position: relative;
-    padding-bottom: 75%; /* Proporción 4:3 para un mapa de Google estándar */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 15px;
-}
-
-.patio-card .map-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-
+/* --- Patios Section --- */
 .map-link {
     display: inline-block;
     margin-top: 15px;
@@ -591,6 +503,18 @@ h2 {
 
 .map-link:hover {
     text-decoration: underline;
+}
+
+iframe {
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Para centrar el segundo mapa si es necesario */
+.centered-map {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* --- Contacto Section --- */
@@ -709,6 +633,7 @@ hr {
 .social-contact-buttons .social-form:hover {
     background-color: var(--secondary-blue);
 }
+
 
 .social-icons-footer-list {
     display: flex;
@@ -981,21 +906,23 @@ hr {
     background-color: var(--secondary-blue);
 }
 
+
 /* --- ESTILOS PARA EL MODAL/POP-UP DEL CATÁLOGO --- */
+
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 10000;
+    display: none; /* Oculto por defecto */
+    position: fixed; /* Permanece en la misma posición al hacer scroll */
+    z-index: 10000; /* Asegura que esté por encima de todo lo demás */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
-    display: flex;
+    width: 100%; /* Cubre todo el ancho */
+    height: 100%; /* Cubre toda la altura */
+    overflow: auto; /* Habilita scroll si el contenido es demasiado grande */
+    background-color: rgba(0,0,0,0.7); /* Fondo oscuro semitransparente */
+    display: flex; /* Para centrar el contenido vertical y horizontalmente */
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 20px; /* Relleno general para evitar que el contenido toque los bordes */
 }
 
 .modal-content {
@@ -1004,12 +931,12 @@ hr {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    max-width: 800px;
-    width: 95%;
-    position: relative;
-    max-height: 90vh;
-    overflow-y: auto;
-    animation: fadeIn 0.3s ease-out;
+    max-width: 800px; /* Ancho máximo del modal */
+    width: 95%; /* Ocupa casi todo el ancho en pantallas pequeñas */
+    position: relative; /* Para posicionar el botón de cerrar */
+    max-height: 90vh; /* Altura máxima, permite scroll interno */
+    overflow-y: auto; /* Habilita el scroll interno si el contenido es largo */
+    animation: fadeIn 0.3s ease-out; /* Animación de entrada */
 }
 
 @keyframes fadeIn {
@@ -1043,7 +970,7 @@ hr {
 .modal-header .modal-image {
     max-width: 100%;
     height: auto;
-    max-height: 200px;
+    max-height: 200px; /* Altura máxima para la imagen de cabecera */
     object-fit: cover;
     border-radius: 8px;
     margin-bottom: 20px;
@@ -1066,7 +993,7 @@ hr {
     padding: 25px;
     margin-bottom: 25px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    text-align: left;
+    text-align: left; /* Alinea el texto de los servicios a la izquierda */
 }
 
 .modal-body .service-item h3 {
@@ -1081,26 +1008,26 @@ hr {
 }
 
 .modal-body .service-item ul {
-    list-style: none;
+    list-style: none; /* Quitamos las viñetas por defecto */
     padding: 0;
     margin-bottom: 15px;
 }
 
 .modal-body .service-item ul li {
     position: relative;
-    padding-left: 25px;
+    padding-left: 25px; /* Espacio para el ícono */
     margin-bottom: 8px;
     color: var(--text-color);
 }
 
 .modal-body .service-item ul li::before {
-    content: '\f00c';
+    content: '\f00c'; /* Icono de Font Awesome para el checkmark */
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    color: var(--primary-blue);
+    color: var(--primary-blue); /* Color del checkmark */
     position: absolute;
     left: 0;
-    top: 2px;
+    top: 2px; /* Ajuste vertical del ícono */
 }
 
 .modal-body .service-item .note {
@@ -1112,9 +1039,9 @@ hr {
 }
 
 .modal-body .service-item .cta-button {
-    display: block;
-    width: fit-content;
-    margin: 0 auto;
+    display: block; /* Hace que el botón ocupe todo el ancho */
+    width: fit-content; /* Se ajusta al contenido del texto */
+    margin: 0 auto; /* Centra el botón */
     text-align: center;
 }
 
@@ -1162,6 +1089,7 @@ hr {
     }
 }
 
+
 /* --- Footer --- */
 .main-footer {
     background-color: var(--primary-blue);
@@ -1203,6 +1131,7 @@ hr {
     color: var(--accent-color);
 }
 
+
 /* --- Media Queries (Responsividad) --- */
 @media (max-width: 992px) {
     .hero-section {
@@ -1224,8 +1153,7 @@ hr {
         font-size: 1.1em;
     }
 
-    /* Ajuste para el video principal en tabletas */
-    .hero-video {
+    .hero-image {
         max-width: 80%;
     }
 
@@ -1267,79 +1195,46 @@ hr {
 
 @media (max-width: 768px) {
     .main-header {
-        padding: 0; /* Asegura que el header móvil también esté pegado */
+        padding: 10px 0;
     }
 
     .navbar {
-        flex-wrap: nowrap; /* Asegura que logo, voice-btn y toggle estén en una sola fila */
-        justify-content: space-between;
-        align-items: center;
-        padding: 5px 15px; /* Ajuste del padding para móvil */
-        min-height: 60px; /* MODIFICACIÓN: Ajuste la altura mínima del header móvil si es necesario */
+        flex-wrap: wrap;
+        padding: 0 15px;
     }
 
     .logo {
-        order: 1;
         flex-grow: 1;
     }
 
-    /* Botón de voz para pantallas pequeñas - CORRECCIÓN CLAVE */
-    .voice-btn {
-        display: inline-block; /* Asegura que siempre se muestre */
-        order: 2; /* Posición después del logo */
-        margin-left: 10px; /* Espacio con el logo */
-        margin-right: 15px; /* Espacio antes del botón de hamburguesa */
-        padding: 8px 12px;
-        font-size: 0.9em;
-    }
-
     .menu-toggle {
-        display: block; /* Muestra el botón de hamburguesa en móvil */
-        order: 3; /* Posición al final */
+        display: block;
     }
 
     .nav-links {
-        flex-direction: column; /* Apila los enlaces verticalmente */
-        width: 100%; /* Ocupa todo el ancho disponible */
-        display: none; /* Oculto por defecto, se muestra con la clase 'active' */
+        flex-direction: column;
+        width: 100%;
+        display: none;
         background-color: var(--primary-blue);
-        padding-top: 60px; /* Espacio para el logo y la X */
-        position: fixed; /* Ocupa toda la pantalla */
-        top: 0;
-        left: 0;
-        height: 100%; /* Ocupa toda la altura de la ventana */
-        overflow-y: auto; /* Permite desplazamiento si hay muchos enlaces */
-        z-index: 999; /* Por debajo del toggle y el botón de cerrar */
-        align-items: center; /* Centra los elementos horizontalmente */
-        justify-content: flex-start; /* Alinea los elementos desde arriba */
+        padding-top: 10px;
     }
 
     .nav-links.active {
-        display: flex; /* Muestra el menú cuando está activo */
+        display: flex;
     }
 
     .nav-links li {
-        margin: 15px 0; /* Más espacio entre enlaces */
+        margin: 10px 0;
         text-align: center;
-        width: 100%; /* Asegura que cada li ocupe el ancho completo */
     }
 
     .nav-links a {
         padding: 10px 0;
         display: block;
-        font-size: 1.2em; /* Hace los enlaces más grandes */
     }
 
-    /* Muestra el botón de cerrar en el menú móvil */
-    .close-menu-item {
-        display: block; /* Siempre visible cuando el menú está abierto */
-        position: absolute; /* Permite que el botón de cerrar se posicione respecto al nav-links */
-        top: 0;
-        right: 0;
-        width: 100%; /* Ocupa todo el ancho para su contexto de posicionamiento */
-        text-align: right; /* Alinea el botón de cerrar a la derecha dentro de este li */
-        padding-right: 15px; /* Pequeño padding para no pegarlo al borde */
-        padding-top: 15px; /* Espacio desde el top del menú */
+    .voice-btn {
+        margin-top: 10px;
     }
 
     h1 {
@@ -1396,36 +1291,6 @@ hr {
         height: 50px;
         font-size: 1.8em;
     }
-
-    /* --- AJUSTES PARA PATIOS EN 768PX Y MENORES (Tabletas y móviles grandes) --- */
-    .patio-locations {
-        /* Fuerza a que las tarjetas se apilen verticalmente */
-        flex-direction: column;
-        align-items: center; /* Centra las tarjetas si no ocupan el 100% */
-        gap: 25px; /* Espacio entre las tarjetas apiladas */
-    }
-
-    .patio-card {
-        width: 85%; /* MODIFICACIÓN: Ajuste para ser más pequeño */
-        max-width: 400px;
-        min-width: unset;
-        padding: 15px; /* MODIFICACIÓN: Relleno reducido */
-    }
-
-    .patio-card h3 {
-        font-size: 1.3em;
-        margin-bottom: 10px;
-    }
-
-    .patio-card p {
-        font-size: 0.95em;
-        margin-bottom: 15px;
-    }
-
-    .patio-card .map-container {
-        padding-bottom: 60%; /* MODIFICACIÓN: Altura del mapa reducida */
-        height: 0; /* Asegura que la altura se base en el padding-bottom */
-    }
 }
 
 @media (max-width: 480px) {
@@ -1461,31 +1326,5 @@ hr {
     .social-contact-buttons .cta-button {
         width: 100%;
         justify-content: center;
-    }
-
-    /* Botón de voz para pantallas muy pequeñas - Ajuste fino */
-    .voice-btn {
-        padding: 6px 10px;
-        font-size: 0.8em;
-        margin-right: 10px;
-    }
-
-    /* --- AJUSTES PARA PATIOS EN 480PX Y MENORES (Móviles pequeños) --- */
-    .patio-card {
-        width: 90%; /* MODIFICACIÓN: Ajuste para ser más pequeño */
-        padding: 10px; /* MODIFICACIÓN: Relleno reducido */
-        margin-bottom: 15px; /* Reduce el espacio entre tarjetas */
-    }
-
-    .patio-card h3 {
-        font-size: 1.1em;
-    }
-
-    .patio-card p {
-        font-size: 0.85em;
-    }
-
-    .patio-card .map-container {
-        padding-bottom: 55%; /* MODIFICACIÓN: Altura del mapa reducida */
     }
 }
