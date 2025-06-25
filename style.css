@@ -83,7 +83,7 @@ h2 {
 /* --- Header y Navegación --- */
 .main-header {
     background-color: var(--primary-blue);
-    padding: 5px 0; /* MODIFICACIÓN: Header más pequeño */
+    padding: 0; /* MODIFICACIÓN CLAVE: Eliminar padding para que esté pegado */
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -96,13 +96,15 @@ h2 {
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 5px 20px; /* MODIFICACIÓN: Aplicar padding interno a la barra de navegación */
     flex-wrap: nowrap; /* Evita que los elementos del header principal salten de línea */
+    min-height: 70px; /* MODIFICACIÓN: Establecer una altura mínima para el header si lo deseas */
 }
 
 .logo img {
     height: 60px;
     vertical-align: middle;
+    display: block; /* MODIFICACIÓN: Ayuda a eliminar cualquier espacio extra debajo de la imagen */
 }
 
 .nav-links {
@@ -1265,14 +1267,15 @@ hr {
 
 @media (max-width: 768px) {
     .main-header {
-        padding: 10px 0;
+        padding: 0; /* Asegura que el header móvil también esté pegado */
     }
 
     .navbar {
         flex-wrap: nowrap; /* Asegura que logo, voice-btn y toggle estén en una sola fila */
         justify-content: space-between;
         align-items: center;
-        padding: 0 15px;
+        padding: 5px 15px; /* Ajuste del padding para móvil */
+        min-height: 60px; /* MODIFICACIÓN: Ajuste la altura mínima del header móvil si es necesario */
     }
 
     .logo {
