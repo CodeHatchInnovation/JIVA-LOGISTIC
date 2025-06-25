@@ -225,18 +225,40 @@ h2 {
     margin-bottom: 30px;
 }
 
-.hero-image {
+/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
+/* La clase hero-image fue cambiada a hero-video para aplicar estos estilos */
+.hero-video { /* Asegúrate que tu HTML tiene <div class="hero-video"> para el video */
     flex: 1;
-    max-width: 500px;
-    text-align: center;
+    max-width: 500px; /* Ancho máximo para el video en desktop */
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Relación de aspecto 16:9. Si tu video es 4:3 usa 75% */
+    height: 0;
+    overflow: hidden;
+    background-color: var(--black); /* Fondo negro mientras carga */
+    border-radius: 8px; /* Mantener el borde redondeado */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Mantener la sombra */
 }
 
+.hero-video video,
+.hero-video iframe { /* Aplica a videos HTML5 y a iframes (YouTube/Vimeo) */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra el área sin distorsionarse */
+}
+
+/* REMOVIDO: .hero-image img - ya no es necesario si usas video */
+/*
 .hero-image img {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+*/
 
 .values {
     display: flex;
@@ -492,7 +514,57 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Patios Section --- */
+/* --- Patios Section (Mapas Responsivos) --- */
+/* Asegúrate que tus mapas de Google estén envueltos en un div con class="map-container" */
+.patio-locations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.patio-card {
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 500px; /* Límite para que no sean demasiado grandes en desktop */
+    text-align: center;
+}
+
+.patio-card h3 {
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.patio-card p {
+    margin-bottom: 20px;
+}
+
+/* ESTILOS PARA LOS MAPAS (RESPONSIVO) */
+.patio-card .map-container { /* Asume que hay un .map-container dentro de .patio-card */
+    position: relative;
+    padding-bottom: 75%; /* Proporción 4:3 para un mapa de Google estándar. Ajusta si necesitas 16:9 (56.25%) u otra */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%; /* Asegura que el contenedor del mapa no se desborde */
+    background: #e0e0e0; /* Color de fondo mientras carga el mapa */
+    border-radius: 8px; /* Mantener el borde redondeado */
+    margin-bottom: 15px; /* Espacio debajo del mapa */
+}
+
+.patio-card .map-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0; /* Elimina el borde predeterminado del iframe de Google Maps */
+}
+
 .map-link {
     display: inline-block;
     margin-top: 15px;
@@ -505,17 +577,22 @@ h2 {
     text-decoration: underline;
 }
 
+/* REMOVIDO: iframe general, ahora los iframes específicos tienen sus propias reglas */
+/*
 iframe {
     border-radius: 8px;
     margin-top: 20px;
 }
+*/
 
-/* Para centrar el segundo mapa si es necesario */
+/* REMOVIDO: .centered-map, ya no es necesario con flexbox y max-width en .patio-card */
+/*
 .centered-map {
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
+*/
 
 /* --- Contacto Section --- */
 .section-padded {
@@ -1153,8 +1230,9 @@ hr {
         font-size: 1.1em;
     }
 
-    .hero-image {
-        max-width: 80%;
+    /* Ajuste para el video principal en tabletas */
+    .hero-video {
+        max-width: 80%; /* Reduce un poco el tamaño para tabletas */
     }
 
     .values {
@@ -1290,6 +1368,21 @@ hr {
         width: 50px;
         height: 50px;
         font-size: 1.8em;
+    }
+
+    /* --- Ajustes específicos para móviles (mapas y video) --- */
+    .hero-video {
+        max-width: 100%; /* El video ocupa todo el ancho disponible */
+        padding-bottom: 56.25%; /* Mantiene la proporción 16:9 */
+    }
+
+    .patio-card {
+        max-width: 100%; /* Las tarjetas de patio ocupan todo el ancho */
+        margin-bottom: 20px; /* Espacio entre tarjetas */
+    }
+
+    .patio-card .map-container {
+        padding-bottom: 75%; /* Mantiene la proporción 4:3 para el mapa */
     }
 }
 
