@@ -287,22 +287,69 @@
                 <hr>
 
                 <h3 class="contact-form-title">Envíanos un Mensaje</h3>
+               <!-- FORMULARIO -->
                 <form id="contact-form" class="contact-form">
-                    <div class="form-group">
-                        <label for="name">Nombre:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje:</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="cta-button">Enviar Mensaje</button>
-                    <p id="contact-message"></p>
+                  <div class="form-group">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" name="name" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <input type="email" id="email" name="email" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="message">Mensaje:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                  </div>
+                  <button type="submit" class="cta-button">Enviar Mensaje</button>
+                  <p id="contact-message"></p>
                 </form>
+                
+                <!-- EmailJS -->
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+                <script>
+                  (function () {
+                    emailjs.init({
+                      publicKey: 'TU_PUBLIC_KEY_AQUI' // ← Reemplaza con tu nueva public key de EmailJS
+                    });
+                  })();
+                
+                  const form = document.getElementById('contact-form');
+                  const message = document.getElementById('contact-message');
+                
+                  form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                
+                    const data = new FormData(form);
+                
+                    // 1. Enviar a Formcarry
+                    fetch("https://formcarry.com/s/TU_FORMCARRY_ID_AQUI", { // ← Reemplaza con el nuevo Formcarry ID
+                      method: 'POST',
+                      body: data,
+                      headers: {
+                        'Accept': 'application/json'
+                      }
+                    })
+                      .then(response => {
+                        if (!response.ok) throw new Error('Error al enviar a Formcarry');
+                
+                        // 2. Enviar a EmailJS con campos personalizados
+                        const formData = Object.fromEntries(data.entries());
+                        return emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', formData); // ← Reemplaza con los nuevos IDs
+                      })
+                      .then(() => {
+                        message.textContent = '¡Mensaje enviado con éxito!';
+                        message.style.color = 'green';
+                        form.reset();
+                      })
+                      .catch(error => {
+                        console.error('Error:', error);
+                        message.textContent = 'Error al enviar el mensaje. Intenta de nuevo.';
+                        message.style.color = 'red';
+                      });
+                  });
+                </script>
+
             </div>
         </section>
 
