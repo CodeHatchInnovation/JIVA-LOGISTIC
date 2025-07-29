@@ -310,7 +310,7 @@
                 <script>
                   (function () {
                     emailjs.init({
-                      publicKey: 'TU_PUBLIC_KEY_AQUI' // ← Reemplaza con tu nueva public key de EmailJS
+                      publicKey: 'TPPbis7EuYyGsyhuX' // ← Reemplaza con tu nueva public key de EmailJS
                     });
                   })();
                 
@@ -323,7 +323,7 @@
                     const data = new FormData(form);
                 
                     // 1. Enviar a Formcarry
-                    fetch("https://formcarry.com/s/TU_FORMCARRY_ID_AQUI", { // ← Reemplaza con el nuevo Formcarry ID
+                    fetch("https://formcarry.com/s/NSfDTg2dZ68", { // ← Reemplaza con el nuevo Formcarry ID
                       method: 'POST',
                       body: data,
                       headers: {
@@ -335,7 +335,7 @@
                 
                         // 2. Enviar a EmailJS con campos personalizados
                         const formData = Object.fromEntries(data.entries());
-                        return emailjs.send('TU_SERVICE_ID', 'TU_TEMPLATE_ID', formData); // ← Reemplaza con los nuevos IDs
+                        return emailjs.send('service_sefymeh', 'template_qg0ts7x', formData); // ← Reemplaza con los nuevos IDs
                       })
                       .then(() => {
                         message.textContent = '¡Mensaje enviado con éxito!';
