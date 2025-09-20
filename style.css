@@ -229,12 +229,13 @@ h2 {
 
 /* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
 /* Nuevo estilo para el contenedor del video */
-.hero-video-container {
-    flex: 1;
-    max-width: 500px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Estilos directos para el video/iframe */
+.hero-video-container iframe {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: block;
 }
 
 /* Estilos directos para el video/iframe */
@@ -1410,4 +1411,5 @@ hr {
         margin-right: 10px;
     }
 }
+
 
