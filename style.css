@@ -228,19 +228,23 @@ h2 {
 }
 
 /* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
-.hero-video {
+/* Nuevo estilo para el contenedor del video */
+.hero-video-container {
     flex: 1;
     max-width: 500px;
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-    height: 0; /* Necesario para que padding-bottom defina la altura */
-    overflow: hidden;
-    background-color: var(--black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilos directos para el video/iframe */
+.hero-video-container video,
+.hero-video-container iframe {
+    width: 100%; /* El video se ajusta al ancho del contenedor */
+    height: auto; /* La altura se adapta automáticamente para evitar barras negras */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    /* Aseguramos que el display sea block para que siempre se renderice */
-    display: block; 
+    display: block;
 }
 
 .hero-video video,
@@ -1406,3 +1410,4 @@ hr {
         margin-right: 10px;
     }
 }
+
