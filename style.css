@@ -1,14 +1,16 @@
+/* --- Variables CSS (actualizadas) --- */
 :root {
-    --primary-blue: #003366; 
-    --secondary-blue: #0056b3;
+    --primary-blue: #003366; /* Azul oscuro corporativo */
+    --secondary-blue: #0056b3; /* Un azul un poco más claro */
     --light-gray: #f8f8f8;
     --dark-gray: #333;
     --text-color: #555;
-    --accent-color: #007bff;
+    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
     --white: #ffffff;
     --black: #000000;
 }
 
+/* Reset básico para asegurar consistencia entre navegadores */
 * {
     margin: 0;
     padding: 0;
@@ -1444,12 +1446,9 @@ hr {
         justify-content: center;
     }
 
-    /* Botón de voz para pantallas muy pequeñas - Ajuste fino */
     .voice-btn {
         padding: 6px 10px;
         font-size: 0.8em;
         margin-right: 10px;
     }
 }
-
-
