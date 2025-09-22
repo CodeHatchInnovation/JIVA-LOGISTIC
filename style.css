@@ -234,8 +234,9 @@ h2 {
     width: 100%;
     height: auto;
     border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
     display: block;
+    max-width: 700px;
 }
 
 /* Estilos directos para el video/iframe */
@@ -1411,5 +1412,6 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
