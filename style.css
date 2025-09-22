@@ -1,13 +1,13 @@
-/* --- Variables CSS (actualizadas) --- */
+/*  - Variables CSS (actualizadas)  - */
 :root {
-    --primary-blue: #003366; /* Azul oscuro corporativo */
-    --secondary-blue: #0056b3; /* Un azul un poco más claro */
-    --light-gray: #f8f8f8;
-    --dark-gray: #333;
-    --text-color: #555;
-    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
-    --white: #ffffff;
-    --black: #000000;
+    primary-blue: #003366; /* Azul oscuro corporativo */
+    secondary-blue: #0056b3; /* Un azul un poco más claro */
+    light-gray: #f8f8f8;
+    dark-gray: #333;
+    text-color: #555;
+    accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
+    white: #ffffff;
+    black: #000000;
 }
 
 /* Reset básico para asegurar consistencia entre navegadores */
@@ -24,8 +24,8 @@ html {
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: var(--text-color);
-    background-color: var(--light-gray);
+    color: var( text-color);
+    background-color: var( light-gray);
 }
 
 .container {
@@ -34,30 +34,30 @@ body {
     padding: 0 20px;
 }
 
-/* --- Estilos Generales de Secciones y Botones --- */
+/*  - Estilos Generales de Secciones y Botones  - */
 section {
     padding: 60px 0;
-    background-color: var(--white);
+    background-color: var( white);
     text-align: center;
 }
 
 section:nth-of-type(even) {
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
 }
 
 .blue-bg {
-    background-color: var(--primary-blue) !important;
-    color: var(--white);
+    background-color: var( primary-blue) !important;
+    color: var( white);
 }
 
 .blue-bg h2, .blue-bg h3, .blue-bg p, .blue-bg li, .blue-bg strong {
-    color: var(--white);
+    color: var( white);
 }
 
 .cta-button {
     display: inline-block;
-    background-color: var(--primary-blue);
-    color: var(--white);
+    background-color: var( primary-blue);
+    color: var( white);
     padding: 12px 25px;
     border-radius: 5px;
     text-decoration: none;
@@ -67,12 +67,12 @@ section:nth-of-type(even) {
 }
 
 .cta-button:hover {
-    background-color: var(--secondary-blue);
+    background-color: var( secondary-blue);
     transform: scale(1.05); /* AGREGADO: Animación en hover */
 }
 
 h1, h2, h3 {
-    color: var(--dark-gray);
+    color: var( dark-gray);
     margin-bottom: 20px;
 }
 
@@ -81,9 +81,9 @@ h2 {
     margin-bottom: 40px;
 }
 
-/* --- Header y Navegación --- */
+/*  - Header y Navegación  - */
 .main-header {
-    background-color: var(--primary-blue);
+    background-color: var( primary-blue);
     padding: 10px 0;
     position: sticky;
     top: 0;
@@ -117,20 +117,20 @@ h2 {
 }
 
 .nav-links a {
-    color: var(--white);
+    color: var( white);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-    color: var(--accent-color);
+    color: var( accent-color);
 }
 
 /* Botón de voz */
 .voice-btn {
-    background-color: var(--accent-color);
-    color: var(--dark-gray);
+    background-color: var( accent-color);
+    color: var( dark-gray);
     border: none;
     padding: 8px 15px;
     border-radius: 5px;
@@ -142,8 +142,8 @@ h2 {
 }
 
 .voice-btn:hover {
-    background-color: var(--secondary-blue);
-    color: var(--white);
+    background-color: var( secondary-blue);
+    color: var( white);
 }
 
 /* Menú hamburguesa para móviles */
@@ -160,7 +160,7 @@ h2 {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: var(--white);
+    background-color: var( white);
     position: relative;
     transition: background-color 0.3s;
 }
@@ -171,7 +171,7 @@ h2 {
     display: block;
     width: 25px;
     height: 3px;
-    background-color: var(--white);
+    background-color: var( white);
     position: absolute;
     transition: transform 0.3s, top 0.3s;
 }
@@ -199,14 +199,14 @@ h2 {
     top: 0;
 }
 
-/* --- Hero Section --- */
+/*  - Hero Section  - */
 .hero-section {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 80px 20px;
-    background-color: var(--white);
+    background-color: var( white);
     gap: 40px;
     text-align: left;
 }
@@ -218,13 +218,13 @@ h2 {
 
 .hero-content h1 {
     font-size: 3.2em;
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-bottom: 25px;
 }
 
 .hero-content p {
     font-size: 1.2em;
-    color: var(--text-color);
+    color: var( text-color);
     margin-bottom: 30px;
 }
 
@@ -268,15 +268,15 @@ h2 {
 }
 
 .values span {
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
     padding: 8px 15px;
     border-radius: 20px;
     font-weight: bold;
-    color: var(--dark-gray);
+    color: var( dark-gray);
     font-size: 0.9em;
 }
 
-/* --- Services Section --- */
+/*  - Services Section  - */
 .services-section .container {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -299,7 +299,7 @@ h2 {
 }
 
 .services-list li {
-    background-color: var(--white);
+    background-color: var( white);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     padding: 20px;
@@ -308,30 +308,30 @@ h2 {
     align-items: center;
     gap: 10px;
     font-size: 1.1em;
-    color: var(--dark-gray);
+    color: var( dark-gray);
 }
 
 .services-list li::before {
     content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    color: var(--primary-blue);
+    color: var( primary-blue);
     font-size: 1.2em;
     margin-right: 10px;
 }
 
-/* --- Estilos para las tarjetas de frases --- */
+/*  - Estilos para las tarjetas de frases  - */
 .frases-destacadas {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 60px 20px;
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
     margin-top: 0;
 }
 
 .tarjeta-frase {
-    background-color: var(--white);
+    background-color: var( white);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     padding: 25px;
@@ -360,12 +360,12 @@ h2 {
 
 .tarjeta-frase p {
     font-size: 1.1em;
-    color: var(--dark-gray);
+    color: var( dark-gray);
     font-weight: 500;
     line-height: 1.5;
 }
 
-/* --- Misión y Visión Section --- */
+/*  - Misión y Visión Section  - */
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -374,7 +374,7 @@ h2 {
 }
 
 .card {
-    background-color: var(--white);
+    background-color: var( white);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     padding: 30px;
@@ -392,23 +392,23 @@ h2 {
 }
 
 .card h3 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-bottom: 15px;
     font-size: 1.8em;
 }
 
 .card p {
-    color: var(--text-color);
+    color: var( text-color);
     line-height: 1.7;
 }
 
 .blue-bg .card h3,
 .blue-bg .card p,
 .blue-bg .card a {
-    color: var(--dark-gray);
+    color: var( dark-gray);
 }
 
-/* --- Flota Section --- */
+/*  - Flota Section  - */
 .carousel-container {
     position: relative;
     width: 100%;
@@ -457,14 +457,14 @@ h2 {
     right: 10px;
 }
 
-/* --- Rastreo Satelital Section --- */
+/*  - Rastreo Satelital Section  - */
 .content-left-image {
     display: flex;
     align-items: flex-start;
     gap: 30px;
     text-align: left;
     padding: 20px;
-    background-color: var(--secondary-blue);
+    background-color: var( secondary-blue);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
@@ -482,12 +482,12 @@ h2 {
 }
 
 .content-left-image h3 {
-    color: var(--white);
+    color: var( white);
     margin-bottom: 15px;
 }
 
 .content-left-image p, .content-left-image ul, .content-left-image li {
-    color: var(--white);
+    color: var( white);
     margin-bottom: 10px;
 }
 
@@ -505,15 +505,15 @@ h2 {
 }
 
 .image-grid span {
-    background-color: var(--accent-color);
-    color: var(--white);
+    background-color: var( accent-color);
+    color: var( white);
     padding: 8px 15px;
     border-radius: 5px;
     font-weight: bold;
     font-size: 0.9em;
 }
 
-/* --- Cobertura Section --- */
+/*  - Cobertura Section  - */
 .full-width-image {
     max-width: 100%;
     height: auto;
@@ -522,7 +522,7 @@ h2 {
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Patios Section (Mapas Responsivos) --- */
+/*  - Patios Section (Mapas Responsivos)  - */
 .patio-locations {
     display: flex;
     flex-wrap: wrap;
@@ -532,7 +532,7 @@ h2 {
 }
 
 .patio-card {
-    background-color: var(--white);
+    background-color: var( white);
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -543,7 +543,7 @@ h2 {
 }
 
 .patio-card h3 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-bottom: 15px;
 }
 
@@ -575,7 +575,7 @@ h2 {
 .map-link {
     display: inline-block;
     margin-top: 15px;
-    color: var(--accent-color);
+    color: var( accent-color);
     text-decoration: none;
     font-weight: bold;
 }
@@ -584,7 +584,7 @@ h2 {
     text-decoration: underline;
 }
 
-/* --- Contacto Section --- */
+/*  - Contacto Section  - */
 .section-padded {
     padding: 60px 0;
 }
@@ -606,7 +606,7 @@ h2 {
 }
 
 .contact-card h3 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-bottom: 15px;
 }
 
@@ -615,7 +615,7 @@ h2 {
 }
 
 .contact-card a {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     text-decoration: none;
 }
 
@@ -637,7 +637,7 @@ hr {
 .digital-strategy-section h3,
 .digital-strategy-section h4,
 .digital-strategy-section h5 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-bottom: 15px;
     margin-top: 30px;
 }
@@ -650,7 +650,7 @@ hr {
 
 .digital-strategy-section ul li {
     margin-bottom: 8px;
-    color: var(--text-color);
+    color: var( text-color);
 }
 
 .social-icons-list {
@@ -666,11 +666,11 @@ hr {
     display: flex;
     align-items: center;
     gap: 8px;
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
-    color: var(--dark-gray);
+    color: var( dark-gray);
     font-weight: bold;
     transition: background-color 0.3s, transform 0.2s ease; /* AGREGADO */
 }
@@ -682,7 +682,7 @@ hr {
 
 .social-icons-list i {
     font-size: 1.2em;
-    color: var(--primary-blue);
+    color: var( primary-blue);
 }
 
 .social-contact-buttons {
@@ -707,11 +707,11 @@ hr {
 .social-contact-buttons .social-messenger { background-color: #0078FF; color: white; }
 .social-contact-buttons .social-messenger:hover { background-color: #0056D4; }
 .social-contact-buttons .social-form {
-    background-color: var(--accent-color);
-    color: var(--white);
+    background-color: var( accent-color);
+    color: var( white);
 }
 .social-contact-buttons .social-form:hover {
-    background-color: var(--secondary-blue);
+    background-color: var( secondary-blue);
 }
 
 .social-icons-footer-list {
@@ -729,21 +729,21 @@ hr {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--primary-blue);
-    color: var(--white);
+    background-color: var( primary-blue);
+    color: var( white);
     font-size: 1.5em;
     text-decoration: none;
     transition: background-color 0.3s, transform 0.2s;
 }
 
 .social-icons-footer-list a:hover {
-    background-color: var(--accent-color);
+    background-color: var( accent-color);
     transform: translateY(-3px);
-    color: var(--white);
+    color: var( white);
 }
 
 .contact-form-title {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     margin-top: 50px;
     margin-bottom: 30px;
     text-align: center;
@@ -753,7 +753,7 @@ hr {
     max-width: 600px;
     margin: 0 auto;
     padding: 30px;
-    background-color: var(--white);
+    background-color: var( white);
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     text-align: left;
@@ -767,7 +767,7 @@ hr {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: var(--dark-gray);
+    color: var( dark-gray);
 }
 
 .form-group input[type="text"],
@@ -778,7 +778,7 @@ hr {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1em;
-    color: var(--dark-gray);
+    color: var( dark-gray);
 }
 
 .form-group textarea {
@@ -799,7 +799,7 @@ hr {
     color: green;
 }
 
-/* --- Privacy Policy Section --- */
+/*  - Privacy Policy Section  - */
 .privacy-policy-container {
     text-align: left;
 }
@@ -810,7 +810,7 @@ hr {
 }
 
 .privacy-policy-container h3 {
-    color: var(--accent-color);
+    color: var( accent-color);
     margin-top: 30px;
     margin-bottom: 15px;
 }
@@ -831,7 +831,7 @@ hr {
 }
 
 .privacy-policy-container a {
-    color: var(--accent-color);
+    color: var( accent-color);
     text-decoration: underline;
 }
 
@@ -842,22 +842,22 @@ hr {
     text-align: right;
 }
 
-/* --- QR Section --- */
+/*  - QR Section  - */
 .qr-code-image {
     max-width: 250px;
     height: auto;
     margin-top: 20px;
-    border: 5px solid var(--white);
+    border: 5px solid var( white);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* --- Chatbot Styles --- */
+/*  - Chatbot Styles  - */
 .chatbot-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: var(--primary-blue);
+    background-color: var( primary-blue);
     color: white;
     width: 60px;
     height: 60px;
@@ -882,7 +882,7 @@ hr {
     right: 30px;
     width: 350px;
     height: 450px;
-    background-color: var(--white);
+    background-color: var( white);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     display: flex;
@@ -902,7 +902,7 @@ hr {
 }
 
 .chatbot-header {
-    background-color: var(--primary-blue);
+    background-color: var( primary-blue);
     color: white;
     padding: 15px;
     display: flex;
@@ -929,7 +929,7 @@ hr {
     flex-grow: 1;
     padding: 15px;
     overflow-y: auto;
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
 }
 
 .bot-message, .user-message {
@@ -941,7 +941,7 @@ hr {
 }
 
 .bot-message {
-    background-color: var(--secondary-blue);
+    background-color: var( secondary-blue);
     color: white;
     align-self: flex-start;
     border-bottom-left-radius: 2px;
@@ -949,7 +949,7 @@ hr {
 
 .user-message {
     background-color: #e0e0e0;
-    color: var(--dark-gray);
+    color: var( dark-gray);
     align-self: flex-end;
     margin-left: auto;
     border-bottom-right-radius: 2px;
@@ -959,7 +959,7 @@ hr {
     display: flex;
     padding: 10px 15px;
     border-top: 1px solid #eee;
-    background-color: var(--white);
+    background-color: var( white);
 }
 
 .chat-input-container input {
@@ -972,7 +972,7 @@ hr {
 }
 
 .chat-input-container button {
-    background-color: var(--primary-blue);
+    background-color: var( primary-blue);
     color: white;
     border: none;
     border-radius: 20px;
@@ -982,10 +982,10 @@ hr {
 }
 
 .chat-input-container button:hover {
-    background-color: var(--secondary-blue);
+    background-color: var( secondary-blue);
 }
 
-/* --- ESTILOS PARA EL MODAL/POP-UP DEL CATÁLOGO --- */
+/*  - ESTILOS PARA EL MODAL/POP-UP DEL CATÁLOGO  - */
 .modal {
     display: none;
     position: fixed;
@@ -1003,7 +1003,7 @@ hr {
 }
 
 .modal-content {
-    background-color: var(--white);
+    background-color: var( white);
     margin: auto;
     padding: 30px;
     border-radius: 10px;
@@ -1022,7 +1022,7 @@ hr {
 }
 
 .close-button {
-    color: var(--dark-gray);
+    color: var( dark-gray);
     font-size: 35px;
     font-weight: bold;
     position: absolute;
@@ -1034,7 +1034,7 @@ hr {
 
 .close-button:hover,
 .close-button:focus {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     text-decoration: none;
     cursor: pointer;
 }
@@ -1054,18 +1054,18 @@ hr {
 }
 
 .modal-header h2 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     font-size: 2.2em;
     margin-bottom: 10px;
 }
 
 .modal-header p {
-    color: var(--text-color);
+    color: var( text-color);
     font-size: 1.1em;
 }
 
 .modal-body .service-item {
-    background-color: var(--light-gray);
+    background-color: var( light-gray);
     border-radius: 8px;
     padding: 25px;
     margin-bottom: 25px;
@@ -1074,13 +1074,13 @@ hr {
 }
 
 .modal-body .service-item h3 {
-    color: var(--primary-blue);
+    color: var( primary-blue);
     font-size: 1.6em;
     margin-bottom: 10px;
 }
 
 .modal-body .service-item p {
-    color: var(--dark-gray);
+    color: var( dark-gray);
     margin-bottom: 15px;
 }
 
@@ -1094,14 +1094,14 @@ hr {
     position: relative;
     padding-left: 25px;
     margin-bottom: 8px;
-    color: var(--text-color);
+    color: var(text-color);
 }
 
 .modal-body .service-item ul li::before {
     content: '\f00c';
     font-family: 'Font Awesome 6 Free';
     font-weight: 900;
-    color: var(--primary-blue);
+    color: var(primary-blue);
     position: absolute;
     left: 0;
     top: 2px;
@@ -1110,7 +1110,7 @@ hr {
 .modal-body .service-item .note {
     font-style: italic;
     font-size: 0.9em;
-    color: var(--text-color);
+    color: var( text-color);
     margin-top: 10px;
     margin-bottom: 20px;
 }
@@ -1166,10 +1166,10 @@ hr {
     }
 }
 
-/* --- Footer --- */
+/*  - Footer  - */
 .main-footer {
-    background-color: var(--primary-blue);
-    color: var(--white);
+    background-color: var( primary-blue);
+    color: var(white);
     padding: 30px 0;
     text-align: center;
     margin-top: 50px;
@@ -1198,16 +1198,16 @@ hr {
 }
 
 .footer-links a {
-    color: var(--white);
+    color: var(white);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: var(--accent-color);
+    color: var(accent-color);
 }
 
-/* --- Media Queries (Responsividad) --- */
+/*  - Media Queries (Responsividad)  - */
 @media (max-width: 992px) {
     .hero-section {
         flex-direction: column;
@@ -1305,7 +1305,7 @@ hr {
         flex-direction: column;
         width: 100%;
         display: none;
-        background-color: var(--primary-blue);
+        background-color: var(primary-blue);
         padding-top: 10px;
         position: static; /* Asegura que no se posicione de forma absoluta */
     }
@@ -1380,7 +1380,7 @@ hr {
         font-size: 1.8em;
     }
 
-    /* --- Ajustes específicos para móviles (mapas y video) --- */
+    /*  - Ajustes específicos para móviles (mapas y video)  - */
     .hero-video {
         max-width: 100%;
         padding-bottom: 56.25%;
@@ -1438,3 +1438,4 @@ hr {
         margin-right: 10px;
     }
 }
+
