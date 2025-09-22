@@ -577,7 +577,9 @@ h2 {
 }
 
 .contact-info-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Esto crea 2 columnas de igual ancho */
+    gap: 30px; /* El espacio entre las tarjetas */
     margin-bottom: 40px;
 }
 
@@ -1412,6 +1414,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
