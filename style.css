@@ -1,20 +1,20 @@
 /* --- Variables CSS (actualizadas) --- */
-:root {
-    --primary-blue: #003366; /* Azul oscuro corporativo */
-    --secondary-blue: #0056b3; /* Un azul un poco más claro */
-    --light-gray: #f8f8f8;
-    --dark-gray: #333;
-    --text-color: #555;
-    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
-    --white: #ffffff;
-    --black: #000000;
+:root{
+    --primary-blue: #003366; /* Azul oscuro corporativo */
+    --secondary-blue: #0056b3; /* Un azul un poco más claro */
+    --light-gray: #f8f8f8;
+    --dark-gray: #333;
+    --text-color: #555;
+    --accent-color: #007bff; /* Nuevo color de acento: Azul más brillante (puedes ajustarlo) */
+    --white: #ffffff;
+    --black: #000000;
 }
 
 /* Reset básico para asegurar consistencia entre navegadores */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 html {
@@ -1452,3 +1452,4 @@ hr {
         margin-right: 10px;
     }
 }
+
