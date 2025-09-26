@@ -1192,6 +1192,7 @@ hr {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
+    align: center;
 }
 
 .privacy-btn:hover {
@@ -1521,6 +1522,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
