@@ -422,7 +422,7 @@ h2 {
 
 .carousel-slide {
     display: flex;
-    gap: 20px;
+    transition: transform 0.5s ease-in-out;
 }
 
 /* Cada tarjeta que contiene la imagen */
@@ -1533,6 +1533,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
