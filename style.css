@@ -1182,6 +1182,21 @@ hr {
 }
 
 /* --- Footer --- */
+
+.privacy-btn {
+    background-color: #007bff; /* color azul, cambia si quieres */
+    color: #fff; /* texto blanco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.privacy-btn:hover {
+    background-color: #0056b3;
+}
 .main-footer {
   background-color: var(--primary-blue);
   color: var(--white);
@@ -1506,6 +1521,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
