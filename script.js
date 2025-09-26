@@ -44,44 +44,64 @@ sections.forEach(section => observer.observe(section));
         });
     }
 
-    // --- Carrusel de Imágenes (Flota) ---
-    const carouselSlide = document.querySelector('.carousel-slide');
-    const carouselImages = document.querySelectorAll('.carousel-slide img');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+ 
+    // --- Carrusel de Imágenes (Flota Infinito) ---
+const carouselSlide = document.querySelector('.carousel-slide');
+const carouselImages = document.querySelectorAll('.carousel-slide img');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
 
-    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
-        let counter = 0;
-        const size = carouselImages[0].clientWidth;
+if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
+    let counter = 1; // Empezamos desde la primera "real" imagen después del clone
+    const size = carouselImages[0].clientWidth;
 
-        // Asegúrate de que el carrusel se muestre correctamente al cargar
+    // --- CLONAR PRIMER Y ÚLTIMA IMAGEN ---
+    const firstClone = carouselImages[0].cloneNode(true);
+    const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
+
+    carouselSlide.appendChild(firstClone);   // al final
+    carouselSlide.insertBefore(lastClone, carouselSlide.firstChild); // al inicio
+
+    const allImages = document.querySelectorAll('.carousel-slide img');
+
+    // Posicionar correctamente al cargar
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+    nextBtn.addEventListener('click', () => {
+        if (counter >= allImages.length - 1) return; // prevenir overflow
+        counter++;
+        carouselSlide.style.transition = 'transform 0.5s ease-in-out';
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
 
-        nextBtn.addEventListener('click', () => {
-            if (counter >= carouselImages.length - 1) { // Si ya está en la última imagen
-                counter = -1; // Vuelve al inicio virtual para el loop
-            }
-            counter++;
-            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+    prevBtn.addEventListener('click', () => {
+        if (counter <= 0) return; // prevenir overflow
+        counter--;
+        carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
+
+    // Ajustar el contador al llegar a clones
+    carouselSlide.addEventListener('transitionend', () => {
+        if (allImages[counter] === firstClone) {
+            carouselSlide.style.transition = 'none';
+            counter = 1; // primera imagen real
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-
-        prevBtn.addEventListener('click', () => {
-            if (counter <= 0) { // Si ya está en la primera imagen
-                counter = carouselImages.length; // Va al final virtual para el loop
-            }
-            counter--;
-            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+        }
+        if (allImages[counter] === lastClone) {
+            carouselSlide.style.transition = 'none';
+            counter = allImages.length - 2; // última imagen real
             carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
+        }
+    });
 
-        // Opcional: Ajustar el tamaño del carrusel en redimensionamiento
-        window.addEventListener('resize', () => {
-            const newSize = carouselImages[0].clientWidth;
-            carouselSlide.style.transition = 'none'; // Desactiva la transición temporalmente
-            carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
-        });
-    }
+    // Ajustar el tamaño en redimensionamiento
+    window.addEventListener('resize', () => {
+        const newSize = allImages[0].clientWidth;
+        carouselSlide.style.transition = 'none';
+        carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
+    });
+}
 
     // --- Lógica del Formulario de Contacto ---
     const contactForm = document.getElementById('contact-form');
@@ -389,4 +409,5 @@ sections.forEach(section => observer.observe(section));
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
