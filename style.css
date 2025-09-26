@@ -228,36 +228,38 @@ h2 {
     margin-bottom: 30px;
 }
 
-/* ESTILOS PARA EL VIDEO PRINCIPAL (RESPONSIVO) */
-/* Nuevo estilo para el contenedor del video */
-/* Estilos directos para el video/iframe */
-.hero-video-container iframe {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 5px 5px rgba(0,0,0,0.1);
-    display: block;
-    max-width: 700px;
+/* --- Animación para secciones al aparecer --- */
+.section {
+    opacity: 0;
+    transform: translateY(30px); /* Se mueve un poco hacia abajo al inicio */
+    transition: all 0.8s ease-out;
 }
 
-/* Estilos directos para el video/iframe */
+.section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Contenedor del video --- */
+.hero-video-container {
+    width: 100%;
+    height: 80vh; /* Altura del 80% de la ventana */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* --- Video o iframe dentro del contenedor --- */
 .hero-video-container video,
 .hero-video-container iframe {
-    width: 100%; /* El video se ajusta al ancho del contenedor */
-    height: auto; /* La altura se adapta automáticamente para evitar barras negras */
+    width: 100%;
+    height: 100%;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     display: block;
-}
-
-.hero-video video,
-.hero-video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    object-fit: cover; /* Para cubrir todo el contenedor sin deformar */
 }
 
 .values {
@@ -1533,6 +1535,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
