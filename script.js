@@ -44,7 +44,23 @@ sections.forEach(section => observer.observe(section));
         });
     }
 
- 
+ // --- Animación de secciones al hacer scroll ---
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+sections.forEach(section => {
+    observer.observe(section);
+});
+
     // --- Carrusel de Imágenes (Flota Infinito) ---
 const carouselSlide = document.querySelector('.carousel-slide');
 const carouselImages = document.querySelectorAll('.carousel-slide img');
@@ -409,5 +425,6 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
