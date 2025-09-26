@@ -232,24 +232,22 @@ h2 {
 
 /* --- Contenedor del video --- */
 .hero-video-container {
-    width: 100%;
-    display: flex;
+    display: inline-flex;        /* se ajusta al tamaño del video */
     justify-content: center;
     align-items: center;
     position: relative;
-    /* quitamos altura fija para que se ajuste al contenido */
+    margin: 20px auto;           /* centrado con espacio */
 }
 
 /* Video o iframe dentro del contenedor */
 .hero-video-container video,
 .hero-video-container iframe {
-    width: 100%;
     max-width: 300px;   /* ancho máximo del video */
-    height: auto;       /* altura proporcional */
+    width: 100%;        /* responsivo */
+    height: auto;       /* mantiene proporción */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     display: block;
-    object-fit: cover;  /* mantiene proporciones y cubre el contenedor */
 }
 
 
@@ -1526,6 +1524,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
