@@ -236,16 +236,16 @@ h2 {
     justify-content: center;
     align-items: center;
     position: relative;
-    margin: 20px auto;           /* centrado con espacio */
+    margin: 10px 10px;           /* centrado con espacio */
 }
 
 /* Video o iframe dentro del contenedor */
 .hero-video-container video,
 .hero-video-container iframe {
-    max-width: 300px;   /* ancho máximo del video */
+    max-width: 500px;   /* ancho máximo del video */
     width: 100%;        /* responsivo */
     height: auto;       /* mantiene proporción */
-    border-radius: 8px;
+    border-radius: 4px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     display: block;
 }
@@ -1524,6 +1524,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
