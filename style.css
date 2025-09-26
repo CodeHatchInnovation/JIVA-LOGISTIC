@@ -412,39 +412,47 @@ h2 {
 .carousel-container {
     position: relative;
     width: 100%;
-    overflow: hidden;
+    overflow-x: auto; /* Scroll horizontal estilo galería */
+    display: flex;
+    gap: 20px; /* Separación entre tarjetas */
+    padding: 20px 0;
+    scroll-behavior: smooth;
     margin: 40px auto;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
 .carousel-slide {
     display: flex;
-    transition: transform 0.5s ease-in-out;
+    gap: 20px;
 }
 
-/* Contenedor de cada imagen. Aquí definimos el tamaño uniforme. */
-.carousel-image-wrapper {
-    flex-shrink: 0;
-    width: 100%;
-    position: relative;
-    /* La clave para la uniformidad: Define la proporción de alto/ancho. */
-    aspect-ratio: 16 / 9; /* Puedes cambiarla a 4 / 3, 1 / 1, etc., según tu preferencia. */
-    overflow: hidden;
-}
-
-/* La imagen se ajusta al contenedor sin distorsionarse. */
-.carousel-image-wrapper img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* ¡Esto es crucial! La imagen cubre el espacio y se recorta si es necesario. */
+/* Cada tarjeta que contiene la imagen */
+.card {
+    flex: 0 0 250px; /* Ancho fijo */
+    background-color: #fff;
     border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Estilos para los botones de navegación del carrusel */
+/* Imagen dentro de la tarjeta */
+.card img {
+    width: 100%;
+    height: 150px; /* Altura fija */
+    object-fit: cover; /* Ajuste sin distorsión */
+}
+
+/* Descripción de la tarjeta */
+.card p {
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Botones de navegación (opcionales) */
 .carousel-container button {
     position: absolute;
     top: 50%;
@@ -1193,12 +1201,14 @@ hr {
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s;
-    align: center;
+    display: block;   /* Hace que el botón sea bloque */
+    margin: 0 auto;   /* Lo centra horizontalmente */
 }
 
 .privacy-btn:hover {
     background-color: #0056b3;
 }
+
 .main-footer {
   background-color: var(--primary-blue);
   color: var(--white);
@@ -1523,6 +1533,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
