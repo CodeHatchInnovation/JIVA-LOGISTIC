@@ -229,13 +229,14 @@ h2 {
 }
 
 /* --- Animación para secciones al aparecer --- */
-.section {
+section {
     opacity: 0;
-    transform: translateY(30px); /* Se mueve un poco hacia abajo al inicio */
+    transform: translateY(50px);
     transition: all 0.8s ease-out;
 }
 
-.section.visible {
+/* Estado cuando están visibles */
+section.animate-section {
     opacity: 1;
     transform: translateY(0);
 }
@@ -1535,6 +1536,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
