@@ -245,7 +245,7 @@ window.addEventListener('click', (e) => {
             } else if (/(mision|vision|esencia)/.test(message)) {
                 return "Nuestra Misión es ofrecer un servicio especializado con calidad, confiabilidad y seguridad, buscando la continuidad comercial a largo plazo. Nuestra Visión es consolidarnos como empresa líder en el transporte de contenedores, reconocida por su eficiencia e innovación. Para más información, visita nuestra sección de <a href='#mision'>Misión y Visión</a>.";
             } else if (/(flota|camiones|unidades)/.test(message)) {
-                return "Contamos con 17 unidades: 11 sencillos, 5 full expandibles y 6 cajas secas. Para ver la flota completa, visita nuestra sección de <a href='#flota'>Flota</a>.";
+                return "Contamos con 21 unidades: 14 sencillos, 7 full expandibles y 6 cajas secas. Para ver la flota completa, visita nuestra sección de <a href='#flota'>Flota</a>.";
             } else if (/(rastreo|seguridad|monitoreo|satelital)/.test(message)) {
                 return "Ofrecemos monitoreo satelital 24/7 con rastreo en tiempo real y apagado remoto de unidades en caso de robo. Trabajamos con ELITE, Zapata Aeropuerto, FREIT y PROTRACK. Para más detalles, visita nuestra sección de <a href='#rastreo'>Rastreo Satelital</a>.";
             } else if (/(cobertura|donde operan|ciudades|nacional)/.test(message)) {
@@ -454,6 +454,7 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
