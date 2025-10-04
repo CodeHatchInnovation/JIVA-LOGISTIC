@@ -120,7 +120,7 @@ cards.forEach((img, index) => {
       // agregar 3 imágenes por camión
       for (let i = 1; i <= 3; i++) {
         const extraImg = document.createElement('img');
-        extraImg.src = `images/c${num}-${i}.jpg`;
+        extraImg.src = `images/c${num}-${i}.jpeg`;
         extraImg.alt = `Camión ${num} imagen ${i}`;
         modalGallery.appendChild(extraImg);
       }
@@ -441,6 +441,7 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
