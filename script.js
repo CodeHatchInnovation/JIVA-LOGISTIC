@@ -120,9 +120,9 @@ cards.forEach((img) => {
 
       // Lista de imágenes posibles (puedes poner las que tengas)
       const posibles = [
-        `images/c${num}-1.jpg`,
-        `images/c${num}-2.jpg`,
-        `images/c${num}-3.jpg`
+        `images/c${num}-1.jpeg`,
+        `images/c${num}-2.jpeg`,
+        `images/c${num}-3.jpeg`
       ];
 
       // Comprobar cada imagen
@@ -454,6 +454,7 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
