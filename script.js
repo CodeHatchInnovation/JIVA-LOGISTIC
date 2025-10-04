@@ -103,29 +103,42 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
 }
 
     // --- Modal de imágenes por camión ---
+// --- Modal de imágenes por camión (versión mejorada) ---
 const cards = document.querySelectorAll('.card img');
 const modal = document.getElementById('imageModal');
 const modalGallery = document.querySelector('.modal-gallery');
 const closeBtn = document.querySelector('.close');
 
-cards.forEach((img, index) => {
+cards.forEach((img) => {
   img.addEventListener('click', () => {
     modal.style.display = 'flex';
-    modalGallery.innerHTML = ''; // limpiar contenido anterior
+    modalGallery.innerHTML = '';
 
-    // obtener número del camión a partir del nombre del archivo (c1, c2, etc.)
     const match = img.src.match(/c(\d+)/);
     if (match) {
       const num = match[1];
-      // agregar 3 imágenes por camión
-      for (let i = 1; i <= 3; i++) {
-        const extraImg = document.createElement('img');
-        extraImg.src = `images/c${num}-${i}.jpeg`;
-        extraImg.alt = `Camión ${num} imagen ${i}`;
-        modalGallery.appendChild(extraImg);
-      }
+
+      // Lista de imágenes posibles (puedes poner las que tengas)
+      const posibles = [
+        `images/c${num}-1.jpg`,
+        `images/c${num}-2.jpg`,
+        `images/c${num}-3.jpg`
+      ];
+
+      // Comprobar cada imagen
+      posibles.forEach((ruta) => {
+        const extraImg = new Image();
+        extraImg.src = ruta;
+        extraImg.alt = `Camión ${num}`;
+        extraImg.onload = () => modalGallery.appendChild(extraImg); // solo si carga bien
+      });
     }
   });
+});
+
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
 });
 
 // cerrar modal al presionar X o fuera del contenido
@@ -441,6 +454,7 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
