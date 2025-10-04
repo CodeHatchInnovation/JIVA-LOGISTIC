@@ -102,6 +102,39 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
     });
 }
 
+    // --- Modal de imágenes por camión ---
+const cards = document.querySelectorAll('.card img');
+const modal = document.getElementById('imageModal');
+const modalGallery = document.querySelector('.modal-gallery');
+const closeBtn = document.querySelector('.close');
+
+cards.forEach((img, index) => {
+  img.addEventListener('click', () => {
+    modal.style.display = 'flex';
+    modalGallery.innerHTML = ''; // limpiar contenido anterior
+
+    // obtener número del camión a partir del nombre del archivo (c1, c2, etc.)
+    const match = img.src.match(/c(\d+)/);
+    if (match) {
+      const num = match[1];
+      // agregar 3 imágenes por camión
+      for (let i = 1; i <= 3; i++) {
+        const extraImg = document.createElement('img');
+        extraImg.src = `images/c${num}-${i}.jpg`;
+        extraImg.alt = `Camión ${num} imagen ${i}`;
+        modalGallery.appendChild(extraImg);
+      }
+    }
+  });
+});
+
+// cerrar modal al presionar X o fuera del contenido
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
+
     // --- Lógica del Formulario de Contacto ---
     const contactForm = document.getElementById('contact-form');
     const contactMessage = document.getElementById('contact-message');
@@ -408,6 +441,7 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
