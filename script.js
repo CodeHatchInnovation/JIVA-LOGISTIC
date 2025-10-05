@@ -5,17 +5,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     // Detectar cuando las secciones entran en pantalla
-    const sections = document.querySelectorAll('.section');
+const sections = document.querySelectorAll('.section');
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if(entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.2 });
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.2 });
 
-    sections.forEach(section => observer.observe(section));
+sections.forEach(section => observer.observe(section));
+
 
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
@@ -23,6 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
             menuToggle.classList.toggle('active');
         });
 
+        // Este listener se modificó ligeramente para cerrar el menú
+        // cuando se hace clic fuera, incluyendo los enlaces dentro del nav
         document.addEventListener('click', (event) => {
             if (!navLinks.contains(event.target) && !menuToggle.contains(event.target)) {
                 navLinks.classList.remove('active');
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Cierra el menú al hacer clic en un enlace (para móviles)
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 if (navLinks.classList.contains('active')) {
@@ -40,143 +44,106 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Carrusel de Imágenes ---
-    const carouselSlide = document.querySelector('.carousel-slide');
-    const carouselImages = document.querySelectorAll('.carousel-slide img');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
+    // --- Carrusel de Imágenes (Flota Infinito) ---
+const carouselSlide = document.querySelector('.carousel-slide');
+const carouselImages = document.querySelectorAll('.carousel-slide img');
+const prevBtn = document.querySelector('.prev-btn');
+const nextBtn = document.querySelector('.next-btn');
 
-    if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
-        let counter = 1;
-        const size = carouselImages[0].clientWidth;
+if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
+    let counter = 1; // Empezamos desde la primera "real" imagen después del clone
+    const size = carouselImages[0].clientWidth;
 
-        const firstClone = carouselImages[0].cloneNode(true);
-        const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
+    // --- CLONAR PRIMER Y ÚLTIMA IMAGEN ---
+    const firstClone = carouselImages[0].cloneNode(true);
+    const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
 
-        carouselSlide.appendChild(firstClone);
-        carouselSlide.insertBefore(lastClone, carouselSlide.firstChild);
+    carouselSlide.appendChild(firstClone);   // al final
+    carouselSlide.insertBefore(lastClone, carouselSlide.firstChild); // al inicio
 
-        const allImages = document.querySelectorAll('.carousel-slide img');
+    const allImages = document.querySelectorAll('.carousel-slide img');
 
+    // Posicionar correctamente al cargar
+    carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+
+    nextBtn.addEventListener('click', () => {
+        if (counter >= allImages.length - 1) return; // prevenir overflow
+        counter++;
+        carouselSlide.style.transition = 'transform 0.5s ease-in-out';
         carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
 
-        nextBtn.addEventListener('click', () => {
-            if (counter >= allImages.length - 1) return;
-            counter++;
-            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
+    prevBtn.addEventListener('click', () => {
+        if (counter <= 0) return; // prevenir overflow
+        counter--;
+        carouselSlide.style.transition = 'transform 0.5s ease-in-out';
+        carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+    });
 
-        prevBtn.addEventListener('click', () => {
-            if (counter <= 0) return;
-            counter--;
-            carouselSlide.style.transition = 'transform 0.5s ease-in-out';
-            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-
-        carouselSlide.addEventListener('transitionend', () => {
-            if (allImages[counter] === firstClone) {
-                carouselSlide.style.transition = 'none';
-                counter = 1;
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            }
-            if (allImages[counter] === lastClone) {
-                carouselSlide.style.transition = 'none';
-                counter = allImages.length - 2;
-                carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-            }
-        });
-
-        window.addEventListener('resize', () => {
-            const newSize = allImages[0].clientWidth;
+    // Ajustar el contador al llegar a clones
+    carouselSlide.addEventListener('transitionend', () => {
+        if (allImages[counter] === firstClone) {
             carouselSlide.style.transition = 'none';
-            carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
-        });
-    }
+            counter = 1; // primera imagen real
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }
+        if (allImages[counter] === lastClone) {
+            carouselSlide.style.transition = 'none';
+            counter = allImages.length - 2; // última imagen real
+            carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }
+    });
+
+    // Ajustar el tamaño en redimensionamiento
+    window.addEventListener('resize', () => {
+        const newSize = allImages[0].clientWidth;
+        carouselSlide.style.transition = 'none';
+        carouselSlide.style.transform = 'translateX(' + (-newSize * counter) + 'px)';
+    });
+}
 
     // --- Modal de imágenes por camión ---
-    const cards = document.querySelectorAll('.card img');
-    const modal = document.getElementById('imageModal');
-    const modalGallery = document.querySelector('.modal-gallery');
-    const closeBtn = document.querySelector('.close');
+// --- Modal de imágenes por camión (versión mejorada) ---
+// --- Modal de imágenes por camión (versión final mejorada) ---
+const cards = document.querySelectorAll('.card img');
+const modal = document.getElementById('imageModal');
+const modalGallery = document.querySelector('.modal-gallery');
+const closeBtn = document.querySelector('.close');
 
-    // Aseguramos que el modal esté oculto al cargar
-    if (modal) modal.style.display = 'none';
+cards.forEach((img) => {
+  img.addEventListener('click', () => {
+    const match = img.src.match(/c(\d+)/);
+    if (!match) return;
+    const num = match[1];
 
-    cards.forEach((img) => {
-        img.addEventListener('click', () => {
-            const match = img.src.match(/c(\d+)/);
-            if (!match) return;
-            const num = match[1];
+    // Rutas posibles (ajusta la cantidad si quieres)
+    const posibles = [
+      `images/c${num}.jpeg`,
+      `images/c${num}-1.jpeg`,
+      `images/c${num}-2.jpeg`,
+      `images/c${num}-3.jpeg`
+    ];
 
-            const posibles = [
-                `images/c${num}.jpeg`,
-                `images/c${num}-1.jpeg`,
-                `images/c${num}-2.jpeg`,
-                `images/c${num}-3.jpeg`
-            ];
+    modalGallery.innerHTML = ''; // limpiar galería
+    let cargadas = 0; // contar cuántas imágenes válidas hay
 
-            modalGallery.innerHTML = '';
-            let cargadas = 0;
+    // Intentar cargar cada imagen
+    posibles.forEach((ruta) => {
+      const extraImg = new Image();
+      extraImg.src = ruta;
+      extraImg.alt = `Camión ${num}`;
 
-            posibles.forEach((ruta) => {
-                const extraImg = new Image();
-                extraImg.src = ruta;
-                extraImg.alt = `Camión ${num}`;
+      extraImg.onload = () => {
+        cargadas++;
+        modalGallery.appendChild(extraImg);
 
-                extraImg.onload = () => {
-                    cargadas++;
-                    modalGallery.appendChild(extraImg);
-                    if (cargadas === 1 && modal) {
-                        modal.style.display = 'flex';
-                    }
-                };
-            });
-
-            // Si después de cierto tiempo no se carga ninguna imagen, no mostrar modal
-            setTimeout(() => {
-                if (cargadas === 0 && modal) {
-                    modal.style.display = 'none';
-                }
-            }, 500);
-        });
+        // Si es la primera imagen válida, mostrar el modal
+        if (cargadas === 1) {
+          modal.style.display = 'flex';
+        }
+      };
     });
-
-    if (closeBtn) {
-        closeBtn.addEventListener('click', () => modal.style.display = 'none');
-    }
-
-    window.addEventListener('click', (e) => {
-        if (modal && e.target === modal) modal.style.display = 'none';
-    });
-
-    // --- Modal del Catálogo de Servicios ---
-    const openCatalogBtn = document.getElementById('open-catalog-btn');
-    const catalogModal = document.getElementById('catalog-modal');
-    const closeCatalogBtn = document.getElementById('close-catalog-btn');
-
-    if (catalogModal) catalogModal.style.display = 'none';
-
-    if (openCatalogBtn && catalogModal && closeCatalogBtn) {
-        openCatalogBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            catalogModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-
-        closeCatalogBtn.addEventListener('click', () => {
-            catalogModal.style.display = 'none';
-            document.body.style.overflow = '';
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === catalogModal) {
-                catalogModal.style.display = 'none';
-                document.body.style.overflow = '';
-            }
-        });
-    }
-
+  });
 });
 
 // Cerrar modal con la X o haciendo clic fuera
