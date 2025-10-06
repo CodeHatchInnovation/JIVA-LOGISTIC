@@ -102,54 +102,57 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
     });
 }
 
-    // --- Modal de imágenes por camión ---
-// --- Modal de imágenes por camión (versión mejorada) ---
-// --- Modal de imágenes por camión (versión final mejorada) ---
+// --- Modal de imágenes por camión (CORREGIDO) ---
 const cards = document.querySelectorAll('.card img');
 const modal = document.getElementById('imageModal');
 const modalGallery = document.querySelector('.modal-gallery');
 const closeBtn = document.querySelector('.close');
 
 cards.forEach((img) => {
-  img.addEventListener('click', () => {
-    const match = img.src.match(/c(\d+)/);
-    if (!match) return;
-    const num = match[1];
+  img.addEventListener('click', () => {
+    const match = img.src.match(/c(\d+)/);
+    if (!match) return;
+    const num = match[1];
 
-    // Rutas posibles (ajusta la cantidad si quieres)
-    const posibles = [
-      `images/c${num}.jpeg`,
-      `images/c${num}-1.jpeg`,
-      `images/c${num}-2.jpeg`,
-      `images/c${num}-3.jpeg`
-    ];
+    // Rutas posibles (ajusta la cantidad si quieres)
+    const posibles = [
+      `images/c${num}.jpeg`,
+      `images/c${num}-1.jpeg`,
+      `images/c${num}-2.jpeg`,
+      `images/c${num}-3.jpeg`
+    ];
 
-    modalGallery.innerHTML = ''; // limpiar galería
-    let cargadas = 0; // contar cuántas imágenes válidas hay
+    modalGallery.innerHTML = ''; // limpiar galería
+    let cargadas = 0; // contar cuántas imágenes válidas hay
 
-    // Intentar cargar cada imagen
-    posibles.forEach((ruta) => {
-      const extraImg = new Image();
-      extraImg.src = ruta;
-      extraImg.alt = `Camión ${num}`;
+    // Intentar cargar cada imagen
+    posibles.forEach((ruta) => {
+      const extraImg = new Image();
+      extraImg.src = ruta;
+      extraImg.alt = `Camión ${num}`;
 
-      extraImg.onload = () => {
-        cargadas++;
-        modalGallery.appendChild(extraImg);
+      extraImg.onload = () => {
+        cargadas++;
+        modalGallery.appendChild(extraImg);
 
-        // Si es la primera imagen válida, mostrar el modal
-        if (cargadas === 1) {
-          modal.style.display = 'flex';
-        }
+        // ⭐ CORRECCIÓN: Si es la primera imagen válida, MOSTRAR el modal.
+        if (cargadas === 1) {
+          modal.style.display = 'flex'; // Usamos 'flex' para centrar el contenido.
+        }
+      };
+      
+      // Manejo de errores (opcional pero recomendable)
+      extraImg.onerror = () => {
+         console.warn(`No se pudo cargar la imagen: ${ruta}`);
       };
-    });
-  });
+    });
+  });
 });
 
-// Cerrar modal con la X o haciendo clic fuera
+// Cerrar modal con la X o haciendo clic fuera (Esto ya estaba correcto)
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
 window.addEventListener('click', (e) => {
-  if (e.target === modal) modal.style.display = 'none';
+  if (e.target === modal) modal.style.display = 'none';
 });
 
 
@@ -460,5 +463,6 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
