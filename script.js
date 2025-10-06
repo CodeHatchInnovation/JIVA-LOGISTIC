@@ -139,7 +139,7 @@ cards.forEach((img) => {
 
         // Si es la primera imagen válida, mostrar el modal
         if (cargadas === 1) {
-          modal.style.display = 'none';
+          modal.style.display = 'flex';
         }
       };
     });
@@ -460,4 +460,5 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
