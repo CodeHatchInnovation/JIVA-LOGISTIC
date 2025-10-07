@@ -108,54 +108,57 @@ const modal = document.getElementById('imageModal');
 const modalGallery = document.querySelector('.modal-gallery');
 const closeBtn = document.querySelector('.close');
 
+// ✅ Aseguramos que el modal esté oculto al inicio
+modal.style.display = 'none';
+
 cards.forEach((img) => {
-  img.addEventListener('click', () => {
-    const match = img.src.match(/c(\d+)/);
-    if (!match) return;
-    const num = match[1];
+  img.addEventListener('click', () => {
+    // Ocultar y limpiar cualquier contenido previo
+    modal.style.display = 'none';
+    modalGallery.innerHTML = '';
 
-    // Rutas posibles (ajusta la cantidad si quieres)
-    const posibles = [
-      `images/c${num}.jpeg`,
-      `images/c${num}-1.jpeg`,
-      `images/c${num}-2.jpeg`,
-      `images/c${num}-3.jpeg`
-    ];
+    const match = img.src.match(/c(\d+)/);
+    if (!match) return;
+    const num = match[1];
 
-    modalGallery.innerHTML = ''; // limpiar galería
-    let cargadas = 0; // contar cuántas imágenes válidas hay
+    // Rutas posibles (ajusta la cantidad si quieres)
+    const posibles = [
+      `images/c${num}.jpeg`,
+      `images/c${num}-1.jpeg`,
+      `images/c${num}-2.jpeg`,
+      `images/c${num}-3.jpeg`
+    ];
 
-    // Intentar cargar cada imagen
-    posibles.forEach((ruta) => {
-      const extraImg = new Image();
-      extraImg.src = ruta;
-      extraImg.alt = `Camión ${num}`;
+    let cargadas = 0; // contar cuántas imágenes válidas hay
 
-      extraImg.onload = () => {
-        cargadas++;
-        modalGallery.appendChild(extraImg);
+    // Intentar cargar cada imagen solo después del clic
+    posibles.forEach((ruta) => {
+      const extraImg = new Image();
+      extraImg.src = ruta;
+      extraImg.alt = `Camión ${num}`;
 
-        // ⭐ CORRECCIÓN: Si es la primera imagen válida, MOSTRAR el modal.
-        if (cargadas === 1) {
-          modal.style.display = 'flex'; // Usamos 'flex' para centrar el contenido.
-        }
-      };
-      
-      // Manejo de errores (opcional pero recomendable)
-      extraImg.onerror = () => {
-         console.warn(`No se pudo cargar la imagen: ${ruta}`);
+      extraImg.onload = () => {
+        cargadas++;
+        modalGallery.appendChild(extraImg);
+
+        // Mostrar modal solo si ya se cargó al menos una imagen válida
+        if (cargadas === 1) {
+          modal.style.display = 'flex'; // Centrar el contenido
+        }
       };
-    });
-  });
+
+      extraImg.onerror = () => {
+        console.warn(`No se pudo cargar la imagen: ${ruta}`);
+      };
+    });
+  });
 });
 
-// Cerrar modal con la X o haciendo clic fuera (Esto ya estaba correcto)
+// Cerrar modal con la X o haciendo clic fuera
 closeBtn.addEventListener('click', () => modal.style.display = 'none');
 window.addEventListener('click', (e) => {
-  if (e.target === modal) modal.style.display = 'none';
+  if (e.target === modal) modal.style.display = 'none';
 });
-
-
 
     // --- Lógica del Formulario de Contacto ---
     const contactForm = document.getElementById('contact-form');
@@ -463,6 +466,7 @@ window.addEventListener('click', (e) => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
