@@ -418,7 +418,7 @@ h2 {
 
 /* Cada tarjeta que contiene la imagen */
 .card {
-    flex: 0 0 250px; /* Ancho fijo */
+    flex: 0 0 500px; /* Ancho fijo */
     background-color: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -431,7 +431,7 @@ h2 {
 /* Imagen dentro de la tarjeta */
 .card img {
     width: 100%;
-    height: 150px; /* Altura fija */
+    height: 300px; /* Altura fija */
     object-fit: cover; /* Ajuste sin distorsión */
 }
 
@@ -499,8 +499,8 @@ h2 {
 }
 
 .modal-gallery img {
-  width: 250px;
-  height: 160px;
+  width: 500px;
+  height: 320px;
   object-fit: cover;
   margin: 10px;
   border-radius: 8px;
@@ -1580,6 +1580,7 @@ hr {
         margin-right: 10px;
     }
 }
+
 
 
 
