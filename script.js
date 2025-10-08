@@ -102,65 +102,64 @@ if (carouselSlide && carouselImages.length > 0 && prevBtn && nextBtn) {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // --- Modal de imágenes por camión (CORREGIDO DEFINITIVO) ---
-  const cards = document.querySelectorAll('.card img');
-  const modal = document.getElementById('imageModal');
-  const modalGallery = document.querySelector('.modal-gallery');
-  const closeBtn = document.querySelector('.close');
+// --- Modal de imágenes por camión (CORREGIDO) ---
+const cards = document.querySelectorAll('.card img');
+const modal = document.getElementById('imageModal');
+const modalGallery = document.querySelector('.modal-gallery');
+const closeBtn = document.querySelector('.close');
 
-  // Forzamos que empiece oculto
-  modal.style.display = 'none';
+// ✅ Aseguramos que el modal esté oculto al inicio
+modal.style.display = 'none';
 
-  cards.forEach((img) => {
-    img.addEventListener('click', (event) => {
-      event.preventDefault(); // ⚠️ evita clics automáticos del carrusel
-      event.stopPropagation(); // ⚠️ bloquea burbujeo de eventos
+cards.forEach((img) => {
+  img.addEventListener('click', () => {
+    // Ocultar y limpiar cualquier contenido previo
+    modal.style.display = 'none';
+    modalGallery.innerHTML = '';
 
-      // Ocultar y limpiar cualquier modal previo
-      modal.style.display = 'none';
-      modalGallery.innerHTML = '';
+    const match = img.src.match(/c(\d+)/);
+    if (!match) return;
+    const num = match[1];
 
-      const match = img.src.match(/c(\d+)/);
-      if (!match) return;
-      const num = match[1];
+    // Rutas posibles (ajusta la cantidad si quieres)
+    const posibles = [
+      `images/c${num}.jpeg`,
+      `images/c${num}-1.jpeg`,
+      `images/c${num}-2.jpeg`,
+      `images/c${num}-3.jpeg`
+    ];
 
-      const posibles = [
-        `images/c${num}.jpeg`,
-        `images/c${num}-1.jpeg`,
-        `images/c${num}-2.jpeg`,
-        `images/c${num}-3.jpeg`
-      ];
+    let cargadas = 0; // contar cuántas imágenes válidas hay
 
-      let cargadas = 0;
+    // Intentar cargar cada imagen solo después del clic
+    posibles.forEach((ruta) => {
+      const extraImg = new Image();
+      extraImg.src = ruta;
+      extraImg.alt = `Camión ${num}`;
 
-      posibles.forEach((ruta) => {
-        const extraImg = new Image();
-        extraImg.src = ruta;
-        extraImg.alt = `Camión ${num}`;
+      extraImg.onload = () => {
+        cargadas++;
+        modalGallery.appendChild(extraImg);
 
-        extraImg.onload = () => {
-          cargadas++;
-          modalGallery.appendChild(extraImg);
+        // Mostrar modal solo si ya se cargó al menos una imagen válida
+        if (cargadas === 1) {
+          modal.style.display = 'flex'; // Centrar el contenido
+        }
+      };
 
-          if (cargadas === 1) {
-            modal.style.display = 'flex';
-          }
-        };
-
-        extraImg.onerror = () => {
-          console.warn(`No se pudo cargar la imagen: ${ruta}`);
-        };
-      });
+      extraImg.onerror = () => {
+        console.warn(`No se pudo cargar la imagen: ${ruta}`);
+      };
     });
   });
-
-  // Cerrar modal con la X o clic fuera
-  closeBtn.addEventListener('click', () => modal.style.display = 'none');
-  window.addEventListener('click', (e) => {
-    if (e.target === modal) modal.style.display = 'none';
-  });
 });
+
+// Cerrar modal con la X o haciendo clic fuera
+closeBtn.addEventListener('click', () => modal.style.display = 'none');
+window.addEventListener('click', (e) => {
+  if (e.target === modal) modal.style.display = 'none';
+});
+
 
 
     // --- Lógica del Formulario de Contacto ---
@@ -469,6 +468,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 }); // Fin de document.addEventListener('DOMContentLoaded')
+
 
 
 
